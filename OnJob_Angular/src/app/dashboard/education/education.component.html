@@ -1,0 +1,152 @@
+<div class="card">
+  <div class="card-header text-dark">
+    Education
+    <div class="ml-auto d-inline float-right">
+      <button type="button" class="btn btn-primary btn-sm ml-auto" data-toggle="modal" data-target="#educationadd">Add</button>
+    </div>
+  </div>
+  <div class="card-body table-responsive">
+    <table class="table table-striped w-100 text-left display" datatable>
+      <thead class="text-white">
+        <tr class="bg-color">
+          <th scope="col">No.</th>
+          <th scope="col">Education</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Tốt nghiệp trung học phổ thông</td>
+          <td> <a href="" data-target="#vieweducation" data-toggle="modal" class="text-warning">Detail</a> | <a href=""
+              data-target="#editeducation" data-toggle="modal">Edit</a> | <a href="" data-target="#deleteeducation"
+              data-toggle="modal" class="text-danger">Delete</a></td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Cao đẳng</td>
+          <td> <a href="" data-target="#vieweducation" data-toggle="modal" class="text-warning">Detail</a> | <a href=""
+              data-target="#editeducation" data-toggle="modal">Edit</a> | <a href="" data-target="#deleteeducation"
+              data-toggle="modal" class="text-danger">Delete</a></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- view education-->
+<div class="modal fade" id="vieweducation" tabindex="-1" role="dialog" aria-labelledby="NationAddLable" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="NationpleModalLabel">Education Detail</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+
+          <div class="form-group row">
+            <label for="inputEducationName" class="col-sm-4 col-form-label">Education Name </label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="inputEducationName" value="Tốt nghiệp trung học phổ thông"
+                readonly>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- add Education-->
+<div class="modal fade" id="educationadd" tabindex="-1" role="dialog" aria-labelledby="NationAddLable" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="NationpleModalLabel">New Education</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+
+          <div class="form-group row">
+            <label for="inputEducationName" class="col-sm-4 col-form-label">Education Name </label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="inputEducationName" placeholder="Enter New Education Name">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- edit -->
+<div class="modal fade" id="editeducation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Education</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+
+          <div class="form-group row">
+            <label for="inputEducationName" class="col-sm-4 col-form-label">Education Name </label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="inputEducationName" value="Tốt nghiệp trung học phổ thông">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- delete -->
+<div class="modal fade" id="deleteeducation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Education</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+
+          <div class="form-group row">
+            <label for="inputEducationName" class="col-sm-4 col-form-label">Education Name </label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="inputEducationName" value="Tốt nghiệp trung học phổ thông"
+                readonly>
+            </div>
+          </div>
+        </form>
+        <p class="text-danger">Are you sure delete this Education?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

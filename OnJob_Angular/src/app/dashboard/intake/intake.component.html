@@ -1,0 +1,159 @@
+<div class="card">
+  <div class="card-header text-dark">
+    Intake
+    <div class="ml-auto d-inline float-right">
+      <button type="button" class="btn btn-primary btn-sm ml-auto" data-toggle="modal" data-target="#intakeadd">Add</button>
+    </div>
+  </div>
+  <div class="card-body table-responsive">
+    <table class="table table-striped w-100 text-left display" datatable>
+      <thead class="text-white">
+        <tr class="bg-color">
+          <th scope="col">No.</th>
+          <th scope="col">Intake Name</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>SGT-01</td>
+          <td> <a href="" data-target="#viewintake" data-toggle="modal" class="text-warning">Detail</a> | <a href=""
+              data-target="#editintake" data-toggle="modal">Edit</a> | <a href="" data-target="#deleteintake"
+              data-toggle="modal" class="text-danger">Delete</a></td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>SGT-02</td>
+          <td> <a href="" data-target="#viewintake" data-toggle="modal" class="text-warning">Detail</a> | <a href=""
+              data-target="#editintake" data-toggle="modal">Edit</a> | <a href="" data-target="#deleteintake"
+              data-toggle="modal" class="text-danger">Delete</a></td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>SGT-03</td>
+          <td> <a href="" data-target="#viewintake" data-toggle="modal" class="text-warning">Detail</a> | <a href=""
+              data-target="#editintake" data-toggle="modal">Edit</a> | <a href="" data-target="#deleteintake"
+              data-toggle="modal" class="text-danger">Delete</a></td>
+        </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>SGT-04</td>
+          <td> <a href="" data-target="#viewintake" data-toggle="modal" class="text-warning">Detail</a> | <a href=""
+              data-target="#editintake" data-toggle="modal">Edit</a> | <a href="" data-target="#deleteintake"
+              data-toggle="modal" class="text-danger">Delete</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- view intake-->
+<div class="modal fade" id="viewintake" tabindex="-1" role="dialog" aria-labelledby="NationAddLable" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="NationpleModalLabel">Intake Detail</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group row">
+            <label for="inputIntakeName" class="col-sm-4 col-form-label">Intake Name</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="inputIntakeName" placeholder="Enter New Intake Name" value="SGT-01"
+                readonly>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- add intake-->
+<div class="modal fade" id="intakeadd" tabindex="-1" role="dialog" aria-labelledby="NationAddLable" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="NationpleModalLabel">New Intake</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group row">
+            <label for="inputIntakeName" class="col-sm-4 col-form-label">Intake Name </label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="inputIntakeName" placeholder="Enter New Intake Name">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- edit -->
+<div class="modal fade" id="editintake" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Intake</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group row">
+            <label for="inputIntakeName" class="col-sm-4 col-form-label">Intake Name </label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="inputIntakeName" value="SGT-01">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- delete -->
+<div class="modal fade" id="deleteintake" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Intake</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group row">
+            <label for="inputIntakeName" class="col-sm-4 col-form-label">Intake Name</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="inputIntakeName" value="SGT-01" readonly>
+            </div>
+          </div>
+        </form>
+        <p class="text-danger">Are you sure delete this Intake?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

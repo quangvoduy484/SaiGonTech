@@ -10,7 +10,7 @@ namespace QLHocVien.Models
     {
         [Column("MAJOR_ID")]
         public int MajorID { get; set; }
-        [Column("MAJORNAME")]
+        [Column("MAJOR_NAME")]
         public string MajorName { get; set; }
     }
 }

@@ -8,7 +8,9 @@ namespace QLHocVien.Models
 {
     public class Major
     {
+        [Column("MAJOR_ID")]
         public int MajorID { get; set; }
+        [Column("MAJORNAME")]
         public string MajorName { get; set; }
     }
 }

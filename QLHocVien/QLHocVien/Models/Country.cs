@@ -8,7 +8,9 @@ namespace QLHocVien.Models
 {
     public class Country
     {
+        [Column("COUNTRY_ID")]
         public int CountryID { get; set; }
+        [Column("COUNTRYNAME")]
         public string CountryName { get; set; }
     }
 }

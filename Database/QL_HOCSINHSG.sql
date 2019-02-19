@@ -2,7 +2,7 @@
 /* DBMS name:      Microsoft SQL Server 2008                    */
 /* Created on:     2/19/2019 1:41:50 PM                         */
 /*==============================================================*/
-
+CREATE DATABASE SaigonTech
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
@@ -528,16 +528,16 @@ create table CANDIDATE (
    INTAKE_ID            int                  not null,
    SEM_ID               int                  null,
    DIS_DISTRICT_ID      int                  not null,
-   CANDIDATE_ID         varchar(50)          not null,
-   LASTNAME             varchar(100)         not null,
-   FIRSTNAME            varchar(100)         not null,
+   CANDIDATE_ID         varchar(50)         UNIQUE not null,
+   LASTNAME             nvarchar(100)         not null,
+   FIRSTNAME            nvarchar(100)         not null,
    BIRTHDAY             datetime             not null,
    GENDER               int                  not null,
    PHONENUMBER          varchar(10)          not null,
-   ADDRESS              varchar(200)         null,
+   ADDRESS              nvarchar(200)         null,
    MARITALSTATUS        int                  null,
-   HIGHSCHOOLNAME       varchar(200)         null,
-   HIGHSCHOOLCITY       varchar(200)         null,
+   HIGHSCHOOLNAME       nvarchar(200)         null,
+   HIGHSCHOOLCITY       nvarchar(200)         null,
    GRADUATEYEAR         int                  null,
    REGISTRYDATE         datetime             not null,
    EMAIL                varchar(100)         not null,
@@ -653,7 +653,7 @@ go
 /*==============================================================*/
 create table CANDIDATETYPE (
    TYPE_ID              int                  not null,
-   TYPENAME             varchar(200)         not null,
+   TYPENAME             nvarchar(200)         not null,
    constraint PK_CANDIDATETYPE primary key nonclustered (TYPE_ID)
 )
 go
@@ -674,7 +674,7 @@ go
 /*==============================================================*/
 create table COUNTRY (
    COUNTRY_ID           int                  not null,
-   COUNTRYNAME          varchar(200)         not null,
+   COUNTRYNAME          nvarchar(200)         not null,
    constraint PK_COUNTRY primary key nonclustered (COUNTRY_ID)
 )
 go
@@ -685,7 +685,7 @@ go
 create table DISTRICT (
    DISTRICT_ID          int                  not null,
    PROVINCE_ID          int                  not null,
-   DISTRICTNAME         varchar(100)         not null,
+   DISTRICTNAME         nvarchar(100)         not null,
    constraint PK_DISTRICT primary key nonclustered (DISTRICT_ID)
 )
 go
@@ -704,7 +704,7 @@ go
 create table DOCUMENT (
    DOC_ID               int                  not null,
    NAMEINENGLISH        varchar(100)         not null,
-   NAMEINVIETNAMESE     varchar(100)         not null,
+   NAMEINVIETNAMESE     nvarchar(100)         not null,
    SEQUENCENUM          int                  not null,
    INPUTTYPE            int                  not null,
    STATUS               int                  not null,
@@ -718,7 +718,7 @@ go
 /*==============================================================*/
 create table EDUCATION (
    EDUCATION_ID         int                  not null,
-   EDUCATIONNAME        varchar(200)         not null,
+   EDUCATIONNAME        nvarchar(200)         not null,
    constraint PK_EDUCATION primary key nonclustered (EDUCATION_ID)
 )
 go
@@ -728,7 +728,7 @@ go
 /*==============================================================*/
 create table EXAMSUBJECT (
    EXAM_ID              int                  not null,
-   EXAMNAME             varchar(100)         not null,
+   EXAMNAME             nvarchar(100)         not null,
    constraint PK_EXAMSUBJECT primary key nonclustered (EXAM_ID)
 )
 go
@@ -738,7 +738,7 @@ go
 /*==============================================================*/
 create table INTAKE (
    INTAKE_ID            int                  not null,
-   INTAKENAME           varchar(200)         not null,
+   INTAKENAME           nvarchar(200)         not null,
    constraint PK_INTAKE primary key nonclustered (INTAKE_ID)
 )
 go
@@ -748,7 +748,7 @@ go
 /*==============================================================*/
 create table MAJOR (
    MAJOR_ID             int                  not null,
-   MAJOR_NAME           varchar(200)         null,
+   MAJOR_NAME           nvarchar(200)         null,
    constraint PK_MAJOR primary key nonclustered (MAJOR_ID)
 )
 go
@@ -757,11 +757,12 @@ go
 /* Table: PARAMETER                                             */
 /*==============================================================*/
 create table PARAMETER (
+   PARAMETER_ID			int IDENTITY PRIMARY KEY NOT NULL,
    YEAR_ID              int                  not null,
    SEM_ID               int                  not null,
    INTAKE_ID            int                  not null,
-   SIGNATURENAME        varchar(200)         not null,
-   MORECONTACT          varchar(200)         not null,
+   SIGNATURENAME        nvarchar(200)         not null,
+   MORECONTACT          nvarchar(200)         not null,
    DOCUMENTCODE         varchar(50)          not null
 )
 go
@@ -796,7 +797,7 @@ go
 create table PROVINCE (
    PROVINCE_ID          int                  not null,
    COUNTRY_ID           int                  not null,
-   PROVINCENAME         varchar(200)         not null,
+   PROVINCENAME         nvarchar(200)         not null,
    constraint PK_PROVINCE primary key nonclustered (PROVINCE_ID)
 )
 go
@@ -843,7 +844,7 @@ go
 /*==============================================================*/
 create table SEMESTER (
    SEM_ID               int                  not null,
-   SEMESTERNAME         varchar(200)         not null,
+   SEMESTERNAME         nvarchar(200)         not null,
    constraint PK_SEMESTER primary key nonclustered (SEM_ID)
 )
 go
@@ -855,7 +856,7 @@ create table STAGE (
    STAGE_ID             int                  not null,
    SEM_ID               int                  not null,
    YEAR_ID              int                  not null,
-   STAGENAME            varchar(200)         not null,
+   STAGENAME            nvarchar(200)         not null,
    DATETIME             datetime             not null,
    EXAMDATE             datetime             not null,
    EXAMTIME             varchar(50)          not null,
@@ -887,8 +888,8 @@ create table STAGEDETAILS (
    STAR_TIME            varchar(50)          not null,
    END_TIME             varchar(50)          not null,
    SCORE                decimal              not null,
-   INTERVIEW            varchar(200)         null,
-   SUBJECT              varchar(200)         not null,
+   INTERVIEW            nvarchar(200)         null,
+   SUBJECT              nvarchar(200)         not null,
    STAGE_DETAILS_ID     int                  not null,
    ID                   int                  not null,
    MAJOR_ID             int                  not null,

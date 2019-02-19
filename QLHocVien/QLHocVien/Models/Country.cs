@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace QLHocVien.Models
 {
+    [Table("COUNTRY")]
     public class Country
     {
         [Column("COUNTRY_ID")]

@@ -624,8 +624,8 @@ go
 /* Table: CANDIDATEDOCUMENT                                     */
 /*==============================================================*/
 create table CANDIDATEDOCUMENT (
-   NOTE                 text                 null,
-   ID_NOTE              numeric(11)          identity,
+   NOTE                 NVARCHAR(255)                 null,
+   ID_NOTE              int          identity,
    DOC_ID               int                  not null,
    ID                   int                  not null,
    constraint PK_CANDIDATEDOCUMENT primary key nonclustered (ID_NOTE)
@@ -708,7 +708,7 @@ create table DOCUMENT (
    SEQUENCENUM          int                  not null,
    INPUTTYPE            int                  not null,
    STATUS               int                  not null,
-   NOTE                 text                 null,
+   NOTE                 NVARCHAR(255)                 null,
    constraint PK_DOCUMENT primary key nonclustered (DOC_ID)
 )
 go

@@ -12,3 +12,17 @@ C:\Users\quangduyvo\Desktop\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2
 C:\Users\quangduyvo\Desktop\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.dll
 C:\Users\quangduyvo\Desktop\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.pdb
 C:\Users\quangduyvo\Desktop\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.csprojAssemblyReference.cache
+D:\D15HT02\HK2 - 4\ISC_TT\ON-JOB\ISCManage\Project\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.csprojAssemblyReference.cache
+D:\D15HT02\HK2 - 4\ISC_TT\ON-JOB\ISCManage\Project\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.csproj.CoreCompileInputs.cache
+D:\D15HT02\HK2 - 4\ISC_TT\ON-JOB\ISCManage\Project\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.RazorAssemblyInfo.cache
+D:\D15HT02\HK2 - 4\ISC_TT\ON-JOB\ISCManage\Project\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.RazorAssemblyInfo.cs
+D:\D15HT02\HK2 - 4\ISC_TT\ON-JOB\ISCManage\Project\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.AssemblyInfoInputs.cache
+D:\D15HT02\HK2 - 4\ISC_TT\ON-JOB\ISCManage\Project\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.AssemblyInfo.cs
+D:\D15HT02\HK2 - 4\ISC_TT\ON-JOB\ISCManage\Project\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.dll
+D:\D15HT02\HK2 - 4\ISC_TT\ON-JOB\ISCManage\Project\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.pdb
+D:\D15HT02\HK2 - 4\ISC_TT\ON-JOB\ISCManage\Project\SaiGonTech\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.deps.json
+D:\D15HT02\HK2 - 4\ISC_TT\ON-JOB\ISCManage\Project\SaiGonTech\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.runtimeconfig.json
+D:\D15HT02\HK2 - 4\ISC_TT\ON-JOB\ISCManage\Project\SaiGonTech\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.runtimeconfig.dev.json
+D:\D15HT02\HK2 - 4\ISC_TT\ON-JOB\ISCManage\Project\SaiGonTech\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.dll
+D:\D15HT02\HK2 - 4\ISC_TT\ON-JOB\ISCManage\Project\SaiGonTech\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.pdb
+D:\D15HT02\HK2 - 4\ISC_TT\ON-JOB\ISCManage\Project\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.RazorTargetAssemblyInfo.cache

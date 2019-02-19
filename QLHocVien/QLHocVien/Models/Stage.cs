@@ -17,7 +17,5 @@ namespace QLHocVien.Models
         public string EXAMTIME { get; set; }
         public string ENGLISHTIMEEXAM { get; set; }
         public int SEM_ID { get; set; }
-        [ForeignKey("SEM_ID")]
-
     }
 }

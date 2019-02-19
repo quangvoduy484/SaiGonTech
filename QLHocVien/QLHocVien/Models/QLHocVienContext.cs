@@ -14,5 +14,6 @@ namespace QLHocVien.Models
 
         }
         public DbSet<Catalog> Catalogs { get; set; }
+        public DbSet<CandidateType> CandidateTypes { get; set; }
     }
 }

@@ -1060,4 +1060,3 @@ alter table STAGEDETAILS
    add constraint FK_STAGEDET_RELATIONS_MAJOR foreign key (MAJOR_ID)
       references MAJOR (MAJOR_ID)
 go
-

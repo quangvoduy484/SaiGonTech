@@ -3,7 +3,7 @@
 /* Created on:     2/19/2019 1:41:50 PM                         */
 /*==============================================================*/
 CREATE DATABASE SaigonTech
-use SaigonTech
+
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
    where r.fkeyid = object_id('CANDIDATE') and o.name = 'FK_CANDIDAT_HAS3_EDUCATIO')

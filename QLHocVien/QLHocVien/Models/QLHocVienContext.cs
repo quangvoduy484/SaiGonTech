@@ -18,5 +18,6 @@ namespace QLHocVien.Models
         public DbSet<Major> Majors { get; set; }
         public DbSet<Country> Countrys { get; set; }
         public DbSet<Province> Provinces { get; set; }
+        public DbSet<Semeter> Semeters { get; set; }
     }
 }

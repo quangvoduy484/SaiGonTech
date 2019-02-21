@@ -11,11 +11,21 @@ namespace QLHocVien.Models
     {
         [Column("STAGE_ID")]
         public int Id { get; set; }
-        public string STAGENAME { get; set; }
-        public DateTime DATETIME { get; set; }
-        public DateTime EXAMDATE { get; set; }
-        public string EXAMTIME { get; set; }
-        public string ENGLISHTIMEEXAM { get; set; }
+        [Column("STAGENAME")]
+        public string StageName { get; set; }
+        [Column("DATETIME")]
+        public DateTime DateTimes { get; set; }
+        [Column("EXAMDATE")]
+        public DateTime ExamDate { get; set; }
+        [Column("EXAMTIME")]
+        public string ExamTime { get; set; }
+        [Column("ENGLISHTIMEEXAM")]
+        public string EnglishTimeExam { get; set; }
         public int SEM_ID { get; set; }
+        [ForeignKey("SEM_ID")]
+        public virtual Semeter Semeter { get; set; }
+        public int YEAR_ID { get; set; }
+        [ForeignKey("YEAR_ID")]
+        public virtual Year Year { get; set; }
     }
 }

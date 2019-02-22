@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QLHocVien.Models
 {
-    [Table("CATALOG_NIENKHOA")]
+    [Table("CATALOG")]
     public class Catalog
     {
 

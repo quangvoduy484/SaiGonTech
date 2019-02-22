@@ -13,7 +13,7 @@ namespace QLHocVien.Controllers
     [Route("api/[controller]")]
 
     [ApiController]
-    public class CatalogController : Controller
+    public class CatalogController : ControllerBase
     {
         private readonly QLHocVienContext _context;
         public CatalogController(QLHocVienContext context)

@@ -10,7 +10,7 @@ namespace QLHocVien.Models
     public class Education
     {
         [Column("EDUCATION_ID")]
-        public int Education_ID { get; set; }
+        public int Id { get; set; }
         [Column("EDUCATIONNAME")]
         public string EducationName { get; set; }
     }

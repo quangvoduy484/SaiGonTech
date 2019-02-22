@@ -44,7 +44,7 @@ namespace QLHocVien.Controllers
 		{
 			_context.Educations.Add(education);
 			await _context.SaveChangesAsync();
-			return CreatedAtAction("Get", new { id = education.Education_ID }, education);
+			return CreatedAtAction("Get", new { id = education.Id }, education);
 		}
 
 		// PUT api/<controller>/5

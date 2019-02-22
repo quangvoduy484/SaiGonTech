@@ -12942,23 +12942,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Quoc-PC\\.nuget\\packages\\": {},
+    "C:\\Users\\DELL\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\D15HT02\\HK2 - 4\\ISC_TT\\ON-JOB\\ISCManage\\Project\\SaiGonTech\\QLHocVien\\QLHocVien\\QLHocVien.csproj",
+      "projectUniqueName": "D:\\ISC\\Project\\Source\\SaiGonTech\\QLHocVien\\QLHocVien\\QLHocVien.csproj",
       "projectName": "QLHocVien",
-      "projectPath": "D:\\D15HT02\\HK2 - 4\\ISC_TT\\ON-JOB\\ISCManage\\Project\\SaiGonTech\\QLHocVien\\QLHocVien\\QLHocVien.csproj",
-      "packagesPath": "C:\\Users\\Quoc-PC\\.nuget\\packages\\",
-      "outputPath": "D:\\D15HT02\\HK2 - 4\\ISC_TT\\ON-JOB\\ISCManage\\Project\\SaiGonTech\\QLHocVien\\QLHocVien\\obj\\",
+      "projectPath": "D:\\ISC\\Project\\Source\\SaiGonTech\\QLHocVien\\QLHocVien\\QLHocVien.csproj",
+      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+      "outputPath": "D:\\ISC\\Project\\Source\\SaiGonTech\\QLHocVien\\QLHocVien\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Quoc-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

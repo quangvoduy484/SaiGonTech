@@ -21,5 +21,8 @@ namespace QLHocVien.Models
         public DbSet<Province> Provinces { get; set; }
         public DbSet<Semeter> Semeters { get; set; }
         public DbSet<Stage> Stage { get; set; }
+        public DbSet<Intake> Intakes { get; set; }
+        public DbSet<Year> Years { get; set; }
+        public DbSet<District> Districts { get; set; }
     }
 }

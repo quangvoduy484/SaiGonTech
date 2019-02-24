@@ -119,6 +119,7 @@
       </div>
     </div>
   </div>
+
   <div class="card-body table-responsive">
     <table class="table table-striped table-hover display" datatable>
       <thead class="bg-color text-white">
@@ -129,9 +130,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let row of List_Semeter">
           <th scope="row">1</th>
-          <td>Spring</td>
+          <td>{{row.semeter_name}}</td>
           <td><a href="" data-target="#detailSemester" data-toggle="modal" class="text-warning">Detail</a>
             | <a href="" data-target="#editSemester" data-toggle="modal">Edit</a>
             | <a href="" data-target="#deleteSemester" data-toggle="modal" class="text-danger">Delete</a></td>

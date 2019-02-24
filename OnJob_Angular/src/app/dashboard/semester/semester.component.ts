@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SemeterService, Semeterepone } from 'src/app/services/semeter.service';
 
 @Component({
   selector: 'app-semester',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SemesterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private Semeters:SemeterService) {  }
 
+  List_Semeter:Semeterepone[];
   ngOnInit() {
+    this.LoadListSemeter();
+  }
+  LoadListSemeter()
+  {
+      this.Semeters.GetAllSemeter().subscribe(se => {
+            if(se.errorcode == 0)
+            {
+                this.List_Semeter = se.data;
+            }
+      });
   }
 
 }

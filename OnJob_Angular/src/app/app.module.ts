@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
+
 import { DataTablesModule } from 'angular-datatables';
-import { HttpClientModule} from '@angular/common/http'
+import { HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,7 +26,7 @@ import { ExamsubjectComponent } from './dashboard/examsubject/examsubject.compon
 import { ScoreofexamsubjectComponent } from './dashboard/scoreofexamsubject/scoreofexamsubject.component';
 import { StagedetailComponent } from './dashboard/stagedetail/stagedetail.component';
 import { LoginComponent } from './login/login.component';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +56,8 @@ import { LoginComponent } from './login/login.component';
     ButtonsModule.forRoot(),
     BsDropdownModule.forRoot(),
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

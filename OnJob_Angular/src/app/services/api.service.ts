@@ -12,6 +12,7 @@ export class ApiService {
     years: this.baseUrl + 'years',
     yeardetail: this.baseUrl + 'years',
     semeter: this.baseUrl + 'Semeter/GetListSemeter',
-    
+    semeter_add: this.baseUrl + 'AddSemeter'
+
   }
 }

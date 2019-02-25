@@ -23,6 +23,7 @@ namespace QLHocVien.Controllers
 
     }
 
+    // Lấy danh sách semeter
     [HttpGet("GetListSemeter")]
     public async Task<ActionResult<Baserepone>> Get()
     {
@@ -48,6 +49,7 @@ namespace QLHocVien.Controllers
 
     }
 
+    // Search semeter theo tên
     [HttpPost("SemeterByName")]
     public async Task<ActionResult<Baserepone>> Get(Semeterequest semetere)
     {
@@ -74,6 +76,7 @@ namespace QLHocVien.Controllers
 
     }
 
+    // Thêm semeter
     [HttpPost("AddSemeter")]
     public async Task<ActionResult<Baserepone>> post(Semeter semeter)
     {
@@ -81,11 +84,12 @@ namespace QLHocVien.Controllers
       {
         _context.Semeters.Add(semeter);
         await _context.SaveChangesAsync();
-        return new Baserepone(new Semeterrepon {
+        return new Baserepone(new Semeterrepon
+        {
 
-              Id=semeter.Id,
-              semeter_name=semeter.semeter_name,
-              token=""
+          Id = semeter.Id,
+          semeter_name = semeter.semeter_name,
+          token = ""
 
         });
 
@@ -93,57 +97,58 @@ namespace QLHocVien.Controllers
       else
       {
         return new Baserepone { errorcode = 1, errormessage = "Dữ liệu không được để trống" };
-          
+
       }
 
     }
 
+    //  update semeter
+
+    [HttpPut("Update/{id}")]
+    public async Task<ActionResult<Baserepone>> Put(int id, Semeter SemeterItem_Update)
+    {
+      var SemeterItem = await _context.Semeters.FindAsync(id);
+      if (SemeterItem == null)
+      {
+        return new Baserepone { errorcode = 1, errormessage = "không tìm thấy id hiện tại" };
+      }
+      SemeterItem.semeter_name = SemeterItem_Update.semeter_name;
+      _context.Semeters.Update(SemeterItem);
+      await _context.SaveChangesAsync();
+      return new Baserepone(new Semeterrepon
+      {
+
+        Id = SemeterItem_Update.Id,
+        semeter_name = SemeterItem_Update.semeter_name,
+        token = ""
+
+      });
 
 
-
-        [HttpPut("Update/{id}")]
-        public async Task<ActionResult<Baserepone>> Put(int id, Semeter SemeterItem_Update)
-        {
-            var SemeterItem = await _context.Semeters.FindAsync(id);
-            if (SemeterItem == null)
-            {
-                return new Baserepone { errorcode = 1, errormessage = "không tìm thấy id hiện tại" };
-            }
-            SemeterItem.semeter_name = SemeterItem_Update.semeter_name;
-            _context.Semeters.Update(SemeterItem);
-            await _context.SaveChangesAsync();
-            return new Baserepone(new Semeterrepon
-            {
-
-                Id = SemeterItem_Update.Id,
-                semeter_name = SemeterItem_Update.semeter_name,
-                token = ""
-
-            });
-
-
-        }
-
-        [HttpDelete("Delete/{id}")]
-        public async Task<ActionResult<Baserepone>> Delete(int id)
-        {
-            var Semeter = await _context.Semeters.FindAsync(id);
-            if (Semeter == null)
-            {
-                return new Baserepone { errorcode = 1, errormessage = "không tìm thấy id hiện tại" };
-            }
-            _context.Semeters.Remove(Semeter);
-            await _context.SaveChangesAsync();
-            return new Baserepone(new Semeterrepon
-            {
-
-                Id = Semeter.Id,
-                semeter_name = Semeter.semeter_name,
-                token = ""
-
-            });
-        }
-
-    
     }
+
+    // xóa semeter
+
+    [HttpDelete("Delete/{id}")]
+    public async Task<ActionResult<Baserepone>> Delete(int id)
+    {
+      var Semeter = await _context.Semeters.FindAsync(id);
+      if (Semeter == null)
+      {
+        return new Baserepone { errorcode = 1, errormessage = "không tìm thấy id hiện tại" };
+      }
+      _context.Semeters.Remove(Semeter);
+      await _context.SaveChangesAsync();
+      return new Baserepone(new Semeterrepon
+      {
+
+        Id = Semeter.Id,
+        semeter_name = Semeter.semeter_name,
+        token = ""
+
+      });
+    }
+
+
+  }
 }

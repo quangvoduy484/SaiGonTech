@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { SemeterService, Semeterepone } from 'src/app/services/semeter.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { SemeterService, Semeterepone, Semeter } from 'src/app/services/semeter.service';
+
+import { BsModalService, BsModalRef, ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-semester',
@@ -8,23 +10,33 @@ import { SemeterService, Semeterepone } from 'src/app/services/semeter.service';
 })
 export class SemesterComponent implements OnInit {
 
-  constructor(private Semeters:SemeterService) {  }
+  modalRef: BsModalRef;
+  semeters: Semeter[] = [];
+  semeter: Semeter = {} as Semeter;
 
-  List_Semeter:Semeterepone[];
+  constructor(private Semeters: SemeterService) { }
+  @ViewChild('Modal') modal: ModalDirective;
+
+ // List_Semeter: Semeterepone[];
   ngOnInit() {
-    this.LoadListSemeter();
+    this.loadSemeter();
   }
 
-  LoadListSemeter()
-  {
-      this.Semeters.GetAllSemeter().subscribe(se => {
-            if(se.errorcode == 0)
+  loadSemeter() {
+    this.Semeters.getAll().subscribe(se => {
+        if(se.errorcode === 0 )
+        {
+            for(let seme of se.data)
             {
-                this.List_Semeter = se.data;
+                  this.semeter = {} as Semeter;
+                  this.semeter.id= seme.id;
+                  this.semeter.semeter_name=seme.semeter_name;
+                  this.semeters.push(this.semeter);
             }
-      });
+        }
+    });
   }
-  
+
 
 
 }

@@ -27,6 +27,7 @@ import { ScoreofexamsubjectComponent } from './dashboard/scoreofexamsubject/scor
 import { StagedetailComponent } from './dashboard/stagedetail/stagedetail.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +58,8 @@ import { FormsModule } from '@angular/forms';
     BsDropdownModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

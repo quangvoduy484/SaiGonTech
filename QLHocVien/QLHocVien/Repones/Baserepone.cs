@@ -13,6 +13,7 @@ namespace QLHocVien.Repones
 
     public object data { get; set; }
 
+    
     public Baserepone() { }
 
     public Baserepone(object _data)

@@ -98,37 +98,52 @@ namespace QLHocVien.Controllers
 
     }
 
-   
 
 
-    //[HttpPut("{id}")]
-    //public async Task<ActionResult<Semeter>> Put(int id, Semeter SemeterItem_Update)
-    //{
-    //  var SemeterItem = await _context.Semeters.FindAsync(id);
-    //  if (SemeterItem == null)
-    //  {
-    //    return NotFound();
-    //  }
-    //  SemeterItem.semeter_name = SemeterItem_Update.semeter_name;
-    //  _context.Semeters.Update(SemeterItem);
-    //  await _context.SaveChangesAsync();
-    //  return Ok(SemeterItem);
+
+        [HttpPut("Update/{id}")]
+        public async Task<ActionResult<Baserepone>> Put(int id, Semeter SemeterItem_Update)
+        {
+            var SemeterItem = await _context.Semeters.FindAsync(id);
+            if (SemeterItem == null)
+            {
+                return new Baserepone { errorcode = 1, errormessage = "không tìm thấy id hiện tại" };
+            }
+            SemeterItem.semeter_name = SemeterItem_Update.semeter_name;
+            _context.Semeters.Update(SemeterItem);
+            await _context.SaveChangesAsync();
+            return new Baserepone(new Semeterrepon
+            {
+
+                Id = SemeterItem_Update.Id,
+                semeter_name = SemeterItem_Update.semeter_name,
+                token = ""
+
+            });
 
 
-    //}
+        }
 
-    //[HttpDelete("{id}")]
-    //public async Task<ActionResult<Semeter>> Delete(int id)
-    //{
-    //  var Semeter = await _context.Semeters.FindAsync(id);
-    //  if (Semeter == null)
-    //  {
-    //    return NotFound();
-    //  }
-    //  _context.Semeters.Remove(Semeter);
-    //  await _context.SaveChangesAsync();
-    //  return Semeter;
+        [HttpDelete("Delete/{id}")]
+        public async Task<ActionResult<Baserepone>> Delete(int id)
+        {
+            var Semeter = await _context.Semeters.FindAsync(id);
+            if (Semeter == null)
+            {
+                return new Baserepone { errorcode = 1, errormessage = "không tìm thấy id hiện tại" };
+            }
+            _context.Semeters.Remove(Semeter);
+            await _context.SaveChangesAsync();
+            return new Baserepone(new Semeterrepon
+            {
 
-    //}
-  }
+                Id = Semeter.Id,
+                semeter_name = Semeter.semeter_name,
+                token = ""
+
+            });
+        }
+
+    
+    }
 }

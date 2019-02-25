@@ -14,6 +14,7 @@ export class SemesterComponent implements OnInit {
   ngOnInit() {
     this.LoadListSemeter();
   }
+
   LoadListSemeter()
   {
       this.Semeters.GetAllSemeter().subscribe(se => {
@@ -23,5 +24,7 @@ export class SemesterComponent implements OnInit {
             }
       });
   }
+  
+
 
 }

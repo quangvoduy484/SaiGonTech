@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 export interface Semeterepones {
   errorcode: number;
   errormessage: string;
-  data: Semeterepone[]
+  data: Semeterepone[];
 }
 
 export interface Semeterepone {
@@ -30,9 +30,27 @@ export class SemeterService {
   public getAll(): Observable<Semeterepones> {
     return this.http.get<Semeterepones>(this.api.apiUrl.semeter);
   }
+
+  public get(id: Number): Observable<Semeterepones>{
+    return this.http.get<Semeterepones>(this.api.apiUrl.semeter_object + '/' + id);
+  }
+
   public Add(semeter: Semeter): Observable<Semeterepones> {
     return this.http.post<Semeterepones>(this.api.apiUrl.semeter_add, semeter);
   }
+
+  public Update(semeter :Semeter):Observable<Semeterepones>
+  {
+    return this.http.put<Semeterepones>(this.api.apiUrl.semeter_update + '?id=' + semeter.id, semeter);
+  }
+
+  public Delete(id:Number):Observable<Semeterepones>
+  {
+    return this.http.delete<Semeterepones>(this.api.apiUrl.semeter_delete+ '?id=' + id);
+  }
+
+  
+
 
 
 

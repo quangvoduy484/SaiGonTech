@@ -5,13 +5,13 @@
       <button class="btn btn-primary" (click)="show()">Add</button>
     </div>
 
-
+<input type="text">
     <!-- add and edit -->
     <div bsModal #Modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 id="dialog-sizes-name1" class="modal-title pull-left">Semeter</h4>
+            <h4 id="dialog-sizes-name1" class="modal-title pull-left">{{status}}</h4>
             <button type="button" class="close pull-right" (click)="Modal.hide()" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -21,13 +21,13 @@
               <div class="form-group row">
                 <label for="inputSemester" class="col-sm-4 col-form-label">Semester Name</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control"  placeholder="Semester Name">
+                  <input type="text" name="semeter" class="form-control" [(ngModel)]="semeter.semeter_name"   placeholder="Semester Name" value="{{semeter.semeter_name}}">
                 </div>
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" (click)="Modal.hide()" data-dismiss="modal">Close</button>
             <button class="btn btn-success" (click)="save()">save</button>
           </div>
         </div>
@@ -85,13 +85,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let row of semeters">
-          <th scope="row">1</th>
+        <tr *ngFor="let row of semeters ; index as i">
+          <th scope="row">{{i+1}}</th>
           <td>{{row.semeter_name}}</td>
           <td>
-              <a href="" data-target="#detailSemester" data-toggle="modal" class="text-warning">Detail</a>
-            | <a href="" data-target="#editSemester" data-toggle="modal">Edit</a>
-            | <a href="" data-target="#deleteSemester" data-toggle="modal" class="text-danger">Delete</a></td>
+              <a href="#" data-target="#detailSemester" data-toggle="modal" class="text-warning">Detail</a>
+            | <a href="#" (click)="show($event,row.id)" data-toggle="modal">Edit</a>
+            | <a href="#" (click)="delete($event,row.id)" class="text-danger" >Delete</a></td>
+
+            <!-- data-target="#deleteSemester" data-toggle="modal" class="text-danger" -->
         </tr>
       </tbody>
     </table>

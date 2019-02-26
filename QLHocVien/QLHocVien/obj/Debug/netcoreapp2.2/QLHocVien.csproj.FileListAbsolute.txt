@@ -31,7 +31,6 @@ C:\Users\isc\Desktop\SaiGonTech\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHo
 C:\Users\isc\Desktop\SaiGonTech\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.runtimeconfig.dev.json
 C:\Users\isc\Desktop\SaiGonTech\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.dll
 C:\Users\isc\Desktop\SaiGonTech\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.pdb
-C:\Users\isc\Desktop\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.csprojAssemblyReference.cache
 C:\Users\isc\Desktop\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.csproj.CoreCompileInputs.cache
 C:\Users\isc\Desktop\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.RazorAssemblyInfo.cache
 C:\Users\isc\Desktop\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.RazorAssemblyInfo.cs
@@ -40,3 +39,4 @@ C:\Users\isc\Desktop\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHo
 C:\Users\isc\Desktop\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.RazorTargetAssemblyInfo.cache
 C:\Users\isc\Desktop\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.dll
 C:\Users\isc\Desktop\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.pdb
+C:\Users\isc\Desktop\SaiGonTech\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.csprojAssemblyReference.cache

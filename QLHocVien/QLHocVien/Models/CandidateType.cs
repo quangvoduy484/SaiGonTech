@@ -11,6 +11,7 @@ namespace QLHocVien.Models
     {
         [Column("TYPE_ID")]
         public int Id { get; set; }
-        public string TYPENAME { get; set; }
+        [Column("TYPENAME")]
+        public string TypeName { get; set; }
     }
 }

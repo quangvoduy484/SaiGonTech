@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QLHocVien.Models;
+using QLHocVien.Repones;
 
 namespace QLHocVien.Controllers
 {
@@ -22,54 +23,108 @@ namespace QLHocVien.Controllers
 
         // GET: api/Stages
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Stage>>> GetStage()
+        public async Task<ActionResult<Baserepone>> GetStage()
         {
-            return await _context.Stage.Include(x => x.Year).Include(x => x.Semeter).ToListAsync();
+            var stage = await _context.Stages.Include(x => x.Semeter).Include(x => x.Year).ToListAsync();
+            if (stage != null)
+            {
+                return new Baserepone
+                {
+                    errorcode = 0,
+                    errormessage = "Load dữ liệu thành công!!",
+                    data = stage
+                };
+            }
+            else
+            {
+                return new Baserepone
+                {
+                    errorcode = 1,
+                    errormessage = "Không có dữ liệu"
+                };
+            }
         }
 
         // GET: api/GetStageByYear/1
         [HttpGet("GetStageByYear/{YearID}")]
-        public async Task<ActionResult<IEnumerable<Stage>>> GetStageByYear( int YearID)
+        public async Task<ActionResult<Baserepone>> GetStageByYear( int YearID)
         {
-            var Stage_Year = await _context.Stage.Where(x => x.YEAR_ID== YearID).ToListAsync();
-            if(Stage_Year == null)
+            var stage = await _context.Stages.Include(x => x.Semeter).Include(x => x.Year).Where(x => x.YEAR_ID == YearID).ToListAsync();
+
+            if (stage != null)
             {
-                return NotFound();
+                return new Baserepone
+                {
+                    errorcode = 0,
+                    errormessage = "Tìm kiếm dữ liệu thành công!!",
+                    data = stage
+                };
             }
-            return Stage_Year;
+            else
+            {
+                return new Baserepone
+                {
+                    errorcode = 1,
+                    errormessage = "Không tìm thấy!!"
+                };
+            }
         }
 
         // GET: api/GetStageBySemester/1
         [HttpGet("GetStageBySemester/{SemID}")]
-        public async Task<ActionResult<IEnumerable<Stage>>> GetStageBySemester(int SemID)
+        public async Task<ActionResult<Baserepone>> GetStageBySemester(int SemID)
         {
-            var Stage_SEM = await _context.Stage.Where(x => x.SEM_ID == SemID).ToListAsync();
-            if (Stage_SEM == null)
+            var stage = await _context.Stages.Include(x => x.Semeter).Include(x => x.Year).Where(x => x.SEM_ID == SemID).ToListAsync();
+
+            if (stage != null)
             {
-                return NotFound();
+                return new Baserepone
+                {
+                    errorcode = 0,
+                    errormessage = "Tìm kiếm dữ liệu thành công!!",
+                    data = stage
+                };
             }
-            return Stage_SEM;
+            else
+            {
+                return new Baserepone
+                {
+                    errorcode = 1,
+                    errormessage = "Không tìm thấy!!"
+                };
+            }
         }
 
         // GET: api/Stages/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Stage>> GetStage(int id)
+        public async Task<ActionResult<Baserepone>> GetStage(int id)
         {
-            var stage = await _context.Stage.FindAsync(id);
+            var stage = await _context.Stages.Include(x => x.Semeter).Include(x => x.Year).Where(x => x.Id == id).FirstOrDefaultAsync();
 
-            if (stage == null)
+            if (stage != null)
             {
-                return NotFound();
+                return new Baserepone
+                {
+                    errorcode = 0,
+                    errormessage = "Tìm kiếm dữ liệu thành công!!",
+                    data = stage
+                };
             }
-
-            return stage;
+            else
+            {
+                return new Baserepone
+                {
+                    errorcode = 1,
+                    errormessage = "Không tìm thấy!!"
+                };
+            }
         }
 
         // PUT: api/Stages/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutStage(int id, Stage stage_update)
         {
-            var Stag = await _context.Stage.FindAsync(id);
+            var Stag = await _context.Stages.FindAsync(id);
             if(Stag == null)
             {
                 return NotFound();
@@ -82,35 +137,60 @@ namespace QLHocVien.Controllers
             Stag.ExamTime = stage_update.ExamTime;
             Stag.EnglishTimeExam = stage_update.EnglishTimeExam;
 
-            _context.Stage.Update(Stag);
+            _context.Stages.Update(Stag);
             await _context.SaveChangesAsync();
             return Ok(Stag);
         }
 
         // POST: api/Stages
         [HttpPost]
-        public async Task<ActionResult<Stage>> PostStage(Stage stage)
+        public async Task<ActionResult<Baserepone>> PostStage(Stage stage)
         {
-            _context.Stage.Add(stage);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("Get", new { id = stage.Id }, stage);
+            if (String.IsNullOrEmpty(stage.StageName) || String.IsNullOrEmpty(stage.ExamTime))
+            {
+                return new Baserepone
+                {
+                    errorcode = 1,
+                    errormessage = "Thêm mới thất bại!!"
+                };
+            }
+            else
+            {
+                _context.Stages.Add(stage);
+                await _context.SaveChangesAsync();
+                return new Baserepone
+                {
+                    errorcode = 0,
+                    errormessage = "Thêm mới thành công!!",
+                    data = CreatedAtAction("GetStage", new { id = stage.Id }, stage)
+                };
+            }
         }
 
         // DELETE: api/Stages/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Stage>> DeleteStage(int id)
+        public async Task<ActionResult<Baserepone>> DeleteStage(int id)
         {
-            var stage = await _context.Stage.FindAsync(id);
-            if (stage == null)
+            var stage = await _context.Stages.FindAsync(id);
+            if (stage != null)
             {
-                return NotFound();
+                _context.Stages.Remove(stage);
+                await _context.SaveChangesAsync();
+                return new Baserepone
+                {
+                    errorcode = 0,
+                    errormessage = "Xóa thành công!!",
+                    data = stage
+                };
             }
-
-            _context.Stage.Remove(stage);
-            await _context.SaveChangesAsync();
-
-            return stage;
+            else
+            {
+                return new Baserepone
+                {
+                    errorcode = 1,
+                    errormessage = "Không tìm thấy dữ liệu cần xóa"
+                };
+            }
         }
     }
 }

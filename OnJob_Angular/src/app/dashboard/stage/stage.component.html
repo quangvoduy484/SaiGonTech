@@ -3,11 +3,11 @@
     <div class="card-header text-dark">
       Stage
       <div class="ml-auto d-inline float-right">
-        <button type="button" class="btn btn-primary btn-sm ml-auto" data-toggle="modal" data-target="#addStage">Add</button>
+        <button type="button" class="btn btn-primary btn-sm ml-auto" (click)="ShowModalAdd()">Add</button>
       </div>
 
       <!-- add -->
-      <div class="modal fade" id="addStage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div bsModal #modalAdd="bs-modal" class="modal fade" id="addStage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -21,20 +21,18 @@
                 <div class="form-row">
                   <div class="form-group col-md-4">
                     <label for="inputStage">Stage Name</label>
-                    <input type="text" class="form-control mb-2" id="inputExamTime" placeholder="Enter New Stage Name">
+                    <input type="text" class="form-control mb-2" id="inputStageName" [(ngModel)]="stage.stageName" name="inputStageName" placeholder="Enter New Stage Name">
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputSemester">Semester</label>
                     <select id="inputSemester" class="form-control">
-                      <option selected>Choose...</option>
-                      <option>...</option>
+                      <option *ngFor="let semester of semesters" selected>{{semester.semeter_name}}</option>
                     </select>
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputYear">Year</label>
                     <select id="inputYear" class="form-control">
-                      <option selected>Choose...</option>
-                      <option>...</option>
+                      <option *ngFor="let year of years" selected>{{year.yearName}}</option>
                     </select>
                   </div>
                 </div>
@@ -47,7 +45,7 @@
                           <a href="#"><i class="mdi mdi-calendar-plus"></i></a>
                         </div>
                       </div>
-                      <input type="date" class="form-control" id="inputDateTime">
+                      <input type="date" class="form-control" id="inputDateTime" [(ngModel)]="stage.dateTimes" name="inputDateTime">
                     </div>
                   </div>
                   <div class="form-group col-md-6">
@@ -58,31 +56,31 @@
                           <a href="#"><i class="mdi mdi-calendar-plus"></i></a>
                         </div>
                       </div>
-                      <input type="date" class="form-control" id="inputExamDate">
+                      <input type="date" class="form-control" id="inputExamDate" [(ngModel)]="stage.examDate" name="inputExamDate">
                     </div>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="inputExamTime">Exam Time</label>
-                    <input type="text" class="form-control mb-2" id="inputExamTime" name="datetime">
+                    <input type="text" class="form-control mb-2" id="inputExamTime" [(ngModel)]="stage.examTime" name="inputExamTime">
                   </div>
                   <div class="form-group col-md-6">
                     <label for="inputTimeEnglish">Time Of English Exam</label>
-                    <input type="text" class="form-control mb-2" id="inputTimeEnglish" name="datetime">
+                    <input type="text" class="form-control mb-2" id="inputTimeEnglish" [(ngModel)]="stage.englishTimeExam" name="inputTimeEnglish">
                   </div>
                 </div>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-success">Add</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
+              <button type="button" class="btn btn-success" (click)="add()">Add</button>
             </div>
           </div>
         </div>
       </div>
       <!-- edit -->
-      <div class="modal fade" id="editStage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      <div bsModal #modalEdit="bs-modal" class="modal fade" id="editStage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -97,20 +95,18 @@
                 <div class="form-row">
                   <div class="form-group col-md-4">
                     <label for="inputStage">Stage Name</label>
-                    <input type="text" class="form-control mb-2" id="inputExamTime" value="Stage 1">
+                    <input type="text" class="form-control mb-2" id="inputExamTime" [(ngModel)]="stage.stageName" name="inputStageName">
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputSemester">Semester</label>
                     <select id="inputSemester" class="form-control">
-                      <option selected>Choose...</option>
-                      <option>...</option>
+                      <option *ngFor="let semester of semesters" selected>{{semester.semeter_name}}</option>
                     </select>
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputYear">Year</label>
                     <select id="inputYear" class="form-control">
-                      <option selected>Choose...</option>
-                      <option>...</option>
+                      <option *ngFor="let year of years" selected>{{year.yearName}}</option>
                     </select>
                   </div>
                 </div>
@@ -123,7 +119,7 @@
                           <a href="#"><i class="mdi mdi-calendar-plus"></i></a>
                         </div>
                       </div>
-                      <input type="date" class="form-control" id="inputDateTime">
+                      <input type="date" class="form-control" id="inputDateTime" [(ngModel)]="stage.dateTimes" name="inputDateTime">
                     </div>
                   </div>
                   <div class="form-group col-md-6">
@@ -134,32 +130,32 @@
                           <a href="#"><i class="mdi mdi-calendar-plus"></i></a>
                         </div>
                       </div>
-                      <input type="date" class="form-control" id="inputExamDate">
+                      <input type="date" class="form-control" id="inputExamDate" [(ngModel)]="stage.examDate" name="inputExamDate">
                     </div>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="inputExamTime">Exam Time</label>
-                    <input type="text" class="form-control mb-2" id="inputExamTime" name="datetimes">
+                    <input type="text" class="form-control mb-2" id="inputExamTime" [(ngModel)]="stage.examTime" name="inputExamTime">
                   </div>
                   <div class="form-group col-md-6">
                     <label for="inputTimeEnglish">Time Of English Exam</label>
-                    <input type="text" class="form-control mb-2" id="inputTimeEnglish" name="datetimes">
+                    <input type="text" class="form-control mb-2" id="inputTimeEnglish" [(ngModel)]="stage.englishTimeExam" name="inputTimeEnglish">
                   </div>
                 </div>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Update</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
+              <button type="button" class="btn btn-primary" (click)="update(stage.id)">Update</button>
             </div>
           </div>
         </div>
       </div>
 
       <!-- delete -->
-      <div class="modal fade" id="deleteStage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      <div bsModal #modalDelete="bs-modal" class="modal fade" id="deleteStage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -170,17 +166,17 @@
               </button>
             </div>
             <div class="modal-body">
-              <p class="text-danger">Are you sure delete this Stage?</p>
+              <p class="text-danger">Are you sure delete this {{stage.stageName}}?</p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-danger">Delete</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()">Cancel</button>
+              <button type="button" class="btn btn-danger" (click)="delete(stage.id)">Delete</button>
             </div>
           </div>
         </div>
       </div>
       <!-- Details -->
-      <div class="modal fade" id="detailStage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      <div bsModal #modalDetail="bs-modal" class="modal fade" id="detailStage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -195,20 +191,18 @@
                 <div class="form-row">
                   <div class="form-group col-md-4">
                     <label for="inputStage">Stage Name</label>
-                    <input type="text" class="form-control mb-2" id="inputExamTime" value="Stage 1" readonly>
+                    <input type="text" class="form-control mb-2" id="inputExamTime" value="{{stage.stageName}}" readonly>
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputSemester">Semester</label>
                     <select id="inputSemester" class="form-control" disabled>
-                      <option selected>Choose...</option>
-                      <option>...</option>
+                      <option *ngFor="let semester of semesters" selected>{{semester.semeter_name}}</option>
                     </select>
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputYear">Year</label>
                     <select id="inputYear" class="form-control" disabled>
-                      <option selected>Choose...</option>
-                      <option>...</option>
+                      <option *ngFor="let year of years" selected>{{year.yearName}}</option>
                     </select>
                   </div>
                 </div>
@@ -221,7 +215,7 @@
                           <a href="#"><i class="mdi mdi-calendar-plus"></i></a>
                         </div>
                       </div>
-                      <input type="text" class="form-control" id="inputDateTime" value="01/01/2019" readonly>
+                      <input type="text" class="form-control" id="inputDateTime" value="{{stage.dateTimes}}" readonly>
                     </div>
                   </div>
                   <div class="form-group col-md-6">
@@ -232,24 +226,24 @@
                           <a href="#"><i class="mdi mdi-calendar-plus"></i></a>
                         </div>
                       </div>
-                      <input type="text" class="form-control" id="inputExamDate" value="01/01/2019" readonly>
+                      <input type="text" class="form-control" id="inputExamDate" value="{{stage.examDate}}" readonly>
                     </div>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="inputExamTime">Exam Time</label>
-                    <input type="text" class="form-control mb-2" id="inputExamTime" value="8h15 - 10h15" readonly>
+                    <input type="text" class="form-control mb-2" id="inputExamTime" value="{{stage.examTime}}" readonly>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="inputTimeEnglish">Time Of English Exam</label>
-                    <input type="text" class="form-control mb-2" id="inputTimeEnglish" value="10h30 - 11h30" readonly>
+                    <input type="text" class="form-control mb-2" id="inputTimeEnglish" value="{{stage.englishTimeExam}}" readonly>
                   </div>
                 </div>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
             </div>
           </div>
         </div>
@@ -271,18 +265,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr data-toggle="modal">
-            <th scope="row">1</th>
-            <td>Stage 1</td>
-            <td>Spring</td>
-            <td>2019</td>
-            <td>18/09/2018</td>
-            <td>01/10/2018</td>
-            <td>8h15 - 10h15</td>
-            <td>10h30 - 11h30</td>
-            <td><a href="" data-target="#detailStage" data-toggle="modal" class="text-warning">Detail</a>
-              | <a href="" data-target="#editStage" data-toggle="modal">Edit</a>
-              | <a href="" data-target="#deleteStage" data-toggle="modal" class="text-danger">Delete</a>
+          <tr *ngFor="let stage of stages; let i=index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{stage.stageName}}</td>
+            <td>{{stage.semeter.semeter_name}}</td>
+            <td>{{stage.year.yearName}}</td>
+            <td>{{stage.dateTimes}}</td>
+            <td>{{stage.examDate}}</td>
+            <td>{{stage.examTime}}</td>
+            <td>{{stage.englishTimeExam}}</td>
+            <td><a href="#" (click)="ShowModalDetail($event,stage.id)" class="text-warning">Detail</a>
+              | <a href="#" (click)="ShowModalEdit($event,stage.id)">Edit</a>
+              | <a href="#" (click)="ShowModalDelete($event,stage.id)" class="text-danger">Delete</a>
             </td>
           </tr>
         </tbody>

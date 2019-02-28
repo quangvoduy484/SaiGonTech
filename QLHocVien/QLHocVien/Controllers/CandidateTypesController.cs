@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QLHocVien.Models;
+using QLHocVien.Repones;
 
 namespace QLHocVien.Controllers
 {
@@ -22,23 +23,55 @@ namespace QLHocVien.Controllers
 
         // GET: api/CandidateTypes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CandidateType>>> GetCandidateTypes()
+        public async Task<ActionResult<Baserepone>> GetCandidateTypes()
         {
-            return await _context.CandidateTypes.ToListAsync();
+            var datas = await _context.CandidateTypes.ToListAsync();
+            if (datas != null)
+            {
+                return new Baserepone
+                {
+                    errorcode = 0,
+                    errormessage = "Load dữ liệu thành công!!",
+                    data = datas
+                };
+            }
+            else
+            {
+                return new Baserepone
+                {
+                    errorcode = 1,
+                    errormessage = "Không có dữ liệu"
+                };
+            }
         }
 
         // GET: api/CandidateTypes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CandidateType>> GetCandidateType(int id)
+        public async Task<ActionResult<Baserepone>> GetCandidateType(int id)
         {
             var candidateType = await _context.CandidateTypes.FindAsync(id);
 
-            if (candidateType == null)
+            if (candidateType != null)
             {
-                return NotFound();
+                return new Baserepone
+                {
+                    errorcode = 0,
+                    errormessage = "Tìm kiếm dữ liệu thành công!!",
+                    data = new CandidateType()
+                    {
+                        Id = candidateType.Id,
+                        TypeName = candidateType.TypeName
+                    }
+                };
             }
-
-            return candidateType;
+            else
+            {
+                return new Baserepone
+                {
+                    errorcode = 1,
+                    errormessage = "Không tìm thấy!!"
+                };
+            }
         }
 
         // PUT: api/CandidateTypes/5
@@ -50,7 +83,7 @@ namespace QLHocVien.Controllers
             {
                 return NotFound();
             }
-            CandidateType.TYPENAME = candidateType_Update.TYPENAME;
+            CandidateType.TypeName = candidateType_Update.TypeName;
             _context.CandidateTypes.Update(CandidateType);
             await _context.SaveChangesAsync();
             return Ok(CandidateType);
@@ -58,28 +91,53 @@ namespace QLHocVien.Controllers
 
         // POST: api/CandidateTypes
         [HttpPost]
-        public async Task<ActionResult<CandidateType>> PostCandidateType(CandidateType candidateType)
+        public async Task<ActionResult<Baserepone>> PostCandidateType(CandidateType candidateType)
         {
-            _context.CandidateTypes.Add(candidateType);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetCandidateType", new { id = candidateType.Id }, candidateType);
+            if (String.IsNullOrEmpty(candidateType.TypeName))
+            {
+                return new Baserepone
+                {
+                    errorcode = 1,
+                    errormessage = "Thêm mới thất bại!!"
+                };
+            }
+            else
+            {
+                _context.CandidateTypes.Add(candidateType);
+                await _context.SaveChangesAsync();
+                return new Baserepone
+                {
+                    errorcode = 0,
+                    errormessage = "Thêm mới thành công!!",
+                    data = CreatedAtAction("GetCandidateType", new { id = candidateType.Id }, candidateType)
+                };
+            }
         }
 
         // DELETE: api/CandidateTypes/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<CandidateType>> DeleteCandidateType(int id)
+        public async Task<ActionResult<Baserepone>> DeleteCandidateType(int id)
         {
             var candidateType = await _context.CandidateTypes.FindAsync(id);
-            if (candidateType == null)
+            if (candidateType != null)
             {
-                return NotFound();
+                _context.CandidateTypes.Remove(candidateType);
+                await _context.SaveChangesAsync();
+                return new Baserepone
+                {
+                    errorcode = 0,
+                    errormessage = "Xóa thành công!!",
+                    data = candidateType
+                };
             }
-
-            _context.CandidateTypes.Remove(candidateType);
-            await _context.SaveChangesAsync();
-
-            return candidateType;
+            else
+            {
+                return new Baserepone
+                {
+                    errorcode = 1,
+                    errormessage = "Không tìm thấy dữ liệu cần xóa"
+                };
+            }
         }
     }
 }

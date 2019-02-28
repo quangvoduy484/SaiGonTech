@@ -17,12 +17,13 @@ import { CandidatetypeComponent } from './dashboard/candidatetype/candidatetype.
 import { ExamsubjectComponent } from './dashboard/examsubject/examsubject.component';
 import { ScoreofexamsubjectComponent } from './dashboard/scoreofexamsubject/scoreofexamsubject.component';
 import { StagedetailComponent } from './dashboard/stagedetail/stagedetail.component';
+import { AuthGuard } from './Guard/auth.guard';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: '', component: LoginComponent},
   {
-    path: 'dashboard', component: DashboardComponent,
+    path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
     children: [
       {path: 'candidate', component: CandidateComponent},
       {path: 'education', component: EducationComponent},

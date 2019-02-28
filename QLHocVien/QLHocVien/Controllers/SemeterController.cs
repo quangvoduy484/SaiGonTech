@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QLHocVien.Models;
@@ -12,6 +13,7 @@ using QLHocVien.Requests;
 
 namespace QLHocVien.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class SemeterController : Controller
@@ -27,7 +29,7 @@ namespace QLHocVien.Controllers
         [HttpGet("GetListSemeter")]
         public async Task<ActionResult<Baserepone>> Get()
         {
-            var List_Semeter = _context.Semeters.ToList();
+            var List_Semeter = await _context.Semeters.ToListAsync();
 
             if (_context.Semeters.ToList().Count == 0)
             {
@@ -112,8 +114,7 @@ namespace QLHocVien.Controllers
 
                     Id = semeter.Id,
                     semeter_name = semeter.semeter_name,
-                    token = ""
-
+                   
                 });
 
             }
@@ -141,9 +142,9 @@ namespace QLHocVien.Controllers
             return new Baserepone(new Semeterrepon
             {
 
-                Id = SemeterItem_Update.Id,
+                Id = id,
                 semeter_name = SemeterItem_Update.semeter_name,
-                token = ""
+               
 
             });
 
@@ -165,9 +166,9 @@ namespace QLHocVien.Controllers
             return new Baserepone(new Semeterrepon
             {
 
-                Id = Semeter.Id,
+                Id = id,
                 semeter_name = Semeter.semeter_name,
-                token = ""
+           
 
             });
         }

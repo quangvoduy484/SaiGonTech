@@ -15,7 +15,8 @@ export class ApiService {
     semeter_object: this.baseUrl + 'Semeter/GetObjectSemeter',
     semeter_add: this.baseUrl + 'Semeter/AddSemeter',
     semeter_update: this.baseUrl + 'Semeter/Update',
-    semeter_delete:this.baseUrl + 'Semeter/Delete'
+    semeter_delete: this.baseUrl + 'Semeter/Delete',
+    user_login: this.baseUrl + 'User/Login'
 
   }
 }

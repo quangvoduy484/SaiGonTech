@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,5 +24,6 @@ namespace QLHocVien.Models
         public DbSet<Intake> Intakes { get; set; }
         public DbSet<Year> Years { get; set; }
         public DbSet<District> Districts { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

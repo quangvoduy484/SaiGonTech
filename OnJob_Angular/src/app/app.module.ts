@@ -28,6 +28,10 @@ import { StagedetailComponent } from './dashboard/stagedetail/stagedetail.compon
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap';
+import { AuthGuard } from './Guard/auth.guard';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +65,8 @@ import { ModalModule } from 'ngx-bootstrap';
     FormsModule,
     ModalModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthGuard],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,7 +13,7 @@ namespace QLHocVien.Repones
 
     public string semeter_name { get; set; }
 
-    public string token { get; set; }
+ 
 
 
 

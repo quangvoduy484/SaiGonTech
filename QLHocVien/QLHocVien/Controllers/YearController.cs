@@ -29,15 +29,75 @@ namespace QLHocVien.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Year>> Get(int id)
+        public async Task<ActionResult<Baserepone>> Get(int id)
         {
-            var YearItem = await _context.Years.FindAsync(id);
-
-            if (YearItem == null)
+            var yearItem = await _context.Years.FindAsync(id);
+            if (yearItem == null)
             {
-                return NotFound();
+                return new Baserepone
+                {
+                    errorcode = 1,
+                    errormessage = "Year Not Found",
+                };
             }
-            return YearItem;
+            else
+            {
+                return new Baserepone(yearItem);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Baserepone>> Post(Year yearInput)
+        {
+            _context.Years.Add(yearInput);
+            await _context.SaveChangesAsync();
+
+            return new Baserepone(yearInput);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Baserepone>> Put(int id, Year yearInput)
+        {
+            var yearItem = await _context.Years.FindAsync(id);
+            if (yearItem == null)
+            {
+                return new Baserepone
+                {
+                    errorcode = 1,
+                    errormessage = "Not Found Year Id: " + id
+                };
+            }
+            else
+            {
+                yearItem.YearName = yearInput.YearName;
+                _context.Years.Update(yearItem);
+                await _context.SaveChangesAsync();
+                return new Baserepone(yearItem);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Baserepone>> Delete(int id)
+        {
+            var yearItem = await _context.Years.FindAsync(id);
+            if (yearItem == null)
+            {
+                return new Baserepone
+                {
+                    errorcode = 1,
+                    errormessage = "Not Found Year Id: " + id
+                };
+            }
+            else
+            {
+                _context.Years.Remove(yearItem);
+                await _context.SaveChangesAsync();
+                return new Baserepone
+                {
+                    errorcode = 0,
+                    errormessage = "Delete Success: " + yearItem.YearName
+                };
+            }
         }
 
         [HttpGet("search")]

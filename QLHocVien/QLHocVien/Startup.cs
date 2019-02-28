@@ -35,6 +35,18 @@ namespace QLHocVien
         {
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<QLHocVienContext>(options => options.UseSqlServer(connectionString));
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials();
+                    });
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -52,6 +64,7 @@ namespace QLHocVien
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("AllowAll");
             app.UseMvc();
         }
     }

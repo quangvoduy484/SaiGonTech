@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using QLHocVien.Models;
 
 namespace QLHocVien
@@ -38,8 +39,15 @@ namespace QLHocVien
         {
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<QLHocVienContext>(options => options.UseSqlServer(connectionString));
-            services.AddCors(options =>
-            {
+
+      services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+      .AddJsonOptions(options =>
+      {
+        options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+      });
+
+      services.AddCors(options =>
+              {
                 options.AddPolicy("AllowAll",
                     builder =>
                     {

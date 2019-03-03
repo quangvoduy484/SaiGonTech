@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,14 +24,14 @@ namespace QLHocVien.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Stage>>> GetStage()
         {
-            return await _context.Stage.Include(x => x.Year).Include(x => x.Semeter).ToListAsync();
+            return await _context.Stages.Include(x => x.Year).Include(x => x.Semeter).ToListAsync();
         }
 
         // GET: api/GetStageByYear/1
         [HttpGet("GetStageByYear/{YearID}")]
         public async Task<ActionResult<IEnumerable<Stage>>> GetStageByYear( int YearID)
         {
-            var Stage_Year = await _context.Stage.Where(x => x.YEAR_ID== YearID).ToListAsync();
+            var Stage_Year = await _context.Stages.Where(x => x.YEAR_ID== YearID).ToListAsync();
             if(Stage_Year == null)
             {
                 return NotFound();
@@ -43,7 +43,7 @@ namespace QLHocVien.Controllers
         [HttpGet("GetStageBySemester/{SemID}")]
         public async Task<ActionResult<IEnumerable<Stage>>> GetStageBySemester(int SemID)
         {
-            var Stage_SEM = await _context.Stage.Where(x => x.SEM_ID == SemID).ToListAsync();
+            var Stage_SEM = await _context.Stages.Where(x => x.SEM_ID == SemID).ToListAsync();
             if (Stage_SEM == null)
             {
                 return NotFound();
@@ -55,7 +55,7 @@ namespace QLHocVien.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Stage>> GetStage(int id)
         {
-            var stage = await _context.Stage.FindAsync(id);
+            var stage = await _context.Stages.FindAsync(id);
 
             if (stage == null)
             {
@@ -69,7 +69,7 @@ namespace QLHocVien.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutStage(int id, Stage stage_update)
         {
-            var Stag = await _context.Stage.FindAsync(id);
+            var Stag = await _context.Stages.FindAsync(id);
             if(Stag == null)
             {
                 return NotFound();
@@ -82,7 +82,7 @@ namespace QLHocVien.Controllers
             Stag.ExamTime = stage_update.ExamTime;
             Stag.EnglishTimeExam = stage_update.EnglishTimeExam;
 
-            _context.Stage.Update(Stag);
+            _context.Stages.Update(Stag);
             await _context.SaveChangesAsync();
             return Ok(Stag);
         }
@@ -91,7 +91,7 @@ namespace QLHocVien.Controllers
         [HttpPost]
         public async Task<ActionResult<Stage>> PostStage(Stage stage)
         {
-            _context.Stage.Add(stage);
+            _context.Stages.Add(stage);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("Get", new { id = stage.Id }, stage);
@@ -101,13 +101,13 @@ namespace QLHocVien.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Stage>> DeleteStage(int id)
         {
-            var stage = await _context.Stage.FindAsync(id);
+            var stage = await _context.Stages.FindAsync(id);
             if (stage == null)
             {
                 return NotFound();
             }
 
-            _context.Stage.Remove(stage);
+            _context.Stages.Remove(stage);
             await _context.SaveChangesAsync();
 
             return stage;

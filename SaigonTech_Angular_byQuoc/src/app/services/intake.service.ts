@@ -16,7 +16,7 @@ export interface IntakeDetail{
 }
 export interface Intake{
   id: number;
-  yearName: number;
+  intakeName: number;
 }
 @Injectable({
   providedIn: 'root'

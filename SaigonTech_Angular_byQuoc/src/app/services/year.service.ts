@@ -13,6 +13,7 @@ export interface YearDetail{
   messege: string;
   data: Year;
 }
+
 export interface Year{
   id: number;
   yearName: number;
@@ -41,6 +42,6 @@ export class YearService {
   }
 
   public getYearId(id): Observable<YearDetail>{
-    return this.http.get<YearDetail>(this.api.apiUrl.years + '/' + id)
+    return this.http.get<YearDetail>(this.api.apiUrl.years + '/' + id);
   }
 }

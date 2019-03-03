@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -11,6 +11,7 @@ namespace QLHocVien.Models
     {
         [Column("SEM_ID")]
         public int Id { get; set; }
+
         [Column("SEMESTERNAME")]
         public string SemesterName { get; set; }
     }

@@ -27,14 +27,14 @@
                 </div>
                 <div class="form-group col-md-4">
                   <label for="inputSemester">Semester</label>
-                  <select id="inputSemester" class="form-control">
-                    <option *ngFor="let semester of semesters" selected>{{semester.semesterName}}</option>
+                  <select [(ngModel)]="semester.id" name="inputSemester" id="inputSemester" class="form-control">
+                    <option *ngFor="let semester of semesters" [value]="semester.id" selected>{{semester.semesterName}}</option>
                   </select>
                 </div>
                 <div class="form-group col-md-4">
                   <label for="inputYear">Year</label>
-                  <select id="inputYear" class="form-control">
-                    <option *ngFor="let year of years" selected>{{year.yearName}}</option>
+                  <select [(ngModel)]="year.id" name="inputYear" id="inputYear" class="form-control">
+                    <option *ngFor="let year of years" [value]="year.id" selected>{{year.yearName}}</option>
                   </select>
                 </div>
               </div>
@@ -65,12 +65,12 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputExamTime">Exam Time</label>
-                  <input type="text" class="form-control mb-2" id="inputExamTime" [(ngModel)]="stage.examTime" name="datetime">
+                  <input type="text" class="form-control mb-2" id="inputExamTime" [(ngModel)]="stage.examTime" name="inputExamTime">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputTimeEnglish">Time Of English Exam</label>
                   <input type="text" class="form-control mb-2" id="inputTimeEnglish" [(ngModel)]="stage.englishTimeExam"
-                    name="datetime">
+                    name="inputTimeEnglish">
                 </div>
               </div>
             </form>
@@ -102,14 +102,14 @@
                 </div>
                 <div class="form-group col-md-4">
                   <label for="inputSemester">Semester</label>
-                  <select id="inputSemester" class="form-control">
-                    <option *ngFor="let semester of semesters" selected>{{semester.semesterName}}</option>
+                  <select id="inputSemester" class="form-control" [(ngModel)]="stage.seM_ID" name="inputSemester">
+                    <option *ngFor="let semester of semesters" [value]="semester.id">{{semester.semesterName}}</option>
                   </select>
                 </div>
                 <div class="form-group col-md-4">
                   <label for="inputYear">Year</label>
-                  <select id="inputYear" class="form-control">
-                    <option *ngFor="let year of years" selected>{{year.yearName}}</option>
+                  <select id="inputYear" class="form-control" [(ngModel)]="stage.yeaR_ID" name="inputYear">
+                    <option *ngFor="let year of years" [value]="year.id" selected>{{year.yearName}}</option>
                   </select>
                 </div>
               </div>
@@ -140,12 +140,12 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputExamTime">Exam Time</label>
-                  <input type="text" class="form-control mb-2" id="inputExamTime" [(ngModel)]="stage.examTime" name="datetime">
+                  <input type="text" class="form-control mb-2" id="inputExamTime" [(ngModel)]="stage.examTime" name="inputExamTime">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputTimeEnglish">Time Of English Exam</label>
                   <input type="text" class="form-control mb-2" id="inputTimeEnglish" [(ngModel)]="stage.englishTimeExam"
-                    name="datetime">
+                    name="inputTimeEnglish">
                 </div>
               </div>
             </form>
@@ -200,14 +200,14 @@
                 </div>
                 <div class="form-group col-md-4">
                   <label for="inputSemester">Semester</label>
-                  <select [(ngModel)]="abc" name="inputSemester" id="inputSemester" class="form-control" disabled>
-                    <option *ngFor="let row of semesters" value="{{row.id}}" class="semesterclass">{{row.semesterName}}</option>
+                  <select [(ngModel)]="stage.seM_ID" name="inputSemester" id="inputSemester" class="form-control" disabled>
+                    <option *ngFor="let semester of semesters" [value]="semester.id">{{semester.semesterName}}</option>
                   </select>
                 </div>
                 <div class="form-group col-md-4">
                   <label for="inputYear">Year</label>
-                  <select [(ngModel)]="quoc" name="inputYear" id="inputYear" class="form-control" disabled>
-                    <option *ngFor="let row of years" value="{{row.id}}" class="yearclass" >{{row.yearName}} </option>
+                  <select [(ngModel)]="stage.yeaR_ID" name="inputYear" id="inputYear" class="form-control" disabled>
+                    <option *ngFor="let year of years" [value]="year.id">{{year.yearName}}</option>
                   </select>
                 </div>
               </div>
@@ -280,7 +280,7 @@
           <td>{{stage.examDate}}</td>
           <td>{{stage.examTime}}</td>
           <td>{{stage.englishTimeExam}}</td>
-          <td><a href="#" (click)="ShowModalDetail($event,stage.id,stage.year.id,stage.semester.id)" class="text-warning">Detail{{stage.year.id}}||{{stage.semester.id}}</a>
+          <td><a href="#" (click)="ShowModalDetail($event,stage.id)" class="text-warning">Detail</a>
             | <a href="#" (click)="ShowModalEdit($event,stage.id)">Edit</a>
             | <a href="#" (click)="ShowModalDelete($event,stage.id)" class="text-danger">Delete</a>
           </td>

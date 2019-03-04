@@ -4,6 +4,7 @@ import { Year, YearService } from 'src/app/services/year.service';
 import { Semester, SemesterService } from 'src/app/services/semester.service';
 import { Intake, IntakeService } from 'src/app/services/intake.service';
 import { ModalDirective } from 'ngx-bootstrap';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-parameter',
@@ -22,12 +23,11 @@ export class ParameterComponent implements OnInit {
 
 
   @ViewChild('modal') modal: ModalDirective;
-  constructor(private parameterservice: ParameterService, private semeterservice: SemesterService, private yearservice: YearService, private intakeserviece: IntakeService) { }
+  constructor(private parameterservice: ParameterService, private semeterservice: SemesterService, private yearservice: YearService, private intakeserviece: IntakeService, private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle("Parameter");
     this.Load();
-
-
   }
 
   Load() {

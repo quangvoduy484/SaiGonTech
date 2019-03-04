@@ -35,12 +35,13 @@ export class StageComponent implements OnInit {
   // load data stage
   public loadData() {
     this.stageService.getAllStage().subscribe(result => {
+      // cho nay lay dc cai id 
       console.log(result);
       this.stages = result.data;
     })
   }
 
-  public dataSemesterById() {
+  public dataStageById() {
     this.stageService.getStageId(this.stage).subscribe(result => {
       console.log(result);
       this.stage = result.data;
@@ -59,8 +60,10 @@ export class StageComponent implements OnInit {
       console.log(result);
       this.semesters = result.data;
     })
+  }
 
-    this.semesterService.getSemesterId(this.semester.id).subscribe(result => {
+  public dataSemesterByID(id){
+    this.semesterService.getSemesterId(id).subscribe(result => {
       console.log(result);
       this.semester = result.data;
     })
@@ -75,6 +78,11 @@ export class StageComponent implements OnInit {
     })
   }
 
+  public dataYearByID(id){
+    this.yearService.getYearId(id).subscribe(result=>{
+      this.year = result.data;
+    })
+  }
   // show modal stage
   ShowModalAdd() {
     this.stage = {} as Stage;
@@ -83,8 +91,7 @@ export class StageComponent implements OnInit {
     this.modalAdd.show();
   }
 
-  ShowModalEdit(event = null, id, id_year) {
-    this.year.id = id_year;
+  ShowModalEdit(event = null, id) {
     event.preventDefault();
     this.dataSemester();
     this.dataYear();
@@ -104,34 +111,27 @@ export class StageComponent implements OnInit {
     })
   }
 
-  ShowModalDetail(event = null, id, id_year, id_semester) {
+  ShowModalDetail(event = null, id) {
     event.preventDefault();
     this.dataSemester();
     this.dataYear();
-    var listitemsYear = document.getElementsByClassName('yearclass');
-    var listitemsSemester = document.getElementsByClassName('semesterclass');
     this.stageService.getStageId(id).subscribe(result => {
       this.stage = result.data;
-      alert(this.stage.year.id);
-      alert(this.stage.semester.id);
-      this.stage.year.id = id_year;
-      this.stage.semester.id = id_semester;
-      for (let i = 0; i < listitemsYear.length; i++) {
-        if (listitemsYear[i].getAttribute('value').toString() === id_year.toString()) {
-          listitemsYear[i].setAttribute('selected', '');
-        }
-      }
-      for (let j = 0; j < listitemsSemester.length; j++) {
-        if (listitemsSemester[j].getAttribute('value').toString() === id_semester.toString()) {
-          listitemsSemester[j].setAttribute('selected', '');
-        }
-      }
       this.modalDetail.show();
     });
   }
   // event stage
   add() {
-    this.stageService.add(this.stage).subscribe(result => {
+    const param = {
+      stageName: this.stage.stageName,
+      dateTimes: this.stage.dateTimes,
+      examDate: this.stage.examDate,
+      examTime: this.stage.examTime,
+      englishTimeExam: this.stage.englishTimeExam,
+      seM_ID: this.semester.id,
+      yeaR_ID: this.year.id
+    }
+    this.stageService.add(param).subscribe(result => {
       console.log(result);
       this.loadData();
       this.modalAdd.hide();
@@ -169,11 +169,5 @@ export class StageComponent implements OnInit {
   }
 
   //event change combobox
-  changeSemester() {
-    this.dataSemester();
-  }
 
-  changeYear() {
-    this.dataSemesterById();
-  }
 }

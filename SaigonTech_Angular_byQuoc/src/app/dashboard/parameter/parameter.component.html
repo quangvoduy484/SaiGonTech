@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr data-toggle="modal">
+        <tr data-toggle="modal" *ngFor="let parameter of parameters">
           <th scope="row">1</th>
           <td>{{parameter.singaturename}}</td>
           <td >{{parameter.morecontact}}</td>
@@ -26,7 +26,7 @@
           <td>{{year.yearName}}</td>
           <td>
             
-          <a href="" (click)="showModel($event)" data-toggle="modal">Edit</a>
+          <a href="" (click)="showModel($event,parameter.id)" data-toggle="modal">Edit</a>
           
           </td>
         </tr>
@@ -49,37 +49,36 @@
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="stage">Singature Name</label>
-            <input type="text"  name="stage" value="{{parameter.singaturename}}" class="form-control mb-2" >
+            <input type="text"  name="stage" [(ngModel)]="parameter.singaturename" class="form-control mb-2" >
           </div>
           <div class="form-group col-md-4">
             <label for="contact">More Contact</label>
-            <input type="text" name="contact" class="form-control mb-2" value="{{parameter.morecontact}}">
+            <input type="text" name="contact"  [(ngModel)]="parameter.morecontact" class="form-control mb-2" >
           </div>
           <div class="form-group col-md-4">
             <label for="code">Document Code</label>
-            <input type="text" class="form-control mb-2" name="code" value="{{parameter.documentcode}}">
+            <input type="text" class="form-control mb-2"  [(ngModel)]="parameter.documentcode" name="code">
           </div>
 
         </div>
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="inputIntake">Intake</label>
-
-            <select [(ngModel)]="intake.id" name="inputIntake" id="inputIntake" class="form-control">
-              <option *ngFor="let intake of intakes" [value]="intake.id" selected>{{intake.intakeName}}</option>
+            <select [(ngModel)]="parameter.intakeid" name="inputIntake" id="inputIntake" class="form-control">
+              <option *ngFor="let intake of intakes" [value]="intake.id" >{{intake.intakeName}}</option>
             </select>
           </div>
 
           <div class="form-group col-md-4">
             <label for="inputSemester">Semester</label>
-            <select [(ngModel)]="semester.id" name="inputSemester" id="inputSemester" class="form-control">
-              <option *ngFor="let semester of semesters" [value]="semester.id" selected>{{semester.semesterName}}</option>
+            <select [(ngModel)]="parameter.semid" name="inputSemester" id="inputSemester" class="form-control">
+              <option *ngFor="let semester of semesters" [value]="semester.id" >{{semester.semesterName}}</option>
             </select>
           </div>
           <div class="form-group col-md-4">
             <label for="inputYear">Year</label>
-            <select [(ngModel)]="year.id" name="inputYear" id="inputYear" class="form-control">
-              <option *ngFor="let year of years" [value]="year.id" selected>{{year.yearName}}</option>
+            <select [(ngModel)]="parameter.yearid" name="inputYear" id="inputYear" class="form-control">
+              <option *ngFor="let year of years" [value]="year.id" >{{year.yearName}}</option>
             </select>
           </div>
         </div>

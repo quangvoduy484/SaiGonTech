@@ -93,7 +93,7 @@ namespace QLHocVien.Controllers
     [HttpGet()]
     public async Task<ActionResult<BaseResponse>> Get()
     {
-      var Parameter = await _context.Parameters.FirstAsync();
+      var Parameter = await _context.Parameters.ToListAsync();
 
       if (Parameter == null)
       {
@@ -106,7 +106,55 @@ namespace QLHocVien.Controllers
 
     }
 
+    [HttpGet("{id}")]
+    public async Task<ActionResult<BaseResponse>> Get(int id)
+    {
+      var Parameter = await _context.Parameters.FindAsync(id);
 
+      if (Parameter == null)
+      {
+        return new BaseResponse { ErrorCode = 1, Messege = "Không tìm thấy parameter với: " + id.ToString() };
+      }
+
+      return new BaseResponse(Parameter);
+
+
+
+    }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult<BaseResponse>> Put(int id, Parameter parameter)
+    {
+      if (!string.IsNullOrEmpty(parameter.Singaturename) || !string.IsNullOrEmpty(parameter.Documentcode) || !string.IsNullOrEmpty(parameter.Documentcode))
+      {
+        var ParameterItem = await _context.Parameters.FindAsync(id);
+        if(ParameterItem == null)
+        {
+          return new BaseResponse { ErrorCode = 1, Messege = "Không tìm thấy parareter với:" +id.ToString() };
+        }
+
+        ParameterItem.Singaturename = parameter.Singaturename;
+        ParameterItem.Morecontact = parameter.Morecontact;
+        ParameterItem.Documentcode = parameter.Documentcode;
+        ParameterItem.semid = parameter.semid;
+        ParameterItem.intakeid = parameter.intakeid;
+        ParameterItem.yearid = parameter.yearid;
+
+        _context.Parameters.Update(ParameterItem);
+        await _context.SaveChangesAsync();
+        return new BaseResponse { ErrorCode = 0, Messege = "Thành công"};
+      
+
+      }
+      else
+      {
+        return new BaseResponse { ErrorCode = 1, Messege = "Nhập thiếu tượng" };
+      }
+
+
+
+    }
 
   }
+
 }

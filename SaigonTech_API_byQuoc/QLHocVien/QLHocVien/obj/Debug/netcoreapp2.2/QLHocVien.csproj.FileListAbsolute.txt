@@ -73,7 +73,6 @@ C:\Users\quangduyvo\Desktop\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien
 C:\Users\quangduyvo\Desktop\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.runtimeconfig.dev.json
 C:\Users\quangduyvo\Desktop\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.dll
 C:\Users\quangduyvo\Desktop\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.pdb
-C:\Users\quangduyvo\Desktop\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.csprojAssemblyReference.cache
 C:\Users\quangduyvo\Desktop\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.csproj.CoreCompileInputs.cache
 C:\Users\quangduyvo\Desktop\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.RazorAssemblyInfo.cache
 C:\Users\quangduyvo\Desktop\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.RazorAssemblyInfo.cs

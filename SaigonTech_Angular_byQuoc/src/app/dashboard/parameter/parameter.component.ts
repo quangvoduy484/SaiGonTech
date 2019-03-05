@@ -16,10 +16,13 @@ export class ParameterComponent implements OnInit {
   parameter: Parameter = {} as Parameter;
 
   year: Year = {} as Year;
+  years: Year[] = [];
 
+  semesters: Semester[] = [];
   semester: Semester = {} as Semester;
 
   intake: Intake = {} as Intake;
+  intakes: Intake[] = [];
 
 
   @ViewChild('modal') modal: ModalDirective;
@@ -28,6 +31,10 @@ export class ParameterComponent implements OnInit {
   ngOnInit() {
     this.titleService.setTitle("Parameter");
     this.Load();
+
+    this.getSemeter();
+    this.getIntake();
+    this.getYear();
   }
 
   Load() {
@@ -37,8 +44,11 @@ export class ParameterComponent implements OnInit {
       console.log(this.parameter);
       console.log(this.parameter.semid);
       console.log(this.parameter.intakeid);
+
       this.getNameSemeter();
+
       this.getNameYear();
+
       this.getNameIntake();
     });
   }
@@ -61,18 +71,37 @@ export class ParameterComponent implements OnInit {
       this.intake = intake.data;
     });
   }
+  public getSemeter() {
+    this.semeterservice.getAllSemester().subscribe(seme => {
 
 
-  showModel(event = null)
-  {
+
+      this.semesters = seme.data;
+      console.log(this.semesters);
+
+
+    });
+  }
+  public getYear() {
+    this.yearservice.getAllYear().subscribe(year => {
+
+      this.years = year.data;
+      console.log(this.years);
+
+
+    });
+  }
+  public getIntake() {
+    this.intakeserviece.getAllIntake().subscribe(intake => {
+
+      this.intakes = intake.data;
+      console.log(this.intakes);
+    });
+  }
+  showModel(event = null) {
     if (event) {
       event.preventDefault();
     }
     this.modal.show();
   }
-
-
-
-
-
 }

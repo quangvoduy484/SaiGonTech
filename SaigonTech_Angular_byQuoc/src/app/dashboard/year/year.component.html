@@ -128,8 +128,9 @@
         <tr *ngFor="let year of years; let i=index">
           <th scope="row">{{i+1}}</th>
           <td>{{year.yearName}}</td>
-          <td><a href="#" (click)="ShowModalDetail($event,year.id)" class="text-warning">Detail</a>
-            | <a href="#" (click)="ShowModalEdit($event,year.id)" >Edit</a>
+          <td>
+            <!-- <a href="#" (click)="ShowModalDetail($event,year.id)" class="text-warning">Detail</a> -->
+            <a href="#" (click)="ShowModalEdit($event,year.id)" >Edit</a>
             | <a href="#" class="text-danger" (click)="ShowModalDelete($event,year.id)" >Delete</a></td>
         </tr>
       </tbody>

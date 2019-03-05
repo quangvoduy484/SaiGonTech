@@ -130,8 +130,9 @@
         <tr *ngFor="let major of majors; let i=index">
           <th scope="row">{{i+1}}</th>
           <td>{{major.majorName}}</td>
-          <td><a href="" (click)="ShowModalDetail($event,major.id)" class="text-warning">Detail</a>
-            | <a href="" (click)="ShowModalEdit($event,major.id)">Edit</a>
+          <td>
+            <!-- <a href="" (click)="ShowModalDetail($event,major.id)" class="text-warning">Detail</a> -->
+            <a href="" (click)="ShowModalEdit($event,major.id)">Edit</a>
             | <a href="" class="text-danger" (click)="ShowModalDelete($event,major.id)" class="text-danger">Delete</a>
           </td>
         </tr>

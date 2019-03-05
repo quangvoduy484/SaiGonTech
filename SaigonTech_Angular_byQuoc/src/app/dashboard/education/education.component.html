@@ -18,8 +18,9 @@
         <tr *ngFor="let education of educations; let i=index">
           <th scope="row">{{i+1}}</th>
           <td>{{education.educationName}}</td>
-          <td> <a href="#" (click)="ShowModalDetail($event,education.id)" class="text-warning">Detail</a>
-            | <a href="#" (click)="ShowModalEdit($event,education.id)">Edit</a>
+          <td> 
+            <!-- <a href="#" (click)="ShowModalDetail($event,education.id)" class="text-warning">Detail</a> -->
+            <a href="#" (click)="ShowModalEdit($event,education.id)">Edit</a>
             | <a href="#" class="text-danger" (click)="ShowModalDelete($event,education.id)">Delete</a></td>
         </tr>
       </tbody>

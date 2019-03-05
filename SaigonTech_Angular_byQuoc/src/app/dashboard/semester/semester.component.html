@@ -132,8 +132,9 @@
         <tr *ngFor="let semester of semesters; let i=index">
           <th scope="row">{{i+1}}</th>
           <td>{{semester.semesterName}}</td>
-          <td><a href="#" (click)="ShowModalDetail($event,semester.id)" class="text-warning">Detail</a>
-            | <a href="#" (click)="ShowModalEdit($event,semester.id)">Edit</a>
+          <td>
+            <!-- <a href="#" (click)="ShowModalDetail($event,semester.id)" class="text-warning">Detail</a> -->
+            <a href="#" (click)="ShowModalEdit($event,semester.id)">Edit</a>
             | <a href="#" (click)="ShowModalDelete($event,semester.id)" class="text-danger">Delete</a></td>
         </tr>
       </tbody>

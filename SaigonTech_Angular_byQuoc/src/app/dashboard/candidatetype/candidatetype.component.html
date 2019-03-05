@@ -135,8 +135,9 @@
           <th scope="row">{{i+1}}</th>
           <td>{{cdtype.typeName}}</td>
 
-          <td><a href="#" (click)="ShowModalDetail($event,cdtype.id)" class="text-warning">Details</a>
-            | <a href="#" (click)="ShowModalEdit($event,cdtype.id)">Edit</a>
+          <td>
+            <!-- <a href="#" (click)="ShowModalDetail($event,cdtype.id)" class="text-warning">Details</a> -->
+            <a href="#" (click)="ShowModalEdit($event,cdtype.id)">Edit</a>
             | <a href="#" (click)="ShowModalDelete($event,cdtype.id)" class="text-danger">Delete</a>
           </td>
         </tr>

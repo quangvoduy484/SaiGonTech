@@ -49,31 +49,38 @@
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="stage">Singature Name</label>
-            <input type="text"  name="stage" [(ngModel)]="parameter.singaturename" class="form-control mb-2" >
+            <input type="text"  name="stage" value="{{parameter.singaturename}}" class="form-control mb-2" >
           </div>
           <div class="form-group col-md-4">
             <label for="contact">More Contact</label>
-            <input type="text" name="contact" class="form-control mb-2" [(ngModel)]="parameter.morecontact">
+            <input type="text" name="contact" class="form-control mb-2" value="{{parameter.morecontact}}">
           </div>
           <div class="form-group col-md-4">
             <label for="code">Document Code</label>
-            <input type="text" class="form-control mb-2" name="code" [(ngModel)]="parameter.documentcode">
+            <input type="text" class="form-control mb-2" name="code" value="{{parameter.documentcode}}">
           </div>
 
         </div>
         <div class="form-row">
           <div class="form-group col-md-4">
-            <label for="Intake">Intake</label>
-            <input type="text" class="form-control mb-2" name="Intake" [(ngModel)]="intake.intakeName">
+            <label for="inputIntake">Intake</label>
+
+            <select [(ngModel)]="intake.id" name="inputIntake" id="inputIntake" class="form-control">
+              <option *ngFor="let intake of intakes" [value]="intake.id" selected>{{intake.intakeName}}</option>
+            </select>
           </div>
 
           <div class="form-group col-md-4">
-            <label for="semester">Semester</label>
-            <input type="text" class="form-control mb-2" name="semester" [(ngModel)]="semester.semesterName">
+            <label for="inputSemester">Semester</label>
+            <select [(ngModel)]="semester.id" name="inputSemester" id="inputSemester" class="form-control">
+              <option *ngFor="let semester of semesters" [value]="semester.id" selected>{{semester.semesterName}}</option>
+            </select>
           </div>
           <div class="form-group col-md-4">
-            <label for="year">Deny</label>
-            <input type="text"  class="form-control mb-2" name="year" [(ngModel)]="year.yearName">
+            <label for="inputYear">Year</label>
+            <select [(ngModel)]="year.id" name="inputYear" id="inputYear" class="form-control">
+              <option *ngFor="let year of years" [value]="year.id" selected>{{year.yearName}}</option>
+            </select>
           </div>
         </div>
       </div>

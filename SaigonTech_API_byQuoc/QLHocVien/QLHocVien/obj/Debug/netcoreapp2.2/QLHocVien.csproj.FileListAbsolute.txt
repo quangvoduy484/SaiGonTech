@@ -82,3 +82,17 @@ C:\Users\quangduyvo\Desktop\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien
 C:\Users\quangduyvo\Desktop\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.RazorTargetAssemblyInfo.cache
 C:\Users\quangduyvo\Desktop\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.dll
 C:\Users\quangduyvo\Desktop\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.pdb
+D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.deps.json
+D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.runtimeconfig.json
+D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.runtimeconfig.dev.json
+D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.dll
+D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.pdb
+D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.csprojAssemblyReference.cache
+D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.csproj.CoreCompileInputs.cache
+D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.RazorAssemblyInfo.cache
+D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.RazorAssemblyInfo.cs
+D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.AssemblyInfoInputs.cache
+D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.AssemblyInfo.cs
+D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.RazorTargetAssemblyInfo.cache
+D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.dll
+D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.pdb

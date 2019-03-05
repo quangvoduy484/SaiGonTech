@@ -20,7 +20,9 @@ export interface Stage{
   examDate: Date;
   examTime: string;
   englishTimeExam: string;
+  seM_ID: number;
   semester: Semester;
+  yeaR_ID: number;
   year: Year;
 }
 
@@ -48,7 +50,7 @@ export class StageService {
     return this.http.get<StagesResponse>(this.api.apiUrl.stages + '/GetStageBySemester/' + sem_id);
   }
 
-  public add(datas: Stage):Observable<StageDetail>{
+  public add(datas):Observable<StageDetail>{
     return this.http.post<StageDetail>(this.api.apiUrl.stages, datas);
   }
 

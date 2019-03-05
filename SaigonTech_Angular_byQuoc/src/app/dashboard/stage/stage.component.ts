@@ -38,21 +38,21 @@ export class StageComponent implements OnInit {
       // cho nay lay dc cai id 
       console.log(result);
       this.stages = result.data;
-    })
+    });
   }
 
   public dataStageById() {
     this.stageService.getStageId(this.stage).subscribe(result => {
       console.log(result);
       this.stage = result.data;
-    })
+    });
   }
 
   public dataStageBySem() {
     this.stageService.GetStageBySemester(this.semester.id).subscribe(result => {
       console.log(result);
       this.stages = result.data;
-    })
+    });
   }
   // load data semester
   public dataSemester() {

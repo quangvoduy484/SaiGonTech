@@ -14,6 +14,7 @@ import { Title } from '@angular/platform-browser';
 export class ParameterComponent implements OnInit {
 
   parameter: Parameter = {} as Parameter;
+  public parameters: Parameter[] = [];
 
   year: Year = {} as Year;
   years: Year[] = [];
@@ -29,79 +30,117 @@ export class ParameterComponent implements OnInit {
   constructor(private parameterservice: ParameterService, private semeterservice: SemesterService, private yearservice: YearService, private intakeserviece: IntakeService, private titleService: Title) { }
 
   ngOnInit() {
-    this.titleService.setTitle("Parameter");
+    this.titleService.setTitle('Parameter');
     this.Load();
-
-    this.getSemeter();
-    this.getIntake();
-    this.getYear();
+    //this.LoadDataForeign();
   }
 
+  // có dữ liệu tại parameters
   Load() {
+
     this.parameterservice.getAll().subscribe(para => {
-      console.log(para.data);
-      this.parameter = para.data;
-      console.log(this.parameter);
-      console.log(this.parameter.semid);
-      console.log(this.parameter.intakeid);
 
-      this.getNameSemeter();
+      this.parameters = para.data;
+      console.log(this.parameters);
+      for (let para of this.parameters) {
 
-      this.getNameYear();
+        this.getNameSemeter(para.semid);
+        this.getNameYear(para.yearid);
+        this.getNameIntake(para.intakeid);
 
-      this.getNameIntake();
+      }
     });
+    console.log(this.parameters);
+
+
   }
 
-  getNameSemeter() {
-    this.semeterservice.getSemesterId(this.parameter.semid).subscribe(seme => {
-      console.log(this.parameter.semid);
+  // LoadDataForeign() {
+  //   console.log("1");
+  //   console.log(this.parameters);
+  //   // ở đây có dữ liệu của đối tượng + semeter, + year, + intake
+  //   for (let para of this.parameters) {
+  //     console.log("3");
+  //         console.log(para.semid);
+  //       this.getNameSemeter(para.semid);
+  //       console.log("2");
+  //   }
+
+
+  // }
+
+
+  // Method lấy tên khóa ngoại
+  getNameSemeter(semId: number) {
+    this.semeterservice.getSemesterId(semId).subscribe(seme => {
       this.semester = seme.data;
     });
   }
 
-  getNameYear() {
-    this.yearservice.getYearId(this.parameter.yearid).subscribe(year => {
+  getNameYear(yearId: number) {
+    this.yearservice.getYearId(yearId).subscribe(year => {
       this.year = year.data;
     });
   }
 
-  getNameIntake() {
-    this.intakeserviece.getIntakeId(this.parameter.intakeid).subscribe(intake => {
+  getNameIntake(intakeId) {
+    this.intakeserviece.getIntakeId(intakeId).subscribe(intake => {
       this.intake = intake.data;
     });
   }
+  // End  
+
+
+  // Method lấy dữ liệu cho comboxbox combox
   public getSemeter() {
     this.semeterservice.getAllSemester().subscribe(seme => {
-
-
-
       this.semesters = seme.data;
-      console.log(this.semesters);
-
 
     });
   }
   public getYear() {
     this.yearservice.getAllYear().subscribe(year => {
-
       this.years = year.data;
       console.log(this.years);
-
-
     });
   }
   public getIntake() {
     this.intakeserviece.getAllIntake().subscribe(intake => {
-
       this.intakes = intake.data;
       console.log(this.intakes);
     });
   }
-  showModel(event = null) {
+  // End 
+
+
+  // có dữ liệu cho parameter
+  showModel(event = null, id: number) {
     if (event) {
       event.preventDefault();
     }
+    this.getSemeter();
+    this.getIntake();
+    this.getYear();
+    this.parameterservice.getObject(id).subscribe(para => {
+      if (para.errorCode === 0) {
+        this.parameter = para.data;
+      }
+    });
+
+
     this.modal.show();
+  }
+
+  save() {
+    if (this.parameter.id === 0 || this.parameter.id === undefined) {
+      console.log('Không lấy được dữ liệu');
+    } else {
+      this.parameterservice.update(this.parameter).subscribe(para => {
+        this.Load();
+        this.modal.hide();
+
+      });
+    }
+
   }
 }

@@ -5,11 +5,38 @@ import { Semester, SemesterService } from 'src/app/services/semester.service';
 import { Intake, IntakeService } from 'src/app/services/intake.service';
 import { ModalDirective } from 'ngx-bootstrap';
 import { Title } from '@angular/platform-browser';
-
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
 @Component({
   selector: 'app-parameter',
   templateUrl: './parameter.component.html',
-  styleUrls: ['./parameter.component.css']
+  styleUrls: ['./parameter.component.css'],
+  animations: [
+    // animation triggers go here
+    trigger('openClose', [
+      // ...
+      state('open', style({
+        visibility: 'visible',
+        opacity: 1,     
+      })),
+      state('closed', style({
+        visibility: 'hidden',
+        opacity: 0.5,
+      })),
+      transition('open => closed', [
+        animate('1s')
+      ]),
+      transition('closed => open', [
+        animate('0.5s')
+      ]),
+    ]),
+  ]
 })
 export class ParameterComponent implements OnInit {
 
@@ -25,6 +52,8 @@ export class ParameterComponent implements OnInit {
   intake: Intake = {} as Intake;
   intakes: Intake[] = [];
 
+  isStatus = false;
+  resultStatus = '';
 
   @ViewChild('modal') modal: ModalDirective;
   constructor(private parameterservice: ParameterService, private semeterservice: SemesterService, private yearservice: YearService, private intakeserviece: IntakeService, private titleService: Title) { }
@@ -138,9 +167,18 @@ export class ParameterComponent implements OnInit {
       this.parameterservice.update(this.parameter).subscribe(para => {
         this.Load();
         this.modal.hide();
+        this.resultStatus = ' Update Succees';
+        this.isStatus = true;
+        console.log('1');
+        setTimeout(() => {
+          this.isStatus = false;
+          console.log(this.isStatus);
+        }, 4000);
+
 
       });
     }
+
 
   }
 }

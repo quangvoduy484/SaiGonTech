@@ -95,3 +95,4 @@ D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreap
 D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.RazorTargetAssemblyInfo.cache
 D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.dll
 D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.pdb
+C:\Users\quangduyvo\Desktop\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.csprojAssemblyReference.cache

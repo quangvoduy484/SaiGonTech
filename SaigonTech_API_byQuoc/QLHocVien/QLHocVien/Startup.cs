@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +17,7 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using QLHocVien.Models;
 using QLHocVien.Utils;
+using Microsoft.AspNetCore.Session;
 
 namespace QLHocVien
 {
@@ -69,7 +70,8 @@ namespace QLHocVien
             {
                 options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
             });
-
+          services.AddDistributedMemoryCache();
+          services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -90,7 +92,9 @@ namespace QLHocVien
             app.UseCors("AllowAllHeader");
             //authentication
             app.UseAuthentication();
-            app.UseMvc();
+              app.UseSession();
+              app.UseMvc();
+           
         }
     }
 }

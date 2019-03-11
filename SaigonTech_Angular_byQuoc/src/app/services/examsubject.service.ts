@@ -3,46 +3,46 @@ import { ApiService } from './api.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-export interface ExSubjectsResponse{
+export interface ExamSubjectsResponse {
   errorCode: number;
   messege: string;
-  data: ExSubject[];
+  data: ExamSubject[];
 }
 
-export interface ExSubjectDetail{
+export interface ExamSubjectDetail {
   errorCode: number;
   messege: string;
-  data: ExSubject;
+  data: ExamSubject;
 }
 
-export interface ExSubject{
+export interface ExamSubject {
   id: number;
   examName: string;
 }
 @Injectable({
   providedIn: 'root'
 })
-export class ExamsubjectService {
+export class ExamSubjectService {
 
   constructor(private api: ApiService, private http: HttpClient) { }
 
-  public getAllExSubject():Observable<ExSubjectsResponse>{
-    return this.http.get<ExSubjectsResponse>(this.api.apiUrl.examsubjects);
+  public getAllExamSubject(): Observable<ExamSubjectsResponse> {
+    return this.http.get<ExamSubjectsResponse>(this.api.apiUrl.examsubjects);
   }
 
-  public add(datas: ExSubject):Observable<ExSubjectDetail>{
-    return this.http.post<ExSubjectDetail>(this.api.apiUrl.examsubjects, datas);
+  public add(datas: ExamSubject): Observable<ExamSubjectDetail>{
+    return this.http.post<ExamSubjectDetail>(this.api.apiUrl.examsubjects, datas);
   }
 
-  public update(datas: ExSubject):Observable<ExSubjectDetail>{
-    return this.http.put<ExSubjectDetail>(this.api.apiUrl.examsubjects + '/' + datas.id, datas);
+  public update(datas: ExamSubject): Observable<ExamSubjectDetail> {
+    return this.http.put<ExamSubjectDetail>(this.api.apiUrl.examsubjects + '/' + datas.id, datas);
   }
 
-  public delete(id):Observable<ExSubjectDetail>{
-    return this.http.delete<ExSubjectDetail>(this.api.apiUrl.examsubjects + '/' + id);
+  public delete(id): Observable<ExamSubjectDetail>{
+    return this.http.delete<ExamSubjectDetail>(this.api.apiUrl.examsubjects + '/' + id);
   }
 
-  public getExSubjectId(id):Observable<ExSubjectDetail>{
-    return this.http.get<ExSubjectDetail>(this.api.apiUrl.examsubjects + "/" + id);
+  public getExamSubjectById(id): Observable<ExamSubjectDetail>{
+    return this.http.get<ExamSubjectDetail>(this.api.apiUrl.examsubjects + '/' + id);
   }
 }

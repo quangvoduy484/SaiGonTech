@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ExSubject, ExamsubjectService } from '../../services/examsubject.service';
+import { ExamSubject, ExamSubjectService } from '../../services/examsubject.service';
 import { ModalDirective } from 'ngx-bootstrap';
 import { Title } from '@angular/platform-browser';
 
@@ -10,36 +10,35 @@ import { Title } from '@angular/platform-browser';
 })
 export class ExamsubjectComponent implements OnInit {
 
-  exsubjects: ExSubject[] =[];
-  exsubject: ExSubject = {} as ExSubject;
+  exsubjects: ExamSubject[] = [];
+  exsubject: ExamSubject = {} as ExamSubject;
 
   @ViewChild('modalAdd') public modalAdd: ModalDirective;
   @ViewChild('modalEdit') public modalEdit: ModalDirective;
   @ViewChild('modalDelete') public modalDelete: ModalDirective;
   @ViewChild('modalDetail') public modalDetail: ModalDirective;
-  
-  constructor(private titleService: Title, private exsubjectService: ExamsubjectService) { }
+  constructor(private titleService: Title, private exsubjectService: ExamSubjectService) { }
 
   ngOnInit() {
-    this.titleService.setTitle("Exam Subject");
+    this.titleService.setTitle('Exam Subject');
     this.loadData();
   }
 
   public loadData(){
-    this.exsubjectService.getAllExSubject().subscribe(result =>{
+    this.exsubjectService.getAllExamSubject().subscribe(result => {
       console.log(result);
       this.exsubjects = result.data;
     })
   }
 
-  ShowModalAdd(){
-    this.exsubject = {} as ExSubject;
+  ShowModalAdd() {
+    this.exsubject = {} as ExamSubject;
     this.modalAdd.show();
   }
 
   ShowModalEdit(event = null, id){
     event.preventDefault();
-    this.exsubjectService.getExSubjectId(id).subscribe(result =>{
+    this.exsubjectService.getExamSubjectById(id).subscribe(result => {
       console.log(result);
       this.exsubject = result.data;
       this.modalEdit.show();
@@ -48,15 +47,15 @@ export class ExamsubjectComponent implements OnInit {
 
   ShowModalDelete(event = null, id){
     event.preventDefault();
-    this.exsubjectService.getExSubjectId(id).subscribe(result =>{
+    this.exsubjectService.getExamSubjectById(id).subscribe(result => {
       console.log(result);
       this.exsubject = result.data;
       this.modalDelete.show();
     });
   }
 
-  add(){
-    this.exsubjectService.add(this.exsubject).subscribe(result =>{
+  add() {
+    this.exsubjectService.add(this.exsubject).subscribe(result => {
       console.log(result);
       this.loadData();
       this.modalAdd.hide();
@@ -64,14 +63,14 @@ export class ExamsubjectComponent implements OnInit {
   }
 
   update(id){
-    this.exsubjectService.update(this.exsubject).subscribe(result =>{
+    this.exsubjectService.update(this.exsubject).subscribe(result => {
       this.loadData();
       this.modalEdit.hide();
     });
   }
 
-  delete(id){
-    this.exsubjectService.delete(id).subscribe(result =>{
+  delete(id) {
+    this.exsubjectService.delete(id).subscribe(result => {
       if(result.errorCode === 1){
         const deleteExSubject = this.exsubjects.find(x => x.id === id);
         console.log(deleteExSubject);
@@ -92,9 +91,9 @@ export class ExamsubjectComponent implements OnInit {
     this.modalDelete.hide();
   }
 
-  ShowModalDetail(event = null, id){
+  ShowModalDetail(event = null, id) {
     event.preventDefault();
-    this.exsubjectService.getExSubjectId(id).subscribe(result =>{
+    this.exsubjectService.getExamSubjectById(id).subscribe(result => {
       console.log(result);
       this.exsubject = result.data;
       this.modalDetail.show();

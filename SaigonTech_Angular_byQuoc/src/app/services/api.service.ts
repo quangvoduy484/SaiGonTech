@@ -22,7 +22,8 @@ export class ApiService {
     provinces: this.baseUrl + 'provinces',
     districts: this.baseUrl + 'districts',
     stages: this.baseUrl + 'stages',
-    parameter: this.baseUrl + 'parameter'
+    parameter: this.baseUrl + 'parameter',
+    scoreofexamsubject: this.baseUrl + 'scoreofexamsubject'
 
-  }
+  };
 }

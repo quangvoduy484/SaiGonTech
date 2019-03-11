@@ -9,32 +9,32 @@ export interface Countries{
   countryName: string;
 }
 
-export interface CountriesResponse{
+export interface CountriesResponse {
   errorCode: number;
   messege: string;
   data: Countries[];
 }
 
-export interface CountriesDetail{
+export interface CountriesDetail {
   errorCode: number;
   messege: string;
   data: Countries;
 }
 
 // Province
-export interface Provinces{
+export interface Provinces {
   id: number;
   provinceName: string;
   country: Countries;
 }
 
-export interface ProvincesResponse{
+export interface ProvincesResponse {
   errorCode: number;
   messege: string;
   data: Provinces[];
 }
 
-export interface ProvinceDetail{
+export interface ProvinceDetail {
   errorCode: number;
   messege: string;
   data: Provinces;
@@ -46,13 +46,13 @@ export interface District{
   districtName: string;
   province: Provinces;
 }
-export interface DistrictsResponse{
+export interface DistrictsResponse {
   errorCode: number;
   messege: string;
   data: District[];
 }
 
-export interface DistrictDetail{
+export interface DistrictDetail {
   errorCode: number;
   messege: string;
   data: District;
@@ -65,73 +65,73 @@ export class AddressService {
   constructor(private api: ApiService, private http: HttpClient) { }
 
   // Event Country
-  public getAllCountry():Observable<CountriesResponse>{
+  public getAllCountry(): Observable<CountriesResponse> {
     return this.http.get<CountriesResponse>(this.api.apiUrl.countries);
   }
 
-  public addCountry(datas: Countries):Observable<CountriesDetail>{
+  public addCountry(datas: Countries): Observable<CountriesDetail>{
     return this.http.post<CountriesDetail>(this.api.apiUrl.countries, datas);
   }
 
-  public updateCountry(datas: Countries):Observable<CountriesDetail>{
+  public updateCountry(datas: Countries): Observable<CountriesDetail>{
     return this.http.put<CountriesDetail>(this.api.apiUrl.countries + '/' + datas.id, datas);
   }
 
-  public deleteCountry(id):Observable<CountriesDetail>{
+  public deleteCountry(id): Observable<CountriesDetail>{
     return this.http.delete<CountriesDetail>(this.api.apiUrl.countries + '/' + id);
   }
 
-  public getCountryId(id):Observable<CountriesDetail>{
+  public getCountryId(id): Observable<CountriesDetail>{
     return this.http.get<CountriesDetail>(this.api.apiUrl.countries + "/" + id);
   }
 
   // Event Province
-  public getAllProvince():Observable<ProvincesResponse>{
+  public getAllProvince(): Observable<ProvincesResponse>{
     return this.http.get<ProvincesResponse>(this.api.apiUrl.provinces);
   }
 
-  public getProvinceByCountry(country_id):Observable<ProvincesResponse>{
+  public getProvinceByCountry(country_id): Observable<ProvincesResponse>{
     return this.http.get<ProvincesResponse>(this.api.apiUrl.provinces + '/GetProvinceByCountry/' + country_id);
   }
 
-  public addProvince(datas):Observable<ProvinceDetail>{
+  public addProvince(datas): Observable<ProvinceDetail>{
     return this.http.post<ProvinceDetail>(this.api.apiUrl.provinces, datas);
   }
 
-  public updateProvince(datas: Provinces):Observable<ProvinceDetail>{
+  public updateProvince(datas: Provinces): Observable<ProvinceDetail>{
     return this.http.put<ProvinceDetail>(this.api.apiUrl.provinces + '/' + datas.id, datas);
   }
 
-  public deleteProvince(id):Observable<ProvinceDetail>{
+  public deleteProvince(id): Observable<ProvinceDetail>{
     return this.http.delete<ProvinceDetail>(this.api.apiUrl.provinces + '/' + id);
   }
 
-  public getProvinceId(id):Observable<ProvinceDetail>{
+  public getProvinceId(id): Observable<ProvinceDetail>{
     return this.http.get<ProvinceDetail>(this.api.apiUrl.provinces + "/" + id);
   }
 
   // Event District
-  public getAllDistrict():Observable<DistrictsResponse>{
+  public getAllDistrict(): Observable<DistrictsResponse>{
     return this.http.get<DistrictsResponse>(this.api.apiUrl.districts);
   }
 
-  public getDistrictByProvince(province_id):Observable<DistrictsResponse>{
+  public getDistrictByProvince(province_id): Observable<DistrictsResponse>{
     return this.http.get<DistrictsResponse>(this.api.apiUrl.districts + '/GetDistrictByProvince/' + province_id);
   }
 
-  public addDistrict(datas):Observable<DistrictDetail>{
+  public addDistrict(datas): Observable<DistrictDetail>{
     return this.http.post<DistrictDetail>(this.api.apiUrl.districts, datas);
   }
 
-  public updateDistrict(datas: District):Observable<DistrictDetail>{
+  public updateDistrict(datas: District): Observable<DistrictDetail>{
     return this.http.put<DistrictDetail>(this.api.apiUrl.districts + '/' + datas.id, datas);
   }
 
-  public deleteDistrict(id):Observable<DistrictDetail>{
+  public deleteDistrict(id): Observable<DistrictDetail>{
     return this.http.delete<DistrictDetail>(this.api.apiUrl.districts + '/' + id);
   }
 
-  public getDistrictId(id):Observable<DistrictDetail>{
+  public getDistrictId(id): Observable<DistrictDetail>{
     return this.http.get<DistrictDetail>(this.api.apiUrl.districts + "/" + id);
   }
 }

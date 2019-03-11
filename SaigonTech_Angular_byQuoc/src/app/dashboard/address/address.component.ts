@@ -204,7 +204,7 @@ export class AddressComponent implements OnInit {
   }
 
   // event Province
-  addProvince(){
+  addProvince() {
     const param = {
       countrY_ID: this.country.id,
       provinceName: this.province.provinceName
@@ -216,7 +216,7 @@ export class AddressComponent implements OnInit {
     })
   }
 
-  updateProvince(id){
+  updateProvince(id) {
     this.addressService.updateProvince(this.province).subscribe(result =>{
       console.log(result);
       this.dataProvinceByCountry();
@@ -276,7 +276,7 @@ export class AddressComponent implements OnInit {
     });
   }
   // event close
-  close(){
+  close() {
     this.modalAddCountry.hide();
     this.modalEditCountry.hide();
     this.modalDeleteCountry.hide();

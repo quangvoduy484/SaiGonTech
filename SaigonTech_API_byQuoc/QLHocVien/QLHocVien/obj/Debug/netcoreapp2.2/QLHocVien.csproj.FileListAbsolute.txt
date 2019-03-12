@@ -95,3 +95,17 @@ D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreap
 D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.RazorTargetAssemblyInfo.cache
 D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.dll
 D:\Quoc\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.pdb
+C:\Users\isc\Documents\GitHub\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.deps.json
+C:\Users\isc\Documents\GitHub\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.runtimeconfig.json
+C:\Users\isc\Documents\GitHub\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.runtimeconfig.dev.json
+C:\Users\isc\Documents\GitHub\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.dll
+C:\Users\isc\Documents\GitHub\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\bin\Debug\netcoreapp2.2\QLHocVien.pdb
+C:\Users\isc\Documents\GitHub\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.csprojAssemblyReference.cache
+C:\Users\isc\Documents\GitHub\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.csproj.CoreCompileInputs.cache
+C:\Users\isc\Documents\GitHub\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.RazorAssemblyInfo.cache
+C:\Users\isc\Documents\GitHub\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.RazorAssemblyInfo.cs
+C:\Users\isc\Documents\GitHub\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.AssemblyInfoInputs.cache
+C:\Users\isc\Documents\GitHub\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.AssemblyInfo.cs
+C:\Users\isc\Documents\GitHub\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.RazorTargetAssemblyInfo.cache
+C:\Users\isc\Documents\GitHub\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.dll
+C:\Users\isc\Documents\GitHub\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.pdb

@@ -62,6 +62,7 @@ export class UserComponent implements OnInit {
       this.users = user.data;
     });
   }
+
   createForm() {
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -125,7 +126,7 @@ export class UserComponent implements OnInit {
     if (id === 0 || id === undefined) {
       this.user = {} as User;
       console.log(this.user);
-      console.log('vao 1');
+    
       this.form.enable();
       this.form.reset({
         name: this.user.name,
@@ -134,7 +135,7 @@ export class UserComponent implements OnInit {
         email: this.user.email,
         phone: this.user.phone,
         status: this.user.status,
-        file: this.user.imagePath
+        file: null
 
       });
 
@@ -142,11 +143,11 @@ export class UserComponent implements OnInit {
       this.modal.show();
 
     } else {
-      console.log("vao 2")
+    
 
       this.userService.getObject(id).subscribe(user => {
         this.user = user.data;
-        console.log(this.user);
+      
         
         this.form.setValue({
           name: this.user.name,
@@ -161,7 +162,7 @@ export class UserComponent implements OnInit {
 
 
         });
-        console.log(this.form.get('file').value);
+   
 
         this.form.get('name').disable({ onlySelf: true });
         this.form.get('username').disable({ onlySelf: true });
@@ -169,7 +170,7 @@ export class UserComponent implements OnInit {
         this.form.get('email').disable({ onlySelf: true });
         this.form.get('phone').disable({ onlySelf: true });
         this.modal.show();
-        console.log(this.form.get('name').status);
+       
 
       });
 
@@ -179,7 +180,7 @@ export class UserComponent implements OnInit {
 
   // thay đổi sau mỗi lần nhập file
  public onFileChange(event) {
-    console.log(event);
+   
     if (event.target.files.length > 0) {
       let file = event.target.files[0];
       this.form.get('file').setValue(file);
@@ -192,11 +193,13 @@ export class UserComponent implements OnInit {
     // bingding từ control đến data
     this.setUser();
     // data gắn vào formdata
+    console.log(this.user);
     this.prepareSave();
-    console.log(this.input);
+  
     if (this.user.id === undefined || this.user.id === 0) {
       this.userService.add(this.input).subscribe(user => {
         this.getLoad();
+       console.log(this.user);
         this.modal.hide();
         this.resultStatus = ' Add Succees';
         this.isStatus = true;

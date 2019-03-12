@@ -19,20 +19,21 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(){
-    this.userServices.login(this.username, this.password).subscribe(result =>{
+  login() {
+    this.userServices.login(this.username, this.password).subscribe(result => {
       console.log(result);
-      if(result.errorCode === 0){
+      if (result.errorCode === 0) {
         this.message = result.messege;
-      }else{
+      } else {
         alert(result.messege);
-        this.message=result.messege;
+        this.message = result.messege;
         this.auth.setLoggedIn(true);
         //save token (npm install ngx-cookie-service --save)
         this.cookieService.set('Id', result.data.id + '');
         this.cookieService.set('token', result.data.token);
+       
         this.router.navigate(['/dashboard']);
       }
-    })
+    });
   }
 }

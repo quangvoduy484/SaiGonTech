@@ -71,10 +71,11 @@ namespace QLHocVien.Controllers
     {
       if (!String.IsNullOrEmpty(login.UserName) && !String.IsNullOrEmpty(login.PassWord))
       {
+        var b = Utils.Helper.GenHash("DF2983700FFECB52E6649F0CB3981B66537083A4");
         var user = await _context.Users.Where(x => x.UserName == login.UserName && x.PassWord == Utils.Helper.GenHash(login.PassWord)).AsNoTracking().SingleOrDefaultAsync();
         if (user != null)
         {
-          HttpContext.Session.SetString("quyen", user.UserName);
+          
 
           //generate token
           var claimData = new[] { new Claim(ClaimTypes.Name, login.UserName) };
@@ -156,72 +157,72 @@ namespace QLHocVien.Controllers
     }
 
 
-    [HttpPut("{id}")]
-    public async Task<ActionResult<BaseResponse>> Put(int id, [FromForm] User user)
-    {
-      var userItem = await _context.Users.AsNoTracking().Where(s => s.Id == id).SingleOrDefaultAsync();
+    //[HttpPut("{id}")]
+    //public async Task<ActionResult<BaseResponse>> Put(int id, [FromForm] User user)
+    //{
+    //  var userItem = await _context.Users.AsNoTracking().Where(s => s.Id == id).SingleOrDefaultAsync();
 
-      // save change
-      if (userItem != null)
-      {
-        if(HttpContext.Session.GetString("quyen") == "admin")
-        {
-          userItem.Status = user.Status;
-          _context.Entry(userItem).Property(us => us.Status).IsModified = true;
-        }
-        else
-        {
-          userItem.Name = user.Name;
-          userItem.UserName = user.UserName;
-          userItem.Email = user.Email;
-          userItem.Phone = user.Phone;
-          userItem.Addres = user.Addres;
-          userItem.PassWord = user.PassWord;
-        }
+    //  // save change
+    //  if (userItem != null)
+    //  {
+    //    if(HttpContext.Session.GetString("quyen") == "admin")
+    //    {
+    //      userItem.Status = user.Status;
+    //      _context.Entry(userItem).Property(us => us.Status).IsModified = true;
+    //    }
+    //    else
+    //    {
+    //      userItem.Name = user.Name;
+    //      userItem.UserName = user.UserName;
+    //      userItem.Email = user.Email;
+    //      userItem.Phone = user.Phone;
+    //      userItem.Addres = user.Addres;
+    //      userItem.PassWord = user.PassWord;
+    //    }
 
-        // Lưu vào cs dl 
-        _context.Users.Update(userItem);
-        await _context.SaveChangesAsync();
+    //    // Lưu vào cs dl 
+    //    _context.Users.Update(userItem);
+    //    await _context.SaveChangesAsync();
 
-        var file = user.File;
+    //    var file = user.File;
 
-        if (file != null)
-        {
-          string path = _hostingEnvironment.ContentRootPath + "\\Data\\" + userItem.ImagePath;
+    //    if (file != null)
+    //    {
+    //      string path = _hostingEnvironment.ContentRootPath + "\\Data\\" + userItem.ImagePath;
 
-          if (System.IO.File.Exists(path))
-          {
+    //      if (System.IO.File.Exists(path))
+    //      {
 
 
-            System.IO.File.Delete(path);
-            path = "";
-            path = _hostingEnvironment.ContentRootPath + "\\Data\\" + userItem.Id + "_" + file.FileName;
-          }
+    //        System.IO.File.Delete(path);
+    //        path = "";
+    //        path = _hostingEnvironment.ContentRootPath + "\\Data\\" + userItem.Id + "_" + file.FileName;
+    //      }
 
-          // có thì xóa sao đó rồi thêm file mới, không có thì cứ thêm bình thường
-          using (var stream = new FileStream(path, FileMode.Create))
-          {
-            file.CopyTo(stream);
-            userItem.ImagePath = file.FileName;
-            _context.Entry(userItem).Property(x => x.ImagePath).IsModified = true;
-            await _context.SaveChangesAsync();
-          }
+    //      // có thì xóa sao đó rồi thêm file mới, không có thì cứ thêm bình thường
+    //      using (var stream = new FileStream(path, FileMode.Create))
+    //      {
+    //        file.CopyTo(stream);
+    //        userItem.ImagePath = file.FileName;
+    //        _context.Entry(userItem).Property(x => x.ImagePath).IsModified = true;
+    //        await _context.SaveChangesAsync();
+    //      }
 
-          return new BaseResponse(new User
-          {
-            UserName = userItem.UserName,
-            Name = userItem.Name,
-            PassWord = userItem.PassWord,
-            Email = userItem.Email,
-            Status = user.Status,
-            Phone = user.Phone,
-            ImagePath = userItem.ImagePath
+    //      return new BaseResponse(new User
+    //      {
+    //        UserName = userItem.UserName,
+    //        Name = userItem.Name,
+    //        PassWord = userItem.PassWord,
+    //        Email = userItem.Email,
+    //        Status = user.Status,
+    //        Phone = user.Phone,
+    //        ImagePath = userItem.ImagePath
 
-          });
-        }
-      }
-      return new BaseResponse { ErrorCode = 0, Messege = "Dữ liệu rỗng" };
-    }
+    //      });
+    //    }
+    //  }
+    //  return new BaseResponse { ErrorCode = 0, Messege = "Dữ liệu rỗng" };
+    //}
 
   }
 

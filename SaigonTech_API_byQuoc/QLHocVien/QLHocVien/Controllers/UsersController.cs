@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,10 +23,11 @@ namespace QLHocVien.Controllers
     public class UsersController : ControllerBase
     {
         private readonly QLHocVienContext _context;
-
-        public UsersController(QLHocVienContext context)
+        private readonly IHostingEnvironment _hostingEnvironment;
+        public UsersController(IHostingEnvironment hostingEnvironment, QLHocVienContext context)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
             if (_context.Users.ToList().Count() == 0)
             {
                 User newUser = new User
@@ -60,20 +63,119 @@ namespace QLHocVien.Controllers
             users.Addres = user.Addres;
             users.Email = user.Email;
             users.UserName = user.UserName;
+            users.Active = user.Active;
+            var file = user.File;
+            if (file != null)
+            {
+                string path = _hostingEnvironment.ContentRootPath + "\\Data\\" + users.Avatar;
+                if ((System.IO.File.Exists(path)))
+                {
+                    System.IO.File.Delete(path);
+                }
+                string newFileName = users.Id + "_" + file.FileName;
+                string path1 = _hostingEnvironment.ContentRootPath + "\\Data\\" + newFileName;
+                using (var stream = new FileStream(path1, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                    users.Avatar = newFileName;
+                }
 
+            }
             _context.Users.Update(users);
             await _context.SaveChangesAsync();
             return Ok(users);
+        }
+
+        [HttpPut("ChangeActive/{id}")]
+        public async Task<IActionResult> PutActive(int id, int act)
+        {
+            var users = await _context.Users.FindAsync(id);
+            if (users == null)
+            {
+                return NotFound();
+            }
+            
+            users.Active = act;
+            
+            _context.Users.Update(users);
+            await _context.SaveChangesAsync();
+            return Ok(users);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<BaseResponse>> CheckPass(int id, string password)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+            {
+                return new BaseResponse
+                {
+                    ErrorCode = 1,
+                    Messege = "Not Found User"
+                };
+            }
+            if (user.PassWord == password)
+            {
+                return new BaseResponse(user);
+            }
+            else
+            {
+                return new BaseResponse
+                {
+                    ErrorCode = 2,
+                    Messege = "Wrong Password"
+                };
+            }
+        }
+
+        [HttpPut("ChangePassword")]
+        public async Task<IActionResult> PutPassword(User user, string newpassword, string confirmpassword)
+        {
+            if (newpassword == null || confirmpassword == null)
+            {
+                return BadRequest("Missing fields!");
+            }
+            if (newpassword != confirmpassword)
+            {
+                return BadRequest("Not Match!");
+            }
+
+            user.PassWord = newpassword;
+
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+            return Ok(user);
         }
 
         // POST: api/Users
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
+            var check = await _context.Users.Where(x => x.Id == user.Id).FirstOrDefaultAsync();
+            if (check != null)
+            {
+                return BadRequest();
+            }
+            
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            var file = user.File;
+            if (file != null)
+            {
+                string newFileName = user.Id + "_" + file.FileName;
+                string path = _hostingEnvironment.ContentRootPath + "\\Data\\" + newFileName;
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                    user.Avatar = newFileName;
+                    _context.Entry(user).Property(x => x.Avatar).IsModified = true;
+                    _context.SaveChanges();
+                }
+
+            }
+            user.File = null;
+            return CreatedAtAction("Get", new { id = user.Id }, user);
         }
 
         [HttpPost("login")]

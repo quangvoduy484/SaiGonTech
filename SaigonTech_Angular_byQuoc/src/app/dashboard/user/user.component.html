@@ -1,0 +1,239 @@
+<div class="card w-100">
+    <div class="card-header text-dark">
+      User
+      <div class="ml-auto d-inline float-right">
+        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addUser">Add</button>
+      </div>
+    </div>
+
+    <!--start: add modal-->
+    <!-- add -->
+    <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New User</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="#">
+            <div class="modal-body">
+              <div class="container">
+                <fieldset>
+                  <legend></legend>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputusername">Username</label>
+                      <input type="text" class="form-control" id="inputusername" placeholder="Username">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputpassword">Password</label>
+                      <input type="text" class="form-control" id="inputpassword" placeholder="Password">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputbirthday">Date Of Birth</label>
+                      <input type="date" class="form-control" id="inputbirthday">
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label for="inputGender">Gender</label>
+                      <select id="inputGender" class="form-control">
+                        <option selected>Male</option>
+                        <option>Female</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputEmail">Email</label>
+                      <input type="email" class="form-control" id="inputEmail" placeholder="example@gmail.com">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputIDCard">ID Card</label>
+                      <input type="text" class="form-control" id="inputIDCard" placeholder="ID Card">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputCountry">Address</label>
+                      <select id="inputCountry" class="form-control">
+                        <option disabled selected>Choose A Country</option>
+                        <option value="">Vietnam</option>
+                        <option value="">United of America</option>
+                        <option value="">Japanese</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputProvince"></label>
+                      <select id="inputProvince" class="form-control">
+                        <option disabled selected>Choose A Province</option>
+                        <option value="">TP. Hồ Chí Minh</option>
+                        <option value="">Hà Nội</option>
+                        <option value="">Đã Nẵng</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <select id="inputDistrict" class="form-control">
+                        <option disabled selected>Choose A District</option>
+                        <option value="">Quận 1</option>
+                        <option value="">Quận 2</option>
+                        <option value="">Quận 3</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <input type="text" class="form-control" id="inputaddress" placeholder="Home Number, Streets">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <label for="inputPlaceofbirth">Place Of Birth</label>
+                      <input type="text" class="form-control" id="inputPlaceofbirth" placeholder="Hospital, Districts, City">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-2">
+                      <label for="">Marial Status:</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                      <input type="radio" class="form-check-input" name="marialstatusvalue" value="1" id="single"
+                        checked>
+                      <label for="single">Single</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                      <input type="radio" class="form-check-input" name="marialstatusvalue" value="2" id="married">
+                      <label for="married">Married</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                      <input type="radio" class="form-check-input" name="marialstatusvalue" value="3" id="widowed">
+                      <label for="widowed">Widowed</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                      <input type="radio" class="form-check-input" name="marialstatusvalue" value="4" id="divorced">
+                      <label for="divorced">Divorced</label>
+                    </div>
+                    <div class="form-group col-md-2">
+                      <input type="radio" class="form-check-input" name="marialstatusvalue" value="5" id="separate">
+                      <label for="separate">Separate</label>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="">Phone Number</label>
+                      <input type="text" class="form-control" placeholder="Phone Number">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputhomecountry">Home Country</label>
+                      <select id="inputhomecountry" class="form-control">
+                        <option value="" disabled selected>Choose A Country</option>
+                        <option>Vietnam</option>
+                        <option>United States Of America</option>
+                        <option>Japan</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputHighschoolname">High School Name</label>
+                      <input type="text" id="inputHighschoolname" class="form-control" placeholder="High School Name">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputHighschoolcity">High School City</label>
+                      <select id="inputHighschoolcity" class="form-control">
+                        <option disabled selected>Choose A Province</option>
+                        <option value="">TP. Hồ Chí Minh</option>
+                        <option value="">Hà Nội</option>
+                        <option value="">Đã Nẵng</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputHighschool">High School Graduate Year</label>
+                      <input type="number" id="inputHighschoolname" class="form-control" min="1900" max="2099" step="1"
+                        value="2019">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputEducation">Education</label>
+                      <select id="inputEducation" class="form-control">
+                        <option disabled selected>Choose A Education</option>
+                        <option value="">THPT</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputDocumentCode">Document Code</label>
+                      <input type="text" class="form-control" id='inputDocumentCode' value="" />
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputRegisterDate">Register Date</label>
+                      <input type="date" class="form-control" id="inputRegisterDate">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputCandidateType">Candidate Type</label>
+                      <select id="inputCandidateType" class="form-control">
+                        <option value="" selected>Normal</option>
+                        <option value="">COCC</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputFinalResult">Final Result</label>
+                      <select id="inputFinalResult" class="form-control">
+                        <option value="" selected>Undefined</option>
+                        <option value="">Passed</option>
+                      </select>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--end: add modal-->
+
+  <div class="card-body w-100 table-responsive">
+    <table class="table table-striped table-hover display" id="myTable">
+      <thead class="bg-color text-white">
+        <tr>
+          <th>No.</th>
+          <th>UserName</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Active</th>
+          <th>Avatar</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>1</th>
+          <td>Nguyễn Văn</td>
+          <td>Anh</td>
+          <td>123</td>
+          <td>1</td>
+          <td>
+            
+          </td>
+          <td>
+            <a href="" data-toggle="modal" data-target="#detailCandidate" class="text-warning">Detail</a> |
+            <a href="" data-toggle="modal" data-target="#editCandidate">Edit</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

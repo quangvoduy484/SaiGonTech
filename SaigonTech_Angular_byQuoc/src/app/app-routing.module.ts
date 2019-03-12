@@ -18,6 +18,7 @@ import { ExamsubjectComponent } from './dashboard/examsubject/examsubject.compon
 import { ScoreofexamsubjectComponent } from './dashboard/scoreofexamsubject/scoreofexamsubject.component';
 import { StagedetailComponent } from './dashboard/stagedetail/stagedetail.component';
 import { AuthGuard } from './auth.guard';
+import { UserComponent } from './dashboard/user/user.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     path: 'dashboard', component: DashboardComponent,
     children: [
+      {path: 'user', component: UserComponent},
       {path: 'candidate', component: CandidateComponent},
       {path: 'education', component: EducationComponent},
       {path: 'document', component: DocumentComponent},

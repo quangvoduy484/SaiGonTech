@@ -107,7 +107,7 @@ export class AddressService {
   }
 
   public getProvinceId(id):Observable<ProvinceDetail>{
-    return this.http.get<ProvinceDetail>(this.api.apiUrl.provinces + "/" + id);
+    return this.http.get<ProvinceDetail>(this.api.apiUrl.provinces + '/' + id);
   }
 
   // Event District

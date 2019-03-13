@@ -12943,23 +12943,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\isc\\.nuget\\packages\\": {},
+    "C:\\Users\\dipho\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\isc\\Documents\\GitHub\\SaiGonTech\\SaigonTech_API_byQuoc\\QLHocVien\\QLHocVien\\QLHocVien.csproj",
+      "projectUniqueName": "C:\\OneDrive\\PROJECT\\Quản lý thông tin tuyển sinh SaigonTech\\SaiGonTech\\SaigonTech_API_byQuoc\\QLHocVien\\QLHocVien\\QLHocVien.csproj",
       "projectName": "QLHocVien",
-      "projectPath": "C:\\Users\\isc\\Documents\\GitHub\\SaiGonTech\\SaigonTech_API_byQuoc\\QLHocVien\\QLHocVien\\QLHocVien.csproj",
-      "packagesPath": "C:\\Users\\isc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\isc\\Documents\\GitHub\\SaiGonTech\\SaigonTech_API_byQuoc\\QLHocVien\\QLHocVien\\obj\\",
+      "projectPath": "C:\\OneDrive\\PROJECT\\Quản lý thông tin tuyển sinh SaigonTech\\SaiGonTech\\SaigonTech_API_byQuoc\\QLHocVien\\QLHocVien\\QLHocVien.csproj",
+      "packagesPath": "C:\\Users\\dipho\\.nuget\\packages\\",
+      "outputPath": "C:\\OneDrive\\PROJECT\\Quản lý thông tin tuyển sinh SaigonTech\\SaiGonTech\\SaigonTech_API_byQuoc\\QLHocVien\\QLHocVien\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\isc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\dipho\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

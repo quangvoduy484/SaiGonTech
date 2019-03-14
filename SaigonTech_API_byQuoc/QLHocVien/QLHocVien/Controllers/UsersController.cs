@@ -50,30 +50,27 @@ namespace QLHocVien.Controllers
 
         // PUT: api/Users/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> PutUser(int id, [FromForm] UpdateUserRequest user)
         {
             var users = await _context.Users.FindAsync(id);
-            if(users == null)
+            if (users == null)
             {
                 return NotFound();
             }
             users.Name = user.Name;
-            users.PassWord = user.PassWord;
             users.Phone = user.Phone;
-            users.Addres = user.Addres;
+            users.Address = user.Address;
             users.Email = user.Email;
-            users.UserName = user.UserName;
-            users.Active = user.Active;
             var file = user.File;
             if (file != null)
             {
-                string path = _hostingEnvironment.ContentRootPath + "\\Data\\" + users.Avatar;
+                string path = _hostingEnvironment.ContentRootPath + "\\wwwroot\\Data\\" + users.Avatar;
                 if ((System.IO.File.Exists(path)))
                 {
                     System.IO.File.Delete(path);
                 }
                 string newFileName = users.Id + "_" + file.FileName;
-                string path1 = _hostingEnvironment.ContentRootPath + "\\Data\\" + newFileName;
+                string path1 = _hostingEnvironment.ContentRootPath + "\\wwwroot\\Data\\" + newFileName;
                 using (var stream = new FileStream(path1, FileMode.Create))
                 {
                     file.CopyTo(stream);
@@ -87,25 +84,29 @@ namespace QLHocVien.Controllers
         }
 
         [HttpPut("ChangeActive/{id}")]
-        public async Task<IActionResult> PutActive(int id, int act)
+        public async Task<IActionResult> PutActive(int id, ChangeActiveRequest act)
         {
             var users = await _context.Users.FindAsync(id);
             if (users == null)
             {
                 return NotFound();
             }
-            
-            users.Active = act;
-            
+
+            if (act.active != 1 && act.active != 0)
+            {
+                return BadRequest("Invalid Integer Active");
+            }
+            users.Active = act.active;
+
             _context.Users.Update(users);
             await _context.SaveChangesAsync();
             return Ok(users);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<BaseResponse>> CheckPass(int id, string password)
+        [HttpPost("checkpass")]
+        public async Task<ActionResult<BaseResponse>> CheckPass(CheckPassRequest cpr)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.Users.FindAsync(cpr.id);
             if (user == null)
             {
                 return new BaseResponse
@@ -114,7 +115,7 @@ namespace QLHocVien.Controllers
                     Messege = "Not Found User"
                 };
             }
-            if (user.PassWord == password)
+            if (user.PassWord == Utils.Helper.GenHash(cpr.password))
             {
                 return new BaseResponse(user);
             }
@@ -128,20 +129,29 @@ namespace QLHocVien.Controllers
             }
         }
 
-        [HttpPut("ChangePassword")]
-        public async Task<IActionResult> PutPassword(User user, string newpassword, string confirmpassword)
+        [HttpPut("ChangePassword/{id}")]
+        public async Task<ActionResult<BaseResponse>> PutPassword(int id, ChangePasswordRequest pass)
         {
-            if (newpassword == null || confirmpassword == null)
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+            {
+                return new BaseResponse
+                {
+                    ErrorCode = 1,
+                    Messege = "Not Found User"
+                };
+            }
+
+            if (pass.newpassword == null || pass.confirmpassword == null)
             {
                 return BadRequest("Missing fields!");
             }
-            if (newpassword != confirmpassword)
+            if (pass.newpassword != pass.confirmpassword)
             {
                 return BadRequest("Not Match!");
             }
 
-            user.PassWord = newpassword;
-
+            user.PassWord = pass.newpassword;
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
             return Ok(user);
@@ -149,7 +159,7 @@ namespace QLHocVien.Controllers
 
         // POST: api/Users
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<User>> PostUser([FromForm] User user)
         {
             var check = await _context.Users.Where(x => x.Id == user.Id).FirstOrDefaultAsync();
             if (check != null)
@@ -164,7 +174,7 @@ namespace QLHocVien.Controllers
             if (file != null)
             {
                 string newFileName = user.Id + "_" + file.FileName;
-                string path = _hostingEnvironment.ContentRootPath + "\\Data\\" + newFileName;
+                string path = _hostingEnvironment.ContentRootPath + "\\wwwroot\\Data\\" + newFileName;
                 using (var stream = new FileStream(path, FileMode.Create))
                 {
                     file.CopyTo(stream);
@@ -175,7 +185,7 @@ namespace QLHocVien.Controllers
 
             }
             user.File = null;
-            return CreatedAtAction("Get", new { id = user.Id }, user);
+            return user;
         }
 
         [HttpPost("login")]

@@ -13014,5 +13014,13 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\quangduyvo\\Desktop\\SaiGonTech\\SaigonTech_API_byQuoc\\QLHocVien\\QLHocVien\\obj\\QLHocVien.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

@@ -10,6 +10,7 @@ import {
   transition,
   // ...
 } from '@angular/animations';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -36,17 +37,19 @@ import {
     ]),
   ]
 })
+
 export class UserComponent implements OnInit {
 
   // biến toàn cục
   user: User = {} as User;
   users: User[] = [];
   form: FormGroup;
-  input: any;
+  role: string;
   isStatus = false;
   resultStatus = '';
+  statusFile: any;
   @ViewChild('modal') modal: ModalDirective;
-  constructor(private userService: UserService, private fb: FormBuilder) { }
+  constructor(private userService: UserService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.getLoad();
@@ -54,6 +57,8 @@ export class UserComponent implements OnInit {
 
     console.log(this.form);
     console.log(this.form.get('name'));
+    this.role = localStorage.getItem('username');
+    console.log(this.role);
   }
 
 
@@ -107,15 +112,15 @@ export class UserComponent implements OnInit {
   }
 
   private prepareSave(): any {
-    this.input = new FormData();
-    this.input.append('name', this.user.name);
-    this.input.append('username', this.user.userName);
-    this.input.append('password', this.user.passWord);
-    this.input.append('email', this.user.email);
-    this.input.append('phone', this.user.phone);
-    this.input.append('status', this.user.status);
-    this.input.append('file', this.user.imagePath);
-    return this.input;
+    let input = new FormData();
+    input.append('name', this.user.name);
+    input.append('username', this.user.userName);
+    input.append('password', this.user.passWord);
+    input.append('email', this.user.email);
+    input.append('phone', this.user.phone.toString());
+    input.append('status', this.user.status.toString());
+    input.append('file', this.user.imagePath);
+    return input;
   }
 
   // show và binding từ object đến formcontrol
@@ -126,7 +131,6 @@ export class UserComponent implements OnInit {
     if (id === 0 || id === undefined) {
       this.user = {} as User;
       console.log(this.user);
-    
       this.form.enable();
       this.form.reset({
         name: this.user.name,
@@ -143,12 +147,16 @@ export class UserComponent implements OnInit {
       this.modal.show();
 
     } else {
-    
 
       this.userService.getObject(id).subscribe(user => {
         this.user = user.data;
-      
-        
+        if (this.user.imagePath === null) {
+          this.statusFile = null;
+        }
+        else {
+          this.statusFile = this.user.imagePath;
+        }
+
         this.form.setValue({
           name: this.user.name,
           username: this.user.userName,
@@ -156,22 +164,14 @@ export class UserComponent implements OnInit {
           email: this.user.email,
           phone: this.user.phone,
           status: this.user.status,
-          file: this.user.imagePath
-
-
-
-
+          file: this.statusFile
         });
-   
-
         this.form.get('name').disable({ onlySelf: true });
         this.form.get('username').disable({ onlySelf: true });
         this.form.get('password').disable({ onlySelf: true });
         this.form.get('email').disable({ onlySelf: true });
         this.form.get('phone').disable({ onlySelf: true });
         this.modal.show();
-       
-
       });
 
 
@@ -179,27 +179,27 @@ export class UserComponent implements OnInit {
   }
 
   // thay đổi sau mỗi lần nhập file
- public onFileChange(event) {
-   
+  public onFileChange(event) {
     if (event.target.files.length > 0) {
       let file = event.target.files[0];
-      this.form.get('file').setValue(file);
+      this.form.get('file').patchValue(file);
+      console.log(file);
+
     }
   }
 
   //SUBMIT
   onSubmit() {
- 
+
     // bingding từ control đến data
     this.setUser();
     // data gắn vào formdata
-    console.log(this.user);
-    this.prepareSave();
-  
+    //console.log(this.user);
+    const formModel = this.prepareSave();
     if (this.user.id === undefined || this.user.id === 0) {
-      this.userService.add(this.input).subscribe(user => {
+      this.userService.add(formModel).subscribe(user => {
         this.getLoad();
-       console.log(this.user);
+        // console.log(this.user);
         this.modal.hide();
         this.resultStatus = ' Add Succees';
         this.isStatus = true;
@@ -212,7 +212,8 @@ export class UserComponent implements OnInit {
       );
     } else {
       console.log("vao edit");
-      this.userService.update(this.user.id, this.input).subscribe(user => {
+      console.log(this.role);
+      this.userService.update(this.user.id, formModel, this.role).subscribe(user => {
         this.getLoad();
         this.modal.hide();
         this.resultStatus = ' Update Succees';

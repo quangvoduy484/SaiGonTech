@@ -17,7 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
+    <None Include="wwwroot\Data\8_17352318_1882387245360078_1104124688094654022_n2.jpg" />
+    <None Include="wwwroot\Data\imgcv.jpg" />
   </ItemGroup>
 
 </Project>

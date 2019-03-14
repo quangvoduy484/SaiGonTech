@@ -7,7 +7,7 @@ export class AuthService {
 
   private loggedInStatus = JSON.parse(localStorage.getItem('loggedIn') || 'false');
   constructor() { }
-  setLoggedIn(value: boolean){
+  setLoggedIn(value: boolean) {
     this.loggedInStatus = value;
     localStorage.setItem('loggedIn', value.toString());
   }

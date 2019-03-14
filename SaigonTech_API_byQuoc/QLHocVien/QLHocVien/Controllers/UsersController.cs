@@ -53,6 +53,36 @@ namespace QLHocVien.Controllers
       return new BaseResponse(ListUser);
     }
 
+    [HttpGet("LoadAcount")]
+    public async Task<ActionResult<User>> Get(int id)
+    {
+      var aStudent = await _context.Users.FindAsync(id);
+      if (aStudent != null)
+      {
+        string domainUrl = Request.Scheme + "://" + Request.Host.ToString();
+        try
+        {
+          if (aStudent.ImagePath.Length > 0 && !string.IsNullOrEmpty(aStudent.ImagePath))
+          {
+
+            string path = domainUrl + "/Data/" + aStudent.ImagePath;
+            aStudent.ImagePath = path;
+
+
+          }
+        }
+        catch
+        {
+
+          string path = domainUrl + "/Data/" + "userdefault.png";
+          aStudent.ImagePath = path;
+        }
+        return aStudent;
+
+      }
+      return NoContent();
+    }
+
     [HttpGet("{id}")]
     public async Task<ActionResult<BaseResponse>> GetUser(int id)
     {
@@ -71,7 +101,7 @@ namespace QLHocVien.Controllers
     {
       if (!String.IsNullOrEmpty(login.UserName) && !String.IsNullOrEmpty(login.PassWord))
       {
-        var b = Utils.Helper.GenHash("DF2983700FFECB52E6649F0CB3981B66537083A4");
+     
         var user = await _context.Users.Where(x => x.UserName == login.UserName && x.PassWord == Utils.Helper.GenHash(login.PassWord)).AsNoTracking().SingleOrDefaultAsync();
         if (user != null)
         {
@@ -121,8 +151,10 @@ namespace QLHocVien.Controllers
     [HttpPost()]
     public async Task<ActionResult<BaseResponse>> Post([FromForm] User user)
     {
+     
       if (!string.IsNullOrEmpty(user.Email) || !string.IsNullOrEmpty(user.Name) || !string.IsNullOrEmpty(user.PassWord) || !string.IsNullOrEmpty(user.UserName))
       {
+
         user.PassWord = Utils.Helper.GenHash(user.PassWord);
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
@@ -131,7 +163,7 @@ namespace QLHocVien.Controllers
         if (file != null)
         {
           string newFileName = user.Id + "_" + file.FileName;
-          string path = _hostingEnvironment.ContentRootPath + "\\Data\\" + newFileName;
+          string path = _hostingEnvironment.ContentRootPath + "\\wwwroot" + "\\Data\\" + newFileName;
           var stream = new FileStream(path, FileMode.Create);
           file.CopyTo(stream);
 
@@ -157,72 +189,78 @@ namespace QLHocVien.Controllers
     }
 
 
-    //[HttpPut("{id}")]
-    //public async Task<ActionResult<BaseResponse>> Put(int id, [FromForm] User user)
-    //{
-    //  var userItem = await _context.Users.AsNoTracking().Where(s => s.Id == id).SingleOrDefaultAsync();
+    [HttpPut("{id}")]
+    public async Task<ActionResult<BaseResponse>> Put(int id, [FromForm] User user,string role)
+    {
+      
+      var userItem = await _context.Users.AsNoTracking().Where(s => s.Id == id).SingleOrDefaultAsync();
 
-    //  // save change
-    //  if (userItem != null)
-    //  {
-    //    if(HttpContext.Session.GetString("quyen") == "admin")
-    //    {
-    //      userItem.Status = user.Status;
-    //      _context.Entry(userItem).Property(us => us.Status).IsModified = true;
-    //    }
-    //    else
-    //    {
-    //      userItem.Name = user.Name;
-    //      userItem.UserName = user.UserName;
-    //      userItem.Email = user.Email;
-    //      userItem.Phone = user.Phone;
-    //      userItem.Addres = user.Addres;
-    //      userItem.PassWord = user.PassWord;
-    //    }
+      // save change
+      if (userItem != null)
+      {
+       if(role =="admin")
+        {
+          userItem.Status = user.Status;
+          _context.Entry(userItem).Property(us => us.Status).IsModified = true;
+        }
+        else
+        {
+          userItem.Name = user.Name;
+          userItem.UserName = user.UserName;
+          userItem.Email = user.Email;
+          userItem.Phone = user.Phone;
+          userItem.Addres = user.Addres;
+          userItem.PassWord = user.PassWord;
+        }
 
-    //    // Lưu vào cs dl 
-    //    _context.Users.Update(userItem);
-    //    await _context.SaveChangesAsync();
+        // Lưu vào cs dl 
+        _context.Users.Update(userItem);
+        await _context.SaveChangesAsync();
 
-    //    var file = user.File;
+        var file = user.File;
 
-    //    if (file != null)
-    //    {
-    //      string path = _hostingEnvironment.ContentRootPath + "\\Data\\" + userItem.ImagePath;
+        if (file != null)
+        {
+          string path = _hostingEnvironment.ContentRootPath + "\\wwwroot" + "\\Data\\" + userItem.ImagePath;
 
-    //      if (System.IO.File.Exists(path))
-    //      {
+          try
+          {
+            if (System.IO.File.Exists(path))
+            {
+              System.IO.File.Delete(path);
+              path = "";
+            }
+          }
+          catch(Exception ex)
+          {
+            Console.Write(ex.Message);
+          }
+          path = _hostingEnvironment.ContentRootPath + "\\wwwroot" + "\\Data\\" + userItem.Id + "_" + file.FileName;
 
+          // có thì xóa sao đó rồi thêm file mới, không có thì cứ thêm bình thường
+          using (var stream = new FileStream(path, FileMode.Create))
+          {
+            file.CopyTo(stream);
+            userItem.ImagePath = userItem.Id + "_" + file.FileName;
+            _context.Entry(userItem).Property(x => x.ImagePath).IsModified = true;
+            await _context.SaveChangesAsync();
+          }
 
-    //        System.IO.File.Delete(path);
-    //        path = "";
-    //        path = _hostingEnvironment.ContentRootPath + "\\Data\\" + userItem.Id + "_" + file.FileName;
-    //      }
+          return new BaseResponse(new User
+          {
+            UserName = userItem.UserName,
+            Name = userItem.Name,
+            PassWord = userItem.PassWord,
+            Email = userItem.Email,
+            Status = user.Status,
+            Phone = user.Phone,
+            ImagePath = userItem.ImagePath
 
-    //      // có thì xóa sao đó rồi thêm file mới, không có thì cứ thêm bình thường
-    //      using (var stream = new FileStream(path, FileMode.Create))
-    //      {
-    //        file.CopyTo(stream);
-    //        userItem.ImagePath = file.FileName;
-    //        _context.Entry(userItem).Property(x => x.ImagePath).IsModified = true;
-    //        await _context.SaveChangesAsync();
-    //      }
-
-    //      return new BaseResponse(new User
-    //      {
-    //        UserName = userItem.UserName,
-    //        Name = userItem.Name,
-    //        PassWord = userItem.PassWord,
-    //        Email = userItem.Email,
-    //        Status = user.Status,
-    //        Phone = user.Phone,
-    //        ImagePath = userItem.ImagePath
-
-    //      });
-    //    }
-    //  }
-    //  return new BaseResponse { ErrorCode = 0, Messege = "Dữ liệu rỗng" };
-    //}
+          });
+        }
+      }
+      return new BaseResponse { ErrorCode = 0, Messege = "Dữ liệu rỗng" };
+    }
 
   }
 

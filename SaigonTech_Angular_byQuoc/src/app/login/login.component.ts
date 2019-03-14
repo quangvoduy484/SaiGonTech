@@ -25,10 +25,13 @@ export class LoginComponent implements OnInit {
       if (result.errorCode === 0) {
         this.message = result.messege;
       } else {
-        alert(result.messege);
+        
         this.message = result.messege;
         this.auth.setLoggedIn(true);
         //save token (npm install ngx-cookie-service --save)
+        // lúc đăng nhập vào 
+        localStorage.setItem('id', result.data.id.toString());
+        localStorage.setItem('username', result.data.userName);
         this.cookieService.set('Id', result.data.id + '');
         this.cookieService.set('token', result.data.token);
        

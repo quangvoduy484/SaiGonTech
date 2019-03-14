@@ -30,7 +30,7 @@ export interface Userepone {
 export interface User {
   id: number;
   name: string;
-  phone: string;
+  phone: number;
   Addres: string;
   email: string;
   userName: string;
@@ -58,6 +58,7 @@ export class UserService {
   getAll(): Observable<Userepones> {
     return this.http.get<Userepones>(this.api.apiUrl.user);
   }
+  
   getObject(id: number): Observable<Userepone> {
     return this.http.get<Userepone>(this.api.apiUrl.user + '/' + id);
   }
@@ -66,8 +67,14 @@ export class UserService {
     return this.http.post<Userepone>(this.api.apiUrl.user, user);
 
   }
-  update(id: number, user: FormData): Observable<Userepone> {
-    return this.http.put<Userepone>(this.api.apiUrl.user + '/' + id, user);
+
+  update(id: number, user: FormData, role: string): Observable<Userepone> {
+
+    return this.http.put<Userepone>(this.api.apiUrl.user + '/' + id + '?role=' + role, user);
+  }
+
+  getAcount(id: number): Observable<User> {
+    return this.http.get<User>(this.api.apiUrl.user + '/LoadAcount' + '?id=' + id);
   }
 
 }

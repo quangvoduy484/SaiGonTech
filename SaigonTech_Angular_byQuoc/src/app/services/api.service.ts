@@ -22,7 +22,13 @@ export class ApiService {
     provinces: this.baseUrl + 'provinces',
     districts: this.baseUrl + 'districts',
     stages: this.baseUrl + 'stages',
-    parameter: this.baseUrl + 'Parameter'
+    parameter: this.baseUrl + 'Parameter',
+    documents: this.baseUrl + 'documents',
+    inputtypes: this.baseUrl + 'inputtypes',
+    status: this.baseUrl + 'status',
+    scoreexams: this.baseUrl + 'scoreexams',
+    stagedetails: this.baseUrl + 'stagedetails',
+    candidates: this.baseUrl + 'candidates'
 
   }
 }

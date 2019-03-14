@@ -280,7 +280,9 @@
           <td>{{stage.examDate}}</td>
           <td>{{stage.examTime}}</td>
           <td>{{stage.englishTimeExam}}</td>
-          <td><a href="#" (click)="ShowModalDetail($event,stage.id)" class="text-warning">Detail</a>
+          <td>
+           
+            <a routerLink="/dashboard/stagedetail" [queryParams]="{id: stage.id}"  class="text-warning">Stage Detail</a>
             | <a href="#" (click)="ShowModalEdit($event,stage.id)">Edit</a>
             | <a href="#" (click)="ShowModalDelete($event,stage.id)" class="text-danger">Delete</a>
           </td>

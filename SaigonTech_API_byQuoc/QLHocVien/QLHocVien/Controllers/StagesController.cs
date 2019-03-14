@@ -26,7 +26,7 @@ namespace QLHocVien.Controllers
         public async Task<ActionResult<BaseResponse>> GetStage()
         {
             var stage = await _context.Stages.Include(x => x.Semester).Include(x => x.Year).ToListAsync();
-            if(stage != null)
+            if (stage != null)
             {
                 return new BaseResponse
                 {
@@ -49,7 +49,7 @@ namespace QLHocVien.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<BaseResponse>> GetStage(int id)
         {
-            var stage = await _context.Stages.Include(x => x.Semester).Include(x => x.Year).Where(x=>x.Id==id).FirstOrDefaultAsync();
+            var stage = await _context.Stages.Include(x => x.Semester).Include(x => x.Year).Where(x => x.Id == id).FirstOrDefaultAsync();
 
             if (stage != null)
             {
@@ -96,7 +96,7 @@ namespace QLHocVien.Controllers
         }
 
         // GET: api/Stages/GetStageByYear/{id}
-        [HttpGet("GetStageByYear/{id}")]
+        [HttpGet("GetStageByYear/{year_id}")]
         public async Task<ActionResult<BaseResponse>> GetStageByYear(int year_id)
         {
             var stage = await _context.Stages.Include(x => x.Semester).Include(x => x.Year).Where(x => x.YEAR_ID == year_id).ToListAsync();
@@ -125,7 +125,7 @@ namespace QLHocVien.Controllers
         public async Task<IActionResult> PutStage(int id, Stage stage_update)
         {
             var Stag = await _context.Stages.FindAsync(id);
-            if(Stag == null)
+            if (Stag == null)
             {
                 return NotFound();
             }

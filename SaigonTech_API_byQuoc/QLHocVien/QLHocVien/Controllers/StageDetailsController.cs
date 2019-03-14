@@ -25,7 +25,7 @@ namespace QLHocVien.Controllers
         [HttpGet]
         public async Task<ActionResult<BaseResponse>> GetStageDetail()
         {
-            var stageDetail = await _context.StageDetails.Include(x => x.Candidate).Include(x => x.Major).Include(x => x.Stage).Include(x => x.ExamSubject).ToListAsync();
+            var stageDetail = await _context.StageDetails.Include(x => x.Major).Include(x => x.Stage).Include(x => x.ExamSubject).ToListAsync();
             if (stageDetail != null)
             {
                 return new BaseResponse
@@ -49,7 +49,7 @@ namespace QLHocVien.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<BaseResponse>> GetStageDetail(int id)
         {
-            var stageDetail = await _context.StageDetails.Include(x => x.Candidate).Include(x => x.Major).Include(x => x.Stage).Include(x => x.ExamSubject).Where(x=>x.Id==id).FirstOrDefaultAsync();
+            var stageDetail = await _context.StageDetails.Include(x => x.Major).Include(x => x.Stage).Include(x => x.ExamSubject).Where(x => x.Id == id).FirstOrDefaultAsync();
 
             if (stageDetail != null)
             {
@@ -70,11 +70,70 @@ namespace QLHocVien.Controllers
             }
         }
 
-        // GET: api/StageDetails/GetStageDetailByCandidate/{id}
-        [HttpGet("GetStageDetailByCandidate/{id}")]
-        public async Task<ActionResult<BaseResponse>> GetStageDetailByCandidate(int candidate_id)
+        // GET: api/StageDetails/5
+        [HttpGet("GetStageDetailmore/{id}")]
+        public async Task<ActionResult<BaseResponse>> GetStageDetailmore(int id)
         {
-            var stageDetail = await _context.StageDetails.Include(x => x.Candidate).Include(x => x.Major).Include(x => x.Stage).Include(x => x.ExamSubject).Where(x => x.C_ID == candidate_id).ToListAsync();
+            var stageDetail = await _context.StageDetails.Include(x => x.Major).Include(x => x.Stage).Include(x => x.ExamSubject).Where(x => x.Id == id).FirstOrDefaultAsync();
+
+            if (stageDetail != null)
+            {
+                return new BaseResponse
+                {
+                    ErrorCode = 1,
+                    Messege = "Tìm kiếm dữ liệu thành công!!",
+                    Data = stageDetail
+                };
+            }
+            else
+            {
+                return new BaseResponse
+                {
+                    ErrorCode = 0,
+                    Messege = "Không tìm thấy!!"
+                };
+            }
+        }
+
+        // GET: api/StageDetails/GetMajorInStageDetail/{stage_id}
+        [HttpGet("GetMajorInStageDetail/{stage_id}")]
+        public async Task<ActionResult<BaseResponse>> GetStageDetailByCandidate(int stage_id)
+        {
+            var stageDetail = await _context.StageDetails.Include(x => x.Major).Include(x => x.Stage)
+                .Include(x => x.ExamSubject).Where(x => x.Stage_ID == stage_id).GroupBy(x => x.Major_ID).Select(y => new StageDetail
+                {
+                    Major_ID = y.Key
+                }).OrderBy(x => x.Major_ID).ToListAsync();
+
+            if (stageDetail != null)
+            {
+                return new BaseResponse
+                {
+                    ErrorCode = 1,
+                    Messege = "Tìm kiếm dữ liệu thành công!!",
+                    Data = stageDetail
+                };
+            }
+            else
+            {
+                return new BaseResponse
+                {
+                    ErrorCode = 0,
+                    Messege = "Không tìm thấy!!"
+                };
+            }
+        }
+
+        // GET: api/StageDetails/GetMajorInStageDetail/{stage_id}
+        [HttpGet("GetSubjectByMajor/{stage_id}")]
+        public async Task<ActionResult<BaseResponse>> GetSubjectByMajor(int stage_id)
+        {
+            var stageDetail = await _context.StageDetails.Include(x => x.Major).Include(x => x.Stage)
+                .Include(x => x.ExamSubject).Where(x => x.Stage_ID == stage_id).GroupBy(x => x.Major_ID).Select(y => new StageDetail
+                {
+                    Major_ID = y.Key,
+                    Exam_ID = y.Key
+                }).OrderBy(x => x.Major_ID).ToListAsync();
 
             if (stageDetail != null)
             {
@@ -96,10 +155,10 @@ namespace QLHocVien.Controllers
         }
 
         // GET: api/StageDetails/GetStageDetailByMajor/{id}
-        [HttpGet("GetStageDetailByMajor/{id}")]
+        [HttpGet("GetStageDetailByMajor/{major_id}")]
         public async Task<ActionResult<BaseResponse>> GetStageDetailByMajor(int major_id)
         {
-            var stageDetail = await _context.StageDetails.Include(x => x.Candidate).Include(x => x.Major).Include(x => x.Stage).Include(x => x.ExamSubject).Where(x => x.Major_ID == major_id).ToListAsync();
+            var stageDetail = await _context.StageDetails.Include(x => x.Major).Include(x => x.Stage).Include(x => x.ExamSubject).Where(x => x.Major_ID == major_id).ToListAsync();
 
             if (stageDetail != null)
             {
@@ -121,10 +180,10 @@ namespace QLHocVien.Controllers
         }
 
         // GET: api/StageDetails/GetStageDetailByStage/{id}
-        [HttpGet("GetStageDetailByStage/{id}")]
+        [HttpGet("GetStageDetailByStage/{stage_id}")]
         public async Task<ActionResult<BaseResponse>> GetStageDetailByStage(int stage_id)
         {
-            var stageDetail = await _context.StageDetails.Include(x => x.Candidate).Include(x => x.Major).Include(x => x.Stage).Include(x => x.ExamSubject).Where(x => x.Stage_ID == stage_id).ToListAsync();
+            var stageDetail = await _context.StageDetails.Include(x => x.Major).Include(x => x.Stage).Include(x => x.ExamSubject).Where(x => x.Stage_ID == stage_id).OrderBy(x => x.Major).ToListAsync();
 
             if (stageDetail != null)
             {
@@ -149,7 +208,7 @@ namespace QLHocVien.Controllers
         [HttpGet("GetStageDetailExamSubject/{id}")]
         public async Task<ActionResult<BaseResponse>> GetStageDetailExamSubject(int subject_id)
         {
-            var stageDetail = await _context.StageDetails.Include(x => x.Candidate).Include(x => x.Major).Include(x => x.Stage).Include(x => x.ExamSubject).Where(x => x.Exam_ID == subject_id).ToListAsync();
+            var stageDetail = await _context.StageDetails.Include(x => x.Major).Include(x => x.Stage).Include(x => x.ExamSubject).Where(x => x.Exam_ID == subject_id).ToListAsync();
 
             if (stageDetail != null)
             {
@@ -175,20 +234,17 @@ namespace QLHocVien.Controllers
         public async Task<IActionResult> PutStageDetail(int id, StageDetail stageDetail_update)
         {
             var StageD = await _context.StageDetails.FindAsync(id);
-            if(StageD == null)
+            if (StageD == null)
             {
                 return NotFound();
             }
 
-            StageD.C_ID = stageDetail_update.C_ID;
             StageD.Major_ID = stageDetail_update.Major_ID;
             StageD.Stage_ID = stageDetail_update.Stage_ID;
             StageD.Exam_ID = stageDetail_update.Exam_ID;
             StageD.StarTime = stageDetail_update.StarTime;
             StageD.EndTime = stageDetail_update.EndTime;
-            StageD.Score = stageDetail_update.Score;
             StageD.Interview = stageDetail_update.Interview;
-            StageD.Subject = stageDetail_update.Subject;
 
             _context.StageDetails.Update(StageD);
             await _context.SaveChangesAsync();
@@ -200,7 +256,7 @@ namespace QLHocVien.Controllers
         [HttpPost]
         public async Task<ActionResult<BaseResponse>> PostStageDetail(StageDetail stageDetail)
         {
-            if (String.IsNullOrEmpty(stageDetail.StarTime) || String.IsNullOrEmpty(stageDetail.EndTime) || String.IsNullOrEmpty(stageDetail.Interview) || String.IsNullOrEmpty(stageDetail.Subject))
+            if (String.IsNullOrEmpty(stageDetail.StarTime) || String.IsNullOrEmpty(stageDetail.EndTime) || String.IsNullOrEmpty(stageDetail.Interview))
             {
                 return new BaseResponse
                 {
@@ -210,14 +266,22 @@ namespace QLHocVien.Controllers
             }
             else
             {
-                _context.StageDetails.Add(stageDetail);
-                await _context.SaveChangesAsync();
-                return new BaseResponse
+                try
                 {
-                    ErrorCode = 1,
-                    Messege = "Thêm mới thành công!!",
-                    Data = CreatedAtAction("GetStageDetail", new { id = stageDetail.Id }, stageDetail)
-                };
+                    _context.StageDetails.Add(stageDetail);
+                    await _context.SaveChangesAsync();
+                    return new BaseResponse
+                    {
+                        ErrorCode = 1,
+                        Messege = "Thêm mới thành công!!",
+                        Data = CreatedAtAction("GetStageDetail", new { id = stageDetail.Id }, stageDetail)
+                    };
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
+
             }
         }
 

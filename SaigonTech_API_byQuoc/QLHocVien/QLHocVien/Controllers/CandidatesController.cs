@@ -25,7 +25,7 @@ namespace QLHocVien.Controllers
         [HttpGet]
         public async Task<ActionResult<BaseResponse>> GetCandidate()
         {
-            var datas = await _context.Candidate.Include(x=>x.Major).Include(x=>x.Catalog).Include(x=>x.District).ThenInclude(x=>x.Province).ThenInclude(x=>x.Country).Include(x=>x.Education).Include(x=>x.CandidateType).Include(x=>x.Intake).Include(x=>x.Semester).Include(x=>x.Districts).ToListAsync();
+            var datas = await _context.Candidate.Include(x => x.Major).Include(x => x.Catalog).Include(x => x.Stage).Include(x => x.Country).Include(x => x.Education).Include(x => x.CandidateType).Include(x => x.Intake).Include(x => x.Semester).ToListAsync();
             if (datas != null)
             {
                 return new BaseResponse
@@ -49,7 +49,7 @@ namespace QLHocVien.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<BaseResponse>> GetCandidate(int id)
         {
-            var candidate = await _context.Candidate.Include(x => x.Major).Include(x => x.Catalog).Include(x => x.District).Include(x => x.Education).Include(x => x.CandidateType).Include(x => x.Intake).Include(x => x.Semester).Include(x => x.Districts).Where(x=>x.Id==id).FirstOrDefaultAsync();
+            var candidate = await _context.Candidate.Include(x => x.Major).Include(x => x.Catalog).Include(x => x.Country).Include(x => x.Education).Include(x => x.CandidateType).Include(x => x.Intake).Include(x => x.Semester).Include(x => x.Stage).Where(x => x.Id == id).FirstOrDefaultAsync();
 
             if (candidate != null)
             {
@@ -69,12 +69,12 @@ namespace QLHocVien.Controllers
                 };
             }
         }
-        
+
         // GET: api/Candidates/GetCandidateByMajor/{id}
         [HttpGet("GetCandidateByMajor/{id}")]
         public async Task<ActionResult<BaseResponse>> GetCandidateByMajor(int major_id)
         {
-            var candidate = await _context.Candidate.Include(x => x.Major).Include(x => x.Catalog).Include(x => x.District).Include(x => x.Education).Include(x => x.CandidateType).Include(x => x.Intake).Include(x => x.Semester).Include(x => x.Districts).Where(x => x.MAJOR_ID == major_id).ToListAsync();
+            var candidate = await _context.Candidate.Include(x => x.Major).Include(x => x.Catalog).Include(x => x.Country).Include(x => x.Education).Include(x => x.CandidateType).Include(x => x.Intake).Include(x => x.Semester).Include(x => x.Stage).Where(x => x.MAJOR_ID == major_id).ToListAsync();
 
             if (candidate != null)
             {
@@ -99,7 +99,7 @@ namespace QLHocVien.Controllers
         [HttpGet("GetCandidateByCatalog/{id}")]
         public async Task<ActionResult<BaseResponse>> GetCandidateByCatalog(int catalog_id)
         {
-            var candidate = await _context.Candidate.Include(x => x.Major).Include(x => x.Catalog).Include(x => x.District).Include(x => x.Education).Include(x => x.CandidateType).Include(x => x.Intake).Include(x => x.Semester).Include(x => x.Districts).Where(x => x.CATALOG_ID == catalog_id).ToListAsync();
+            var candidate = await _context.Candidate.Include(x => x.Major).Include(x => x.Catalog).Include(x => x.Country).Include(x => x.Education).Include(x => x.CandidateType).Include(x => x.Intake).Include(x => x.Semester).Include(x => x.Stage).Where(x => x.CATALOG_ID == catalog_id).ToListAsync();
 
             if (candidate != null)
             {
@@ -121,10 +121,10 @@ namespace QLHocVien.Controllers
         }
 
         // GET: api/Candidates/GetCandidateByDistrict/{id}
-        [HttpGet("GetCandidateByDistrict/{id}")]
-        public async Task<ActionResult<BaseResponse>> GetCandidateByDistrict(int dis_id)
+        [HttpGet("GetCandidateByCountry/{cou_id}")]
+        public async Task<ActionResult<BaseResponse>> GetCandidateByDistrict(int cou_id)
         {
-            var candidate = await _context.Candidate.Include(x => x.Major).Include(x => x.Catalog).Include(x => x.District).Include(x => x.Education).Include(x => x.CandidateType).Include(x => x.Intake).Include(x => x.Semester).Include(x => x.Districts).Where(x => x.DISTRICT_ID == dis_id).ToListAsync();
+            var candidate = await _context.Candidate.Include(x => x.Major).Include(x => x.Catalog).Include(x => x.Country).Include(x => x.Education).Include(x => x.CandidateType).Include(x => x.Intake).Include(x => x.Semester).Include(x => x.Stage).Where(x => x.COUNTRY_ID == cou_id).ToListAsync();
 
             if (candidate != null)
             {
@@ -149,7 +149,7 @@ namespace QLHocVien.Controllers
         [HttpGet("GetCandidateByEducation/{id}")]
         public async Task<ActionResult<BaseResponse>> GetCandidateByEducation(int edu_id)
         {
-            var candidate = await _context.Candidate.Include(x => x.Major).Include(x => x.Catalog).Include(x => x.District).Include(x => x.Education).Include(x => x.CandidateType).Include(x => x.Intake).Include(x => x.Semester).Include(x => x.Districts).Where(x => x.EDUCATION_ID == edu_id).ToListAsync();
+            var candidate = await _context.Candidate.Include(x => x.Major).Include(x => x.Catalog).Include(x => x.Country).Include(x => x.Education).Include(x => x.CandidateType).Include(x => x.Intake).Include(x => x.Semester).Include(x => x.Stage).Where(x => x.EDUCATION_ID == edu_id).ToListAsync();
 
             if (candidate != null)
             {
@@ -174,7 +174,7 @@ namespace QLHocVien.Controllers
         [HttpGet("GetCandidateByCandidateType/{id}")]
         public async Task<ActionResult<BaseResponse>> GetCandidateByCandidateType(int can_id)
         {
-            var candidate = await _context.Candidate.Include(x => x.Major).Include(x => x.Catalog).Include(x => x.District).Include(x => x.Education).Include(x => x.CandidateType).Include(x => x.Intake).Include(x => x.Semester).Include(x => x.Districts).Where(x => x.TYPE_ID == can_id).ToListAsync();
+            var candidate = await _context.Candidate.Include(x => x.Major).Include(x => x.Catalog).Include(x => x.Country).Include(x => x.Education).Include(x => x.CandidateType).Include(x => x.Intake).Include(x => x.Semester).Include(x => x.Stage).Where(x => x.TYPE_ID == can_id).ToListAsync();
 
             if (candidate != null)
             {
@@ -199,7 +199,7 @@ namespace QLHocVien.Controllers
         [HttpGet("GetCandidateByIntake/{id}")]
         public async Task<ActionResult<BaseResponse>> GetCandidateByIntake(int int_id)
         {
-            var candidate = await _context.Candidate.Include(x => x.Major).Include(x => x.Catalog).Include(x => x.District).Include(x => x.Education).Include(x => x.CandidateType).Include(x => x.Intake).Include(x => x.Semester).Include(x => x.Districts).Where(x => x.INTAKE_ID == int_id).ToListAsync();
+            var candidate = await _context.Candidate.Include(x => x.Major).Include(x => x.Catalog).Include(x => x.Country).Include(x => x.Education).Include(x => x.CandidateType).Include(x => x.Intake).Include(x => x.Semester).Include(x => x.Stage).Where(x => x.INTAKE_ID == int_id).ToListAsync();
 
             if (candidate != null)
             {
@@ -224,32 +224,7 @@ namespace QLHocVien.Controllers
         [HttpGet("GetCandidateBySemester/{id}")]
         public async Task<ActionResult<BaseResponse>> GetCandidateBySemester(int sem_id)
         {
-            var candidate = await _context.Candidate.Include(x => x.Major).Include(x => x.Catalog).Include(x => x.District).Include(x => x.Education).Include(x => x.CandidateType).Include(x => x.Intake).Include(x => x.Semester).Include(x => x.Districts).Where(x => x.SEM_ID == sem_id).ToListAsync();
-
-            if (candidate != null)
-            {
-                return new BaseResponse
-                {
-                    ErrorCode = 1,
-                    Messege = "Tìm kiếm dữ liệu thành công!!",
-                    Data = candidate
-                };
-            }
-            else
-            {
-                return new BaseResponse
-                {
-                    ErrorCode = 0,
-                    Messege = "Không tìm thấy!!"
-                };
-            }
-        }
-
-        // GET: api/Candidates/GetCandidateByDistricts/{id}
-        [HttpGet("GetCandidateByDistricts/{id}")]
-        public async Task<ActionResult<BaseResponse>> GetCandidateByDistricts(int diss_id)
-        {
-            var candidate = await _context.Candidate.Include(x => x.Major).Include(x => x.Catalog).Include(x => x.District).Include(x => x.Education).Include(x => x.CandidateType).Include(x => x.Intake).Include(x => x.Semester).Include(x => x.Districts).Where(x => x.DIS_DISTRICT_ID == diss_id).ToListAsync();
+            var candidate = await _context.Candidate.Include(x => x.Major).Include(x => x.Catalog).Include(x => x.Country).Include(x => x.Education).Include(x => x.CandidateType).Include(x => x.Intake).Include(x => x.Semester).Include(x => x.Stage).Where(x => x.SEM_ID == sem_id).ToListAsync();
 
             if (candidate != null)
             {
@@ -280,22 +255,26 @@ namespace QLHocVien.Controllers
                 return NotFound();
             }
 
+            candidate.STAGE_ID = candidate_update.STAGE_ID;
             candidate.MAJOR_ID = candidate_update.MAJOR_ID;
             candidate.CATALOG_ID = candidate_update.CATALOG_ID;
-            candidate.DISTRICT_ID = candidate_update.DISTRICT_ID;
+            candidate.COUNTRY_ID = candidate_update.COUNTRY_ID;
             candidate.EDUCATION_ID = candidate_update.EDUCATION_ID;
             candidate.YEAR_ID = candidate_update.YEAR_ID;
             candidate.TYPE_ID = candidate_update.TYPE_ID;
             candidate.INTAKE_ID = candidate_update.INTAKE_ID;
             candidate.SEM_ID = candidate_update.SEM_ID;
-            candidate.DIS_DISTRICT_ID = candidate_update.DIS_DISTRICT_ID;
             candidate.CandidateId = candidate_update.CandidateId;
             candidate.LastName = candidate_update.LastName;
             candidate.FirstName = candidate_update.FirstName;
             candidate.DateOfBirth = candidate_update.DateOfBirth;
             candidate.Gender = candidate_update.Gender;
             candidate.Phone = candidate_update.Phone;
-            candidate.Address = candidate_update.Address;
+            candidate.HomeAddress = candidate_update.HomeAddress;
+            candidate.CountryAddress = candidate_update.CountryAddress;
+            candidate.ProvinceAddress = candidate_update.ProvinceAddress;
+            candidate.DistrictAddress = candidate_update.DistrictAddress;
+            candidate.PlaceOfBirth = candidate_update.PlaceOfBirth;
             candidate.MaritalStatus = candidate_update.MaritalStatus;
             candidate.HighSchoolName = candidate_update.HighSchoolName;
             candidate.HighSchoolCity = candidate_update.HighSchoolCity;
@@ -315,7 +294,7 @@ namespace QLHocVien.Controllers
         [HttpPost]
         public async Task<ActionResult<BaseResponse>> PostCandidate(Candidate candidate)
         {
-            if (String.IsNullOrEmpty(candidate.CandidateId) || String.IsNullOrEmpty(candidate.LastName) || String.IsNullOrEmpty(candidate.FirstName) || String.IsNullOrEmpty(candidate.Phone) || String.IsNullOrEmpty(candidate.Address) || String.IsNullOrEmpty(candidate.HighSchoolCity) || String.IsNullOrEmpty(candidate.HighSchoolName) || String.IsNullOrEmpty(candidate.Email) || String.IsNullOrEmpty(candidate.CardId) || String.IsNullOrEmpty(candidate.DocumentCode))
+            if (String.IsNullOrEmpty(candidate.CandidateId) || String.IsNullOrEmpty(candidate.LastName) || String.IsNullOrEmpty(candidate.FirstName) || String.IsNullOrEmpty(candidate.Phone) || String.IsNullOrEmpty(candidate.HomeAddress) || String.IsNullOrEmpty(candidate.HighSchoolCity) || String.IsNullOrEmpty(candidate.HighSchoolName) || String.IsNullOrEmpty(candidate.Email) || String.IsNullOrEmpty(candidate.CardId) || String.IsNullOrEmpty(candidate.DocumentCode))
             {
                 return new BaseResponse
                 {

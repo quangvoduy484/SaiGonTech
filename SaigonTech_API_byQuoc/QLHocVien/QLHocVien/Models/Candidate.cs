@@ -23,8 +23,16 @@ namespace QLHocVien.Models
         public int Gender { get; set; }
         [Column("PHONENUMBER")]
         public string Phone { get; set; }
-        [Column("ADDRESS")]
-        public string Address { get; set; }
+        [Column("HOMEADDRESS")]
+        public string HomeAddress { get; set; }
+        [Column("COUNTRY")]
+        public string CountryAddress { get; set; }
+        [Column("PROVINCE")]
+        public string ProvinceAddress { get; set; }
+        [Column("DISTRICT")]
+        public string DistrictAddress { get; set; }
+        [Column("PLACEOFBIRTH")]
+        public string PlaceOfBirth { get; set; }
         [Column("MARITALSTATUS")]
         public int MaritalStatus { get; set; }
         [Column("HIGHSCHOOLNAME")]
@@ -43,15 +51,18 @@ namespace QLHocVien.Models
         public bool FinalResult { get; set; }
         [Column("DOCUMENTCODE")]
         public string DocumentCode { get; set; }
+        public int STAGE_ID { get; set; }
+        [ForeignKey("STAGE_ID")]
+        public virtual Stage Stage { get; set; }
         public int MAJOR_ID { get; set; }
         [ForeignKey("MAJOR_ID")]
         public virtual Major Major { get; set; }
         public int CATALOG_ID { get; set; }
         [ForeignKey("CATALOG_ID")]
         public virtual Catalog Catalog { get; set; }
-        public int DISTRICT_ID { get; set; }
-        [ForeignKey("DISTRICT_ID")]
-        public virtual District District { get; set; }
+        public int COUNTRY_ID { get; set; }
+        [ForeignKey("COUNTRY_ID")]
+        public virtual Country Country { get; set; }
         public int EDUCATION_ID { get; set; }
         [ForeignKey("EDUCATION_ID")]
         public virtual Education Education { get; set; }
@@ -67,8 +78,5 @@ namespace QLHocVien.Models
         public int SEM_ID { get; set; }
         [ForeignKey("SEM_ID")]
         public virtual Semester Semester { get; set; }
-        public int DIS_DISTRICT_ID { get; set; }
-        [ForeignKey("DIS_DISTRICT_ID")]
-        public virtual District Districts { get; set; }
     }
 }

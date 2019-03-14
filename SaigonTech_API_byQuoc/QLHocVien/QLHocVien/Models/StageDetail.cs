@@ -15,23 +15,19 @@ namespace QLHocVien.Models
         public string StarTime { get; set; }
         [Column("END_TIME")]
         public string EndTime { get; set; }
-        [Column("SCORE")]
-        public decimal Score { get; set; }
-        [Column("INTERVIEW")]
+
         public string Interview { get; set; }
-        [Column("SUBJECT")]
-        public string Subject { get; set; }
-        public int C_ID { get; set; }
-        [ForeignKey("C_ID")]
-        public virtual Candidate Candidate { get; set; }
+
         public int Major_ID { get; set; }
-        [ForeignKey("MAJOR_ID")]
+        [ForeignKey("Major_ID")]
         public virtual Major Major { get; set; }
+
         public int Stage_ID { get; set; }
-        [ForeignKey("STAGE_ID")]
+        [ForeignKey("Stage_ID")]
         public virtual Stage Stage { get; set; }
+
         public int Exam_ID { get; set; }
-        [ForeignKey("EXAM_ID")]
+        [ForeignKey("Exam_ID")]
         public virtual ExamSubject ExamSubject { get; set; }
     }
 }

@@ -137,3 +137,4 @@ D:\D15HT02\HK2 - 4\ISC_TT\ON-JOB\ISCManage\Project\SaiGonTech\SaigonTech_API_byQ
 D:\D15HT02\HK2 - 4\ISC_TT\ON-JOB\ISCManage\Project\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.RazorTargetAssemblyInfo.cache
 D:\D15HT02\HK2 - 4\ISC_TT\ON-JOB\ISCManage\Project\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.dll
 D:\D15HT02\HK2 - 4\ISC_TT\ON-JOB\ISCManage\Project\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.pdb
+C:\Users\quangduyvo\Desktop\SaiGonTech\SaigonTech_API_byQuoc\QLHocVien\QLHocVien\obj\Debug\netcoreapp2.2\QLHocVien.csprojAssemblyReference.cache

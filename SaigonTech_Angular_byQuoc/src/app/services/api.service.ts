@@ -28,7 +28,8 @@ export class ApiService {
     status: this.baseUrl + 'status',
     scoreexams: this.baseUrl + 'scoreexams',
     stagedetails: this.baseUrl + 'stagedetails',
-    candidates: this.baseUrl + 'candidates'
+    candidates: this.baseUrl + 'candidates',
+    user: this.baseUrl + 'Users'
 
   }
 }

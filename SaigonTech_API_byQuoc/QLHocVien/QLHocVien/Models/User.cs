@@ -1,4 +1,5 @@
-﻿using System;
+using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -17,5 +18,9 @@ namespace QLHocVien.Models
         public string Email { get; set; }
         public string UserName { get; set; }
         public string PassWord { get; set; }
-    }
+        public int Status { get; set; }
+        public string ImagePath { get; set; }
+        [NotMapped]
+        public IFormFile File { get; set; }
+  }
 }

@@ -26,8 +26,10 @@ export class LoginComponent implements OnInit {
         this.message = result.messege;
       }else{
         alert(result.messege);
-        this.message=result.messege;
+        this.message = result.messege;
         this.auth.setLoggedIn(true);
+        localStorage.setItem('id', result.data.id.toString());
+        localStorage.setItem('username', result.data.userName);
         //save token (npm install ngx-cookie-service --save)
         this.cookieService.set('Id', result.data.id + '');
         this.cookieService.set('token', result.data.token);

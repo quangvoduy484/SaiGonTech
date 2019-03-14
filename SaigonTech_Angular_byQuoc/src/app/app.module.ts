@@ -26,6 +26,9 @@ import { ExamsubjectComponent } from './dashboard/examsubject/examsubject.compon
 import { ScoreofexamsubjectComponent } from './dashboard/scoreofexamsubject/scoreofexamsubject.component';
 import { StagedetailComponent } from './dashboard/stagedetail/stagedetail.component';
 import { LoginComponent } from './login/login.component';
+import { UserComponent } from './dashboard/user/user.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,8 @@ import { LoginComponent } from './login/login.component';
     ExamsubjectComponent,
     ScoreofexamsubjectComponent,
     StagedetailComponent,
-    LoginComponent
+    LoginComponent,
+    UserComponent
   ],
   imports: [
     ModalModule.forRoot(),
@@ -57,7 +61,10 @@ import { LoginComponent } from './login/login.component';
     ButtonsModule.forRoot(),
     BsDropdownModule.forRoot(),
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+ 
   ],
   providers: [
     AuthGuard,

@@ -18,6 +18,7 @@ import { ExamsubjectComponent } from './dashboard/examsubject/examsubject.compon
 import { ScoreofexamsubjectComponent } from './dashboard/scoreofexamsubject/scoreofexamsubject.component';
 import { StagedetailComponent } from './dashboard/stagedetail/stagedetail.component';
 import { AuthGuard } from './auth.guard';
+import { UserComponent } from './dashboard/user/user.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -40,7 +41,8 @@ const routes: Routes = [
       {path: 'candidatetype', component: CandidatetypeComponent},
       {path: 'examsubject', component: ExamsubjectComponent},
       {path: 'scoreofexamsubject', component: ScoreofexamsubjectComponent},
-      {path: 'stagedetail', component: StagedetailComponent}
+      {path: 'stagedetail', component: StagedetailComponent},
+      { path: 'user', component: UserComponent }
     ]
   }
 ];

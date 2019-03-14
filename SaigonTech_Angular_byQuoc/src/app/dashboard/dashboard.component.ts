@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.getClaim();
     // hỏi ông thầy chỗ này
+    // tslint:disable-next-line:radix
     this.infomationAcount(parseInt( localStorage.getItem('id')));
     console.log(this.user.userName);
   }
@@ -53,14 +54,12 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  logOut()
-  {
+  logOut() {
     localStorage.setItem('id', '');
     localStorage.setItem('loggedIn', '');
     this.cookieService.delete('token');
     this.cookieService.delete('Id');
-    if ( localStorage.getItem('loggedIn') === '')
-    {
+    if ( localStorage.getItem('loggedIn') === '') {
       this.router.navigate(['/login']);
     }
   }

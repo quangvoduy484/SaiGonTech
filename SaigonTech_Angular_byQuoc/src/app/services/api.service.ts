@@ -30,6 +30,5 @@ export class ApiService {
     stagedetails: this.baseUrl + 'stagedetails',
     candidates: this.baseUrl + 'candidates',
     user: this.baseUrl + 'Users'
-
-  }
+  };
 }

@@ -1,0 +1,176 @@
+<div class="container-scroller w-100">
+  <!-- partial:partials/_navbar.html -->
+  <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+      <a class="navbar-brand brand-logo" href="../../index.html">
+        <img src="/assets/images/logo.svg" alt="logo" />
+      </a>
+      <a class="navbar-brand brand-logo-mini" href="../../index.html">
+        <img src="/assets/images/logo-mini.svg" alt="logo" />
+      </a>
+    </div>
+    <div class="navbar-menu-wrapper d-flex align-items-center">
+      <ul class="navbar-nav navbar-nav-right">
+        <li class="nav-item dropdown d-none d-xl-inline-block">
+          <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+            <span class="profile-text">{{user.userName}}</span>
+            <img class="img-xs rounded-circle" [src]="user.imagePath" alt="Profile image">
+          </a>
+          <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+            <a class="dropdown-item p-0">
+              <div class="d-flex border-bottom">
+                <div class="py-3 px-4 d-flex align-items-center justify-content-center">
+                  <i class="mdi mdi-bookmark-plus-outline mr-0 text-gray"></i>
+                </div>
+                <div class="py-3 px-4 d-flex align-items-center justify-content-center border-left border-right">
+                  <i class="mdi mdi-account-outline mr-0 text-gray"></i>
+                </div>
+                <div class="py-3 px-4 d-flex align-items-center justify-content-center">
+                  <i class="mdi mdi-alarm-check mr-0 text-gray"></i>
+                </div>
+              </div>
+            </a>
+            <a class="dropdown-item mt-2">
+              Manage Accounts
+            </a>
+            <a class="dropdown-item">
+              Change Password
+            </a>
+            <a class="dropdown-item">
+              Check Inbox
+            </a>
+            <a class="dropdown-item" (click)="logOut()">
+              Sign Out
+            </a>
+          </div>
+        </li>
+      </ul>
+      <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+        <span class="mdi mdi-menu"></span>
+      </button>
+    </div>
+  </nav>
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_sidebar.html -->
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <ul class="nav">
+        <li class="nav-item nav-profile">
+          <div class="nav-link">
+            <div class="user-wrapper">
+              <div class="profile-image">
+                <img src="/assets/images/faces/face1.jpg" alt="profile image">
+              </div>
+              <div class="text-wrapper">
+                <p class="profile-name">Richard V.Welsh</p>
+                <div>
+                  <small class="designation text-muted">Manager</small>
+                  <span class="status-indicator online"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#Candidate" aria-expanded="false" aria-controls="auth">
+            <i class="menu-icon mdi mdi-table"></i>
+            <span class="menu-title">About Candidate</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="Candidate">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard/candidate"> Candidate </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard/education"> Education </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard/document"> Document </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#Management" aria-expanded="false" aria-controls="Management">
+            <i class="menu-icon mdi mdi-table"></i>
+            <span class="menu-title">Managementt</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="Management">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard/parameter"> Parameter </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard/intake"> Intake </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard/catalog"> Catalog </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard/year"> Year </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard/semester"> Semester </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " routerLink="/dashboard/stage"> Stage </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard/address"> Address </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard/major"> Major </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard/candidatetype"> Candidate Type </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#Admission" aria-expanded="false" aria-controls="auth">
+            <i class="menu-icon mdi mdi-table"></i>
+            <span class="menu-title">Admission</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="Admission">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard/examsubject"> Exam Subject </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard/stagedetail"> Assign Candidate To Stage </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard/scoreofexamsubject"> Passing Score Subject </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item " [style.visibility]=" statusClaim == '' ?  'hidden' : 'visible' ">
+          <a class="nav-link" data-toggle="collapse" href="#Admission" aria-expanded="false" aria-controls="auth">
+            <i class="menu-icon mdi mdi-table"></i>
+            <a class="nav-link" routerLink="/dashboard/user"> User </a>
+            <i class="menu-arrow"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- content-wrapper ends -->
+    <div class="main-panel">
+      <router-outlet></router-outlet>
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+</div>
+<footer class="footer">
+  <div class="container-fluid clearfix">
+    <p class="footer-text text-center">copyright © 2018 Bootstrapdash. All rights reserved.</p>
+  </div>
+</footer>

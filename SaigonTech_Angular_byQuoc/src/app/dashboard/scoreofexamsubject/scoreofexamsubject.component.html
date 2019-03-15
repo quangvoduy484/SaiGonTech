@@ -2,11 +2,12 @@
   <div class="card-header text-dark">
     Passing Score Subject
     <div class="ml-auto d-inline float-right">
-      <button type="button" class="btn btn-primary btn-sm ml-auto" data-toggle="modal" data-target="#add">Add</button>
+      <button type="button" class="btn btn-primary btn-sm ml-auto" (click)="ShowModalAdd()">Add</button>
     </div>
 
     <!-- ADD Modal -->
-    <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div bsModal #modalAdd="bs-modal" class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -20,19 +21,16 @@
               <div class="form-row">
                 <div class="form-group col-md-12">
                   <label for="inputExamSubject">Exam Subject</label>
-                  <select id="inputExamSubject" class="form-control">
-                    <option value="" selected>Choose..</option>
-                    <option value="">...</option>
+                  <select [(ngModel)]="examsubject.id" name="inputExamSubject" id="inputExamSubject" class="form-control">
+                    <option *ngFor="let examsubject of examsubjects" [value]="examsubject.id" selected>{{examsubject.examName}}</option>
                   </select>
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-12">
                   <label for="inputMajor">Major</label>
-                  <select id="inputMajor" class="form-control">
-                    <option value="" selected>IT</option>
-                    <option value="">BA</option>
-                    <option value="">GE</option>
+                  <select [(ngModel)]="major.id" name="inputMajor" id="inputMajor" class="form-control">
+                    <option *ngFor="let major of majors" [value]="major.id" selected>{{major.majorName}}</option>
                   </select>
                 </div>
               </div>
@@ -40,28 +38,31 @@
                 <div class="form-group col-md-6">
                   <label for="inputPassingScore">Passing Score</label>
                   <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputPassingScore" placeholder="Enter Passing Score">
+                    <input type="text" class="form-control" id="inputPassingScore" [(ngModel)]="scoreexam.scorePass"
+                      name="inputPassingScore" placeholder="Enter Passing Score">
                   </div>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputMaxScore">Maximum Score</label>
                   <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputMaxScore" placeholder="Enter Maximum Score">
+                    <input type="text" class="form-control" id="inputMaxScore" [(ngModel)]="scoreexam.sumScore" name="inputMaxScore"
+                      placeholder="Enter Maximum Score">
                   </div>
                 </div>
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-success">Add</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
+            <button type="button" class="btn btn-success" (click)="add()">Add</button>
           </div>
         </div>
       </div>
     </div>
     <!-- END ADD Modal  -->
     <!-- EDIT MODAL-->
-    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div bsModal #modalEdit="bs-modal" class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -74,19 +75,17 @@
             <form>
               <div class="form-row">
                 <div class="form-group col-md-12">
-                  <label for="inputDateTime">Score of Exam Subject</label>
-                  <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputDateTime" value="isc07 test">
-                  </div>
+                  <label for="inputExamSubject">Exam Subject</label>
+                  <select [(ngModel)]="scoreexam.exaM_ID" name="inputExamSubject" id="inputExamSubject" class="form-control">
+                    <option *ngFor="let examsubject of examsubjects" [value]="examsubject.id" selected>{{examsubject.examName}}</option>
+                  </select>
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-12">
                   <label for="inputYear">Major</label>
-                  <select id="inputYear" class="form-control">
-                    <option value="" selected>IT</option>
-                    <option value="">BA</option>
-                    <option value="">GE</option>
+                  <select [(ngModel)]="scoreexam.majoR_ID" name="inputMajor" id="inputMajor" class="form-control">
+                    <option *ngFor="let major of majors" [value]="major.id" selected>{{major.majorName}}</option>
                   </select>
                 </div>
               </div>
@@ -94,28 +93,29 @@
                 <div class="form-group col-md-6">
                   <label for="inputDateTime">Passing Score</label>
                   <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputDateTime" value="40">
+                    <input type="text" class="form-control" id="inputDateTime" [(ngModel)]="scoreexam.scorePass" name="inputPassingScore">
                   </div>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputDateTime">Maximum Score</label>
                   <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputDateTime" value="100">
+                    <input type="text" class="form-control" id="inputDateTime" [(ngModel)]="scoreexam.sumScore" name="inputMaxScore">
                   </div>
                 </div>
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Update</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
+            <button type="button" class="btn btn-primary" (click)="update(scoreexam.id)">Update</button>
           </div>
         </div>
       </div>
     </div>
     <!-- END EDIT   -->
     <!-- DELETE Modal -->
-    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div bsModal #modalDelete="bs-modal" class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -125,18 +125,55 @@
             </button>
           </div>
           <div class="modal-body">
+            <form>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="inputExamSubject">Exam Subject</label>
+                  <select [(ngModel)]="scoreexam.exaM_ID" name="inputExamSubject" id="inputExamSubject" class="form-control"
+                    disabled>
+                    <option *ngFor="let examsubject of examsubjects" [value]="examsubject.id" selected>{{examsubject.examName}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="inputMajor">Major</label>
+                  <select [(ngModel)]="scoreexam.majoR_ID" name="inputMajor" id="inputMajor" class="form-control"
+                    disabled>
+                    <option *ngFor="let major of majors" [value]="major.id" selected>{{major.majorName}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputPassingScore">Passing Score</label>
+                  <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="inputPassingScore" name="inputPassingScore" value="{{scoreexam.scorePass}}"
+                      readonly>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputMaxScore">Maximum Score</label>
+                  <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="inputMaxScore" name="inputMaxScore" value="{{scoreexam.sumScore}}"
+                      readonly>
+                  </div>
+                </div>
+              </div>
+            </form>
             <p class="text-danger">Are you sure delete this Passing Score Subject?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-danger">Delete</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
+            <button type="button" class="btn btn-danger" (click)="delete(scoreexam.id)">Delete</button>
           </div>
         </div>
       </div>
     </div>
     <!-- END DELETE -->
     <!-- DETAIL Modal -->
-    <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div bsModal #modalDetail="bs-modal" class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -150,19 +187,18 @@
               <div class="form-row">
                 <div class="form-group col-md-12">
                   <label for="inputExamSubject">Exam Subject</label>
-                  <select id="inputExamSubject" class="form-control" disabled>
-                    <option value="" selected>Choose..</option>
-                    <option value="">...</option>
+                  <select [(ngModel)]="scoreexam.exaM_ID" name="inputExamSubject" id="inputExamSubject" class="form-control"
+                    disabled>
+                    <option *ngFor="let examsubject of examsubjects" [value]="examsubject.id" selected>{{examsubject.examName}}</option>
                   </select>
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-12">
                   <label for="inputMajor">Major</label>
-                  <select id="inputMajor" class="form-control" disabled>
-                    <option value="" selected>IT</option>
-                    <option value="">BA</option>
-                    <option value="">GE</option>
+                  <select [(ngModel)]="scoreexam.majoR_ID" name="inputMajor" id="inputMajor" class="form-control"
+                    disabled>
+                    <option *ngFor="let major of majors" [value]="major.id" selected>{{major.majorName}}</option>
                   </select>
                 </div>
               </div>
@@ -170,20 +206,22 @@
                 <div class="form-group col-md-6">
                   <label for="inputPassingScore">Passing Score</label>
                   <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputPassingScore" placeholder="Enter Passing Score" readonly>
+                    <input type="text" class="form-control" id="inputPassingScore" name="inputPassingScore" value="{{scoreexam.scorePass}}"
+                      readonly>
                   </div>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputMaxScore">Maximum Score</label>
                   <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputMaxScore" placeholder="Enter Maximum Score" readonly>
+                    <input type="text" class="form-control" id="inputMaxScore" name="inputMaxScore" value="{{scoreexam.sumScore}}"
+                      readonly>
                   </div>
                 </div>
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
           </div>
         </div>
       </div>
@@ -198,20 +236,20 @@
           <th scope="col">Exam Subject</th>
           <th>Major </th>
           <th>Passing Score</th>
-          <th>Maximum Score</th>
+          <th>Sum Score</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>GE Final Exam</td>
-          <td>IT</td>
-          <td>40</td>
-          <td>100</td>
-          <td><a href="" data-target="#detail" data-toggle="modal" class="text-warning">Detail</a> |
-            <a href="" data-target="#edit" data-toggle="modal">Edit</a> |
-            <a href="" data-target="#delete" data-toggle="modal" class="text-danger">Delete</a>
+        <tr *ngFor="let scoreexam of scoreexams; let i=index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{scoreexam.examSubject.examName}}</td>
+          <td>{{scoreexam.major.majorName}}</td>
+          <td>{{scoreexam.scorePass}}</td>
+          <td>{{scoreexam.sumScore}}</td>
+          <td><a href="#" (click)="ShowModalDetail($event,scoreexam.id)" class="text-warning">Detail</a> |
+            <a href="#" (click)="ShowModalEdit($event,scoreexam.id)">Edit</a> |
+            <a href="#" (click)="ShowModalDelete($event,scoreexam.id)" class="text-danger">Delete</a>
           </td>
         </tr>
       </tbody>

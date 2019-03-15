@@ -13,12 +13,12 @@ namespace QLHocVien.Models
         [Column("Use_ID")]
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Phone { get; set; }
+        public Nullable<int> Phone { get; set; }
         public string Addres { get; set; }
         public string Email { get; set; }
         public string UserName { get; set; }
         public string PassWord { get; set; }
-        public int Status { get; set; }
+        public Nullable<int> Status { get; set; }
         public string ImagePath { get; set; }
         [NotMapped]
         public IFormFile File { get; set; }

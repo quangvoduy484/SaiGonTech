@@ -17,10 +17,12 @@ namespace QLHocVien.Models
         public string NameInVietnamese { get; set; }
         [Column("SEQUENCENUM")]
         public int SequenceNumber { get; set; }
-        [Column("INPUTTYPE")]
-        public int InputType { get; set; }
-        [Column("STATUS")]
-        public int Status { get; set; }
+        public int INPUTTYPE { get; set; }
+        [ForeignKey("INPUTTYPE")]
+        public virtual InputType InputTypes { get; set; }
+        public int STATUS { get; set; }
+        [ForeignKey("STATUS")]
+        public virtual Status Statuss { get; set; }
         [Column("NOTE")]
         public string Note { get; set; }
     }

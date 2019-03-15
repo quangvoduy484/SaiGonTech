@@ -12,20 +12,20 @@ namespace QLHocVien.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DocumentsController : ControllerBase
+    public class StatusController : ControllerBase
     {
         private readonly QLHocVienContext _context;
 
-        public DocumentsController(QLHocVienContext context)
+        public StatusController(QLHocVienContext context)
         {
             _context = context;
         }
 
-        // GET: api/Documents
+        // GET: api/Status
         [HttpGet]
-        public async Task<ActionResult<BaseResponse>> GetDocument()
+        public async Task<ActionResult<BaseResponse>> GetStatus()
         {
-            var datas = await _context.Documents.Include(x => x.InputTypes).Include(x => x.Statuss).ToListAsync();
+            var datas = await _context.Status.ToListAsync();
             if (datas != null)
             {
                 return new BaseResponse
@@ -45,27 +45,22 @@ namespace QLHocVien.Controllers
             }
         }
 
-        // GET: api/Documents/5
+        // GET: api/Status/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<BaseResponse>> GetDocument(int id)
+        public async Task<ActionResult<BaseResponse>> GetStatus(int id)
         {
-            var document = await _context.Documents.Include(x => x.InputTypes).Include(x => x.Statuss).Where(x => x.Id == id).FirstOrDefaultAsync();
+            var status = await _context.Status.FindAsync(id);
 
-            if (document != null)
+            if (status != null)
             {
                 return new BaseResponse
                 {
                     ErrorCode = 1,
                     Messege = "Tìm kiếm dữ liệu thành công!!",
-                    Data = new Document()
+                    Data = new Status()
                     {
-                        Id = document.Id,
-                        NameInEnglish = document.NameInEnglish,
-                        NameInVietnamese = document.NameInVietnamese,
-                        SequenceNumber = document.SequenceNumber,
-                        INPUTTYPE = document.INPUTTYPE,
-                        STATUS = document.STATUS,
-                        Note = document.Note
+                        Id = status.Id,
+                        StatusName = status.StatusName
                     }
                 };
             }
@@ -79,33 +74,27 @@ namespace QLHocVien.Controllers
             }
         }
 
-        // PUT: api/Documents/5
+        // PUT: api/Status/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDocument(int id, Document document_update)
+        public async Task<IActionResult> PutStatus(int id, Status status_update)
         {
-            var Doc = await _context.Documents.FindAsync(id);
-            if (Doc == null)
+            var status = await _context.Status.FindAsync(id);
+            if (status == null)
             {
                 return NotFound();
             }
-            Doc.NameInEnglish = document_update.NameInEnglish;
-            Doc.NameInVietnamese = document_update.NameInVietnamese;
-            Doc.SequenceNumber = document_update.SequenceNumber;
-            Doc.INPUTTYPE = document_update.INPUTTYPE;
-            Doc.STATUS = document_update.STATUS;
-            Doc.Note = document_update.Note;
-
-            _context.Documents.Update(Doc);
+            status.StatusName = status_update.StatusName;
+            _context.Status.Update(status);
             await _context.SaveChangesAsync();
 
-            return Ok(Doc);
+            return Ok(status);
         }
 
-        // POST: api/Documents
+        // POST: api/Status
         [HttpPost]
-        public async Task<ActionResult<BaseResponse>> PostDocument(Document document)
+        public async Task<ActionResult<BaseResponse>> PostStatus(Status status)
         {
-            if (String.IsNullOrEmpty(document.NameInEnglish) || String.IsNullOrEmpty(document.NameInVietnamese))
+            if (String.IsNullOrEmpty(status.StatusName))
             {
                 return new BaseResponse
                 {
@@ -115,31 +104,31 @@ namespace QLHocVien.Controllers
             }
             else
             {
-                _context.Documents.Add(document);
+                _context.Status.Add(status);
                 await _context.SaveChangesAsync();
                 return new BaseResponse
                 {
                     ErrorCode = 1,
                     Messege = "Thêm mới thành công!!",
-                    Data = CreatedAtAction("GetDocument", new { id = document.Id }, document)
+                    Data = CreatedAtAction("GetStatus", new { id = status.Id }, status)
                 };
             }
         }
 
-        // DELETE: api/Documents/5
+        // DELETE: api/Status/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<BaseResponse>> DeleteDocument(int id)
+        public async Task<ActionResult<BaseResponse>> DeleteStatus(int id)
         {
-            var document = await _context.Documents.FindAsync(id);
-            if (document != null)
+            var status = await _context.Status.FindAsync(id);
+            if (status != null)
             {
-                _context.Documents.Remove(document);
+                _context.Status.Remove(status);
                 await _context.SaveChangesAsync();
                 return new BaseResponse
                 {
                     ErrorCode = 1,
                     Messege = "Xóa thành công!!",
-                    Data = document
+                    Data = status
                 };
             }
             else

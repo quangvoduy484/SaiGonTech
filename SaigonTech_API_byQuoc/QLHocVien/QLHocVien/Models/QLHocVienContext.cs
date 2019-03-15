@@ -33,5 +33,7 @@ namespace QLHocVien.Models
         public DbSet<StageDetail> StageDetails { get; set; }
         public DbSet<Candidate> Candidate { get; set; }
         public DbSet<QLHocVien.Models.User> Users { get; set; }
+        public DbSet<QLHocVien.Models.Status> Status { get; set; }
+        public DbSet<QLHocVien.Models.InputType> InputType { get; set; }
     }
 }

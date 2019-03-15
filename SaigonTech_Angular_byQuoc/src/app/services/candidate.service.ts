@@ -51,23 +51,23 @@ export interface CandidateDetail{
 export class CandidateService {
 
   constructor(private api: ApiService, private http: HttpClient) { }
-  public getAllCandidate():Observable<Candidatesponse>{
+  public getAllCandidate(): Observable<Candidatesponse>{
     return this.http.get<Candidatesponse>(this.api.apiUrl.candidates);
   }
 
-  public add(datas):Observable<CandidateDetail>{
+  public add(datas): Observable<CandidateDetail>{
     return this.http.post<CandidateDetail>(this.api.apiUrl.candidates, datas);
   }
 
-  public update(datas: Candidates):Observable<CandidateDetail>{
+  public update(datas: Candidates): Observable<CandidateDetail>{
     return this.http.put<CandidateDetail>(this.api.apiUrl.candidates + '/' + datas.id, datas);
   }
 
-  public delete(id):Observable<CandidateDetail>{
+  public delete(id): Observable<CandidateDetail>{
     return this.http.delete<CandidateDetail>(this.api.apiUrl.candidates + '/' + id);
   }
 
-  public getCandidateId(id): Observable<CandidateDetail>{
-    return this.http.get<CandidateDetail>(this.api.apiUrl.candidates + '/' + id)
+  public getCandidateId(id: number): Observable<CandidateDetail>{
+    return this.http.get<CandidateDetail>(this.api.apiUrl.candidates + '/' + id);
   }
 }

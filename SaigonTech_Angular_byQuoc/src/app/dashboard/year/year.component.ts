@@ -30,6 +30,7 @@ export class YearComponent implements OnInit {
       console.log(result);
       this.years = result.data;
     });
+    console.log(this.years);
   }
 
   ShowModalAdd(){

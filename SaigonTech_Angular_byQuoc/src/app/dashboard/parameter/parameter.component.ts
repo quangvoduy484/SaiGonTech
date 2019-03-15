@@ -25,6 +25,8 @@ export class ParameterComponent implements OnInit {
   intake: Intake = {} as Intake;
   intakes: Intake[] = [];
 
+  
+
 
   @ViewChild('modal') modal: ModalDirective;
   constructor(private parameterservice: ParameterService, private semeterservice: SemesterService, private yearservice: YearService, private intakeserviece: IntakeService, private titleService: Title) { }
@@ -55,19 +57,6 @@ export class ParameterComponent implements OnInit {
 
   }
 
-  // LoadDataForeign() {
-  //   console.log("1");
-  //   console.log(this.parameters);
-  //   // ở đây có dữ liệu của đối tượng + semeter, + year, + intake
-  //   for (let para of this.parameters) {
-  //     console.log("3");
-  //         console.log(para.semid);
-  //       this.getNameSemeter(para.semid);
-  //       console.log("2");
-  //   }
-
-
-  // }
 
 
   // Method lấy tên khóa ngoại

@@ -9,7 +9,7 @@ export interface Documents{
   nameInVietnamese: string;
   sequenceNumber: number;
   note: string;
-  inputtype: number;
+  inputType: number;
   status: number;
 }
 
@@ -24,6 +24,24 @@ export interface DocumentDetail{
   messege: string;
   data: Documents;
 }
+
+export interface DocumentByCanidateId{
+  DoucumentId: number;
+  InputType : number;
+}
+
+export interface DocumentByStudents{
+  errorCode: number;
+  messege: string;
+  data: DocumentByCanidateId[];
+}
+
+export interface DocumentByStudent{
+  errorCode: number;
+  messege: string;
+  data: DocumentByCanidateId;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -31,7 +49,7 @@ export class DocumentService {
 
   constructor(private api: ApiService, private http: HttpClient) { }
 
-  public getAllDocument():Observable<DocumentsResponse>{
+  public getAllDocument(): Observable<DocumentsResponse>{
     return this.http.get<DocumentsResponse>(this.api.apiUrl.documents);
   }
 
@@ -48,6 +66,12 @@ export class DocumentService {
   }
 
   public getDocumentId(id): Observable<DocumentDetail>{
-    return this.http.get<DocumentDetail>(this.api.apiUrl.documents + '/' + id)
+    return this.http.get<DocumentDetail>(this.api.apiUrl.documents + '/' + id);
   }
+
+  public getDocumentCandidateId(id: number):  Observable<DocumentByStudents>
+  {
+    return this.http.get<DocumentByStudents>(this.api.apiUrl.documents + '/' + ' SearchDocumentByCandidateId' + '?id=' + id);
+  }
+  
 }

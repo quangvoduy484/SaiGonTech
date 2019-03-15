@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -70,6 +70,7 @@ namespace QLHocVien.Controllers
             }
         }
 
+        
         // GET: api/Candidates/GetCandidateByMajor/{id}
         [HttpGet("GetCandidateByMajor/{id}")]
         public async Task<ActionResult<BaseResponse>> GetCandidateByMajor(int major_id)

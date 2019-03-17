@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import * as jwtDecode from 'jwt-decode';
-import { UserService, User } from '../services/user.service';
+import { UserService, User} from '../services/user.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { ModalDirective } from 'ngx-bootstrap';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -10,7 +12,13 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private cookieService: CookieService, private userService: UserService, private router: Router) { }
+  @ViewChild('ModalChangePassword') public modalChangePassword: ModalDirective;
+  currentpassword = '';
+  newpassword = '';
+  confirmpassword = '';
+  message = '';
+
+  constructor(private cookieService: CookieService, private userService: UserService, private router: Router, private auth: AuthService) { }
   public decoded: any;
   public claim: any;
   public statusClaim = null;
@@ -62,5 +70,29 @@ export class DashboardComponent implements OnInit {
     if ( localStorage.getItem('loggedIn') === '') {
       this.router.navigate(['/login']);
     }
+  }
+
+  // CODE BY HOA
+  changePassword() {
+    this.userService.changePassword(this.user.id, this.currentpassword, this.newpassword, this.confirmpassword).subscribe(result => {
+      if (result.errorCode !== 0) {
+        this.message = result.messege;
+        console.log(this.currentpassword, this.newpassword, this.confirmpassword, result.messege);
+      }
+
+      if (result.errorCode === 0) {
+        this.message = result.messege;
+        close();
+      }
+
+    });
+  }
+
+  showModalChangePassword() {
+    this.modalChangePassword.show();
+  }
+
+  close() {
+    this.modalChangePassword.hide();
   }
 }

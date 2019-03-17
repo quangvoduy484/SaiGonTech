@@ -3,6 +3,18 @@ import { ApiService } from './api.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+export interface ChangePasswordResponse {
+  errorCode: number;
+  messege: string;
+}
+
+export interface ChangePasswordRequest {
+  id: number;
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+
 export interface LoginResponse {
   errorCode: number;
   data: LoginInfo;
@@ -58,7 +70,7 @@ export class UserService {
   getAll(): Observable<Userepones> {
     return this.http.get<Userepones>(this.api.apiUrl.user);
   }
-  
+
   getObject(id: number): Observable<Userepone> {
     return this.http.get<Userepone>(this.api.apiUrl.user + '/' + id);
   }
@@ -75,6 +87,15 @@ export class UserService {
 
   getAcount(id: number): Observable<User> {
     return this.http.get<User>(this.api.apiUrl.user + '/LoadAcount' + '?id=' + id);
+  }
+
+  changePassword(id: number, currentpassword: string, newpassword: string, confirmpassword: string): Observable<ChangePasswordResponse> {
+    const PasswordData = {
+      currentPassword: currentpassword,
+      newPassword: newpassword,
+      confirmPassword: confirmpassword
+    };
+    return this.http.put<ChangePasswordResponse>(this.api.apiUrl.user + '/ChangePassword/' + id, PasswordData);
   }
 
 }

@@ -262,6 +262,56 @@ namespace QLHocVien.Controllers
       return new BaseResponse { ErrorCode = 0, Messege = "Dữ liệu rỗng" };
     }
 
+    [HttpPut("ChangePassword/{id}")]
+    public async Task<ActionResult<BaseResponse>> ChangePassword(int id, ChangePasswordRequest cpr)
+    {
+            var userItem = await _context.Users.FindAsync(id);
+            if (userItem == null)
+            {
+                return new BaseResponse
+                {
+                    ErrorCode = 2,
+                    Messege = "Not Found User"
+                };
+            }
+            if (Helper.GenHash(cpr.currentPassword) != userItem.PassWord)
+            {
+                return new BaseResponse
+                {
+                    ErrorCode = 3,
+                    Messege = "Current Password is not correct"
+                };
+            }
+            else if(cpr.newPassword == "" || cpr.confirmPassword == "")
+            {
+                return new BaseResponse
+                {
+                    ErrorCode = 4,
+                    Messege = "Missing Field!"
+                };
+            }
+            else if (cpr.newPassword != cpr.confirmPassword)
+            {
+                return new BaseResponse
+                {
+                    ErrorCode = 5,
+                    Messege = "The confirm password does not match!"
+                };
+            }
+            else
+            {
+                userItem.PassWord = Helper.GenHash(cpr.newPassword);
+                _context.Users.Update(userItem);
+                await _context.SaveChangesAsync();
+                return new BaseResponse
+                {
+                    ErrorCode = 0,
+                    Messege = "Change Password Successful!"
+                };
+            }
+
+    }
+
   }
 
 

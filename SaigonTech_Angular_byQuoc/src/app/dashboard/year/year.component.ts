@@ -22,7 +22,6 @@ export class YearComponent implements OnInit {
   ngOnInit() {
     this.titleService.setTitle("Year");
     this.loadData();
-    
   }
 
   public loadData() {
@@ -32,7 +31,7 @@ export class YearComponent implements OnInit {
     });
   }
 
-  ShowModalAdd(){
+  ShowModalAdd() {
     this.year = {} as Year;
     this.modalAdd.show();
   }

@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Major } from './major.service';
+import { Stage } from './stage.service';
+import { ExSubject } from './examsubject.service';
 
 export interface StageDetails{
   id: number;
@@ -9,8 +12,11 @@ export interface StageDetails{
   endTime: string;
   interview: string;
   major_ID: number;
+  major: Major;
   stage_ID: number;
+  stage: Stage;
   exam_ID: number;
+  examSubject: ExSubject;
 }
 
 export interface StageDetailsResponse {
@@ -42,7 +48,7 @@ export class StagedetailService {
     return this.http.post<StageDetaillDetail>(this.api.apiUrl.stagedetails, datas);
   }
 
-  public update(datas: StageDetails): Observable<StageDetaillDetail> {
+  public update(datas): Observable<StageDetaillDetail> {
     return this.http.put<StageDetaillDetail>(this.api.apiUrl.stagedetails + '/' + datas.id, datas);
   }
 
@@ -52,5 +58,13 @@ export class StagedetailService {
 
   public getStageDetailByStageId(id): Observable<StageDetailsResponse> {
     return this.http.get<StageDetailsResponse>(this.api.apiUrl.stagedetails + '/GetStageDetailByStage/' + id);
+  }
+
+  public getMajorInStageDetail(id): Observable<StageDetailsResponse> {
+    return this.http.get<StageDetailsResponse>(this.api.apiUrl.stagedetails + '/GetMajorInStageDetail/' + id);
+  }
+
+  public getMajorByStage(stage_id): Observable<StageDetailsResponse>{
+    return this.http.get<StageDetailsResponse>(this.api.apiUrl.stagedetails + '/GetStageDetailByStageCandidate/' + stage_id);
   }
 }

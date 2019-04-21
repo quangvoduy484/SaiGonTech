@@ -15,7 +15,7 @@ export interface MajorDetail{
 }
 export interface Major{
   id: number;
-  yearName: string;
+  majorName: string;
 }
 @Injectable({
   providedIn: 'root'

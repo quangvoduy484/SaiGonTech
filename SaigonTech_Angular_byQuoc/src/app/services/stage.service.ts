@@ -50,6 +50,10 @@ export class StageService {
     return this.http.get<StagesResponse>(this.api.apiUrl.stages + '/GetStageBySemester/' + sem_id);
   }
 
+  public GetStageByYear(year_id):Observable<StagesResponse>{
+    return this.http.get<StagesResponse>(this.api.apiUrl.stages + '/GetStageByYear/' + year_id);
+  }
+
   public add(datas): Observable<StageDetail> {
     return this.http.post<StageDetail>(this.api.apiUrl.stages, datas);
   }

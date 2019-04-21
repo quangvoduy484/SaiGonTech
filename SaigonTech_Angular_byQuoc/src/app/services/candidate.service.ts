@@ -59,7 +59,7 @@ export class CandidateService {
     return this.http.post<CandidateDetail>(this.api.apiUrl.candidates, datas);
   }
 
-  public update(datas: Candidates):Observable<CandidateDetail>{
+  public update(datas):Observable<CandidateDetail>{
     return this.http.put<CandidateDetail>(this.api.apiUrl.candidates + '/' + datas.id, datas);
   }
 
@@ -69,5 +69,9 @@ export class CandidateService {
 
   public getCandidateId(id): Observable<CandidateDetail>{
     return this.http.get<CandidateDetail>(this.api.apiUrl.candidates + '/' + id)
+  }
+
+  public getCandidateByStage(id): Observable<Candidatesponse>{
+    return this.http.get<Candidatesponse>(this.api.apiUrl.candidates + '/GetCandidateByStage/' + id);
   }
 }

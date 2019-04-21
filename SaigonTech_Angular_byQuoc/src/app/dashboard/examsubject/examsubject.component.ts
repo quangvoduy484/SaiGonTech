@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ExSubject, ExamsubjectService } from '../../services/examsubject.service';
 import { ModalDirective } from 'ngx-bootstrap';
 import { Title } from '@angular/platform-browser';
+import { Major, MajorService } from '../../services/major.service';
 
 @Component({
   selector: 'app-examsubject',
@@ -10,25 +11,39 @@ import { Title } from '@angular/platform-browser';
 })
 export class ExamsubjectComponent implements OnInit {
 
-  exsubjects: ExSubject[] =[];
+  //Exam Subject
+  exsubjects: ExSubject[] = [];
   exsubject: ExSubject = {} as ExSubject;
+
+  //Major
+  majors: Major[] = [];
+  major: Major = {} as Major;
 
   @ViewChild('modalAdd') public modalAdd: ModalDirective;
   @ViewChild('modalEdit') public modalEdit: ModalDirective;
   @ViewChild('modalDelete') public modalDelete: ModalDirective;
   @ViewChild('modalDetail') public modalDetail: ModalDirective;
   
-  constructor(private titleService: Title, private exsubjectService: ExamsubjectService) { }
+  constructor(private titleService: Title, private exsubjectService: ExamsubjectService, private majorService: MajorService) { }
 
   ngOnInit() {
     this.titleService.setTitle("Exam Subject");
     this.loadData();
+    this.dataMajor();
   }
 
   public loadData(){
     this.exsubjectService.getAllExSubject().subscribe(result =>{
       console.log(result);
       this.exsubjects = result.data;
+    })
+  }
+
+  //data Major
+  public dataMajor(){
+    this.majorService.getAllMajor().subscribe(major =>{
+      console.log(major);
+      this.majors = major.data;
     })
   }
 
@@ -56,7 +71,11 @@ export class ExamsubjectComponent implements OnInit {
   }
 
   add(){
-    this.exsubjectService.add(this.exsubject).subscribe(result =>{
+    const param = {
+      examName: this.exsubject.examName,
+      majoR_ID: this.major.id
+    }
+    this.exsubjectService.add(param).subscribe(result =>{
       console.log(result);
       this.loadData();
       this.modalAdd.hide();

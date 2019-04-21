@@ -2,13 +2,17 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ExSubject } from './examsubject.service';
+import { Major } from './major.service';
 
 export interface ScoreExam{
   id: number;
   sumScore: number;
   scorePass: number;
   exaM_ID: number;
+  examSubject: ExSubject;
   majoR_ID: number;
+  major: Major;
 }
 export interface ScoreExamsponse{
   errorCode: number;
@@ -34,7 +38,7 @@ export class ScoreexamService {
     return this.http.post<ScoreExamDetail>(this.api.apiUrl.scoreexams, datas);
   }
 
-  public update(datas: ScoreExam):Observable<ScoreExamDetail>{
+  public update(datas):Observable<ScoreExamDetail>{
     return this.http.put<ScoreExamDetail>(this.api.apiUrl.scoreexams + '/' + datas.id, datas);
   }
 

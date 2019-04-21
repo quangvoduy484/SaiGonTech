@@ -96,6 +96,20 @@ export class StagedetailComponent implements OnInit {
       this.subjects = result.data;
     })
   }
+/////////////////////////////////////////
+  public dataSubjectByMajor(){
+    this.subjectService.getExSubjectByMajor(this.stagedetail.major_ID).subscribe(sub =>{
+      console.log(sub);
+      this.subjects = sub.data;
+    })
+  }
+
+  public dataSubjectByMajorAdd(){
+    this.subjectService.getExSubjectByMajor(this.major.id).subscribe(sub =>{
+      console.log(sub);
+      this.subjects = sub.data;
+    })
+  }
 
   // show modal stage detail
   ShowModalAdd() {
@@ -104,8 +118,7 @@ export class StagedetailComponent implements OnInit {
     this.subject = {} as ExSubject;
     this.dataStage();
     this.dataMajor();
-    this.dataSubject();
-    this.dataStage();
+    //this.dataSubject();
     this.modalAdd.show();
   }
 
@@ -113,6 +126,7 @@ export class StagedetailComponent implements OnInit {
     event.preventDefault();
     this.dataMajor();
     this.dataSubject();
+    this.dataStage();
     this.stagedetailService.getStageDetailId(id).subscribe(result => {
       console.log(result);
       this.stagedetail = result.data;
@@ -147,6 +161,18 @@ export class StagedetailComponent implements OnInit {
   //event change combobox
   public changeStage() {
     this.dataStageDetailByStageId();
+  }
+/////////////////////////////////////////
+  public changeMajor(){
+    alert('1')
+    console.log(this.stagedetail.major_ID);
+    this.dataSubjectByMajor();
+  }
+
+  public changeMajorAdd(){
+    alert('1')
+    console.log(this.major.id);
+    this.dataSubjectByMajorAdd();
   }
 
   // event lose
@@ -220,8 +246,19 @@ export class StagedetailComponent implements OnInit {
     });
   }
 
-  update(id) {
-    this.stagedetailService.update(this.stagedetail).subscribe(result => {
+  update(idd) {
+    const param = {
+      "id": idd,
+      "starTime": this.stagedetail.starTime,
+      "endTime": this.stagedetail.endTime,
+      "interview": this.stagedetail.interview,
+      "major_ID": Number(this.stagedetail.major_ID),
+      "stage_ID": Number(this.stagedetail.stage_ID),
+      "exam_ID": Number((<HTMLInputElement>document.getElementById('inputSubject')).value)
+    } as any;
+    console.log((<HTMLInputElement>document.getElementById('inputSubject')).value)
+    console.log(param);
+    this.stagedetailService.update(param).subscribe(result => {
       this.dataStageDetailByStageId();
       this.modalEdit.hide();
     });

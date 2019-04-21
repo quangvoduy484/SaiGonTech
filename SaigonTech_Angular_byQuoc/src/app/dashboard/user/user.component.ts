@@ -173,8 +173,6 @@ export class UserComponent implements OnInit {
         this.form.get('phone').disable({ onlySelf: true });
         this.modal.show();
       });
-
-
     }
   }
 
@@ -223,14 +221,8 @@ export class UserComponent implements OnInit {
           console.log(this.isStatus);
         }, 4000);
       });
-
     }
-
-
-
   }
-
-
 }
 
 

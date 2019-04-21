@@ -34,7 +34,7 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="inputMajor">Major</label>
-                <select name="inputMajor" [(ngModel)]="major.id" id="inputMajor" class="form-control">
+                <select (change)="changeMajorAdd()" name="inputMajor" [(ngModel)]="major.id" id="inputMajor" class="form-control">
                   <option *ngFor="let major of majors" value="{{major.id}}" selected>{{major.majorName}}</option>
                 </select>
               </div>
@@ -92,16 +92,16 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="inputMajor">Major</label>
-                <select name="inputMajor" [(ngModel)]="stagedetail.major_ID" id="inputMajor" class="form-control"
+                <select (change)="changeMajor()" name="inputMajor" [(ngModel)]="stagedetail.major_ID" id="inputMajor" class="form-control"
                 >
-                  <option *ngFor="let major of majors" [value]="major.id" selected>{{major.majorName}}</option>
+                  <option *ngFor="let major of majors" value="{{major.id}}">{{major.majorName}}</option>
                 </select>
               </div>
               <div class="form-group col-md-6">
                 <label for="inputSubject">Subject</label>
                 <select name="inputSubject" [(ngModel)]="stagedetail.exam_ID" id="inputSubject" class="form-control"
                 >
-                  <option *ngFor="let subject of subjects" [value]="subject.id" selected>{{subject.examName}}</option>
+                  <option *ngFor="let subject of subjects" value="{{subject.id}}">{{subject.examName}}</option>
                 </select>
               </div>
             </div>
